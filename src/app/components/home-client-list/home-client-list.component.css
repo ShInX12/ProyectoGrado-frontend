@@ -1,0 +1,6 @@
+.home-client-list {
+  height: 25rem;
+  overflow: auto;
+  margin-left: -10px;
+  margin-right: -10px;
+}

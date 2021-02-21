@@ -1,0 +1,21 @@
+<div class="col case-card" (click)="onClic()">
+
+  <div class="row px-2 pt-2">
+    <p class="text-truncate font-weight-bold">{{ process.name }}</p>
+  </div>
+
+  <div class="row px-2">
+    <p class="text-truncate"> {{ clientsLabel }} </p>
+  </div>
+
+  <div *ngIf="documents.length === 0" class="row p-2" style="overflow: hidden; height: 2rem">
+    <span class="badge badge-secondary text-truncate" style="margin: 2px;">(Sin documentos)</span>
+  </div>
+
+  <div *ngIf="documents.length > 0" class="row p-2" style="overflow: hidden; height: 2rem">
+    <span *ngFor="let document of documents" class="badge text-truncate"
+          [class.badge-primary]="document.from_lawyer" [class.badge-success]="!document.from_lawyer"
+          style="margin: 2px;">{{ document.title }}</span>
+  </div>
+
+</div>

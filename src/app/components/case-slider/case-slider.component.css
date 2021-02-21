@@ -1,0 +1,5 @@
+.slider {
+  height: 155px;
+  overflow: auto;
+  white-space: nowrap;
+}

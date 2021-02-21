@@ -1,0 +1,65 @@
+<div class="container">
+
+  <h3 class="my-5">Envía tus documentos aquí</h3>
+
+  <div class="row mb-2">
+
+    <div class="col-12 col-md-4">
+      <label for="validationServer01" class="mb-3">Código:</label>
+      <input type="number" class="form-control" [class.is-invalid]="!existCode" id="validationServer01"
+             required maxlength="4" max="9999" autocomplete="off" [(ngModel)]="sendDocumentsDTO.code">
+      <div *ngIf="!existCode" class="invalid-feedback">El proceso no existe</div>
+
+      <div class="form-group my-3 ">
+        <label for="exampleFormControlTextarea1" class="mb-3">Comentarios:</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1"
+                  rows="5" [(ngModel)]="sendDocumentsDTO.observation">
+        </textarea>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-8">
+
+      <div class="row justify-content-between px-3">
+        <p>Documentos: </p>
+        <button class="btn btn-primary btn-sm" style="height: 2rem" (click)="openModal(uploadFileModal)">Subir</button>
+      </div>
+      <div class="p-2 border justify-content-center files-box" style="height: 15.7rem">
+        <div *ngFor="let document of documents">
+          <app-file-card [document]="document" [showAll]="false"></app-file-card>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-primary" [disabled]="uploadingDocuments" (click)="uploadFiles()">
+    <span *ngIf="uploadingDocuments" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    <span *ngIf="uploadingDocuments" class="sr-only"></span>
+    {{ uploadingDocuments? "Subiendo...": "Enviar" }}
+  </button>
+</div>
+
+<ng-template #uploadFileModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Agregar documento</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="this.closeFileModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" style="height: 25rem">
+
+    <div class="form-group row">
+      <label for="document-url" class="col-sm-3 col-form-label">Subir:</label>
+      <div class="col-sm-9">
+        <input class="form-control" type="file" id="document-url" (change)="selectFile($event.target.files[0])">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer justify-content-end">
+    <button class="btn btn-primary" (click)="addFile()" [disabled]="!currentFile">Agregar</button>
+  </div>
+</ng-template>

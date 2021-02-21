@@ -1,0 +1,81 @@
+<div class="row mt-5 px-5">
+
+  <div class="col-md-6 mb-4">
+    <div class="row justify-content-between px-3">
+      <h3 class="mb-3">Mis datos</h3>
+      <button class="btn btn-outline-primary" (click)="openModal(passwordModal)">Cambiar contraseña</button>
+    </div>
+
+    <div class="form-group">
+      <label for="input-name">Nombre</label>
+      <input type="text" class="form-control" [class.is-invalid]="user.name?.length === 0" id="input-name"
+             name="user-name" autocomplete="off" [(ngModel)]="user.name">
+      <div id="input-name-validation" class="invalid-feedback">El nombre es obligatorio</div>
+    </div>
+
+    <div class="form-group">
+      <label for="input-email">Correo electrónico</label>
+      <input type="text" class="form-control" [class.is-invalid]="user.email?.length === 0" id="input-email"
+             name="user-email" autocomplete="off" [(ngModel)]="user.email">
+      <div id="input-email-validation" class="invalid-feedback">El correo electrónico es obligatorio</div>
+    </div>
+
+    <div class="form-group">
+      <label for="input-phone">Teléfono</label>
+      <input type="text" class="form-control" id="input-phone" autocomplete="off"
+             name="user-phone" [(ngModel)]="user.phone">
+    </div>
+
+    <div class="form-group">
+      <label for="input-bio">Sobre mi</label>
+      <textarea class="form-control" id="input-bio" rows="2" name="user-bio" [(ngModel)]="user.bio"></textarea>
+    </div>
+
+    <div class="row justify-content-between px-3">
+      <button class="btn btn-primary align-items-end" [disabled]="user.name?.length === 0 || user.email?.length === 0"
+              (click)="updateClient()">Actualizar datos
+      </button>
+    </div>
+
+  </div>
+
+  <div class="col-md-6 mb-4">
+  </div>
+
+</div>
+
+<ng-template #passwordModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Cambiar la contraseña</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body" style="height: 25rem">
+
+    <div class="form-group">
+      <label for="input-current-password">Contraseña actual</label>
+      <input type="password" class="form-control" id="input-current-password"
+             name="user-current-password" [(ngModel)]="currentPassword">
+    </div>
+
+    <div class="form-group">
+      <label for="input-new-password-1">Nueva contraseña</label>
+      <input type="password" class="form-control" id="input-new-password-1"
+             name="user-new-password-1" [(ngModel)]="newPassword1">
+    </div>
+
+    <div class="form-group">
+      <label for="input-new-password-2">Confirma la contraseña</label>
+      <input type="password" class="form-control" id="input-new-password-2"
+             name="user-new-password-2" [(ngModel)]="newPassword2">
+    </div>
+
+  </div>
+
+  <div class="modal-footer justify-content-end">
+    <button class="btn btn-primary" [disabled]="!validatePasswords()" (click)="updatePasword()">Actualizar</button>
+  </div>
+
+</ng-template>

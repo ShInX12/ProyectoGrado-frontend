@@ -1,0 +1,21 @@
+.client-card {
+  height: 62px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.client-card:hover{
+  background-color: #f5f5f5;
+}
+
+.avatar {
+  background-color: #80bdff;
+  width: 62px;
+  height: 60px;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 8px;
+}

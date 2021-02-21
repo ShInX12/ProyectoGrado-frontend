@@ -1,0 +1,70 @@
+<div class="row mt-4 mb-3 px-3 justify-content-between">
+  <h3>Lista de casos</h3>
+  <button class="btn btn-primary" (click)="newProcess()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase-fill" viewBox="0 0 16 16">
+      <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/>
+      <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z"/>
+    </svg> Nuevo
+  </button>
+</div>
+
+<div *ngIf="processes?.length === 0 && !noData">
+  <div class="text-center" style="width: 100%">
+    <h5 class="my-5">Buscando casos...</h5>
+  </div>
+</div>
+
+<div *ngIf="processes?.length === 0 && noData">
+  <div class="text-center" style="width: 100%; padding: 3rem">
+    <img src="/assets/svg/undraw_No_data_re_kwbl.svg" class="my-3" style="max-width: 200px" alt="empty">
+    <h5 class="my-5">No hay casos actualmente</h5>
+  </div>
+</div>
+
+<div *ngIf="processes?.length > 0" class="table-responsive">
+  <table class="table table-hover">
+    <thead class="thead-light">
+    <tr>
+      <th>Nombre</th>
+      <th>Código</th>
+      <th>Descripción</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let process of processes" [routerLink]="[ '../proceso', process.uid ]" style="cursor: pointer">
+      <td>{{ process?.name }}</td>
+      <td>{{ process?.code }}</td>
+      <td>{{ process?.description }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="processes?.length > 0" class="row justify-content-between px-3">
+
+  <nav aria-label="Client page navigation">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" (click)="changePage(this.page - 1)" aria-label="Anterior">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item"
+          *ngFor="let item of [].constructor(totalPages); let i = index"
+          [class.active]="this.page === i + 1">
+        <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" (click)="changePage(this.page + 1)" aria-label="Siguiente">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <p>{{ from }} a {{ to }} de {{ totalCount }}</p>
+
+</div>
+
+<app-save-process></app-save-process>

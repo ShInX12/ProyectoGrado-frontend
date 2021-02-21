@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "proyecto-grado-usb": {
+      "hosting": {
+        "ProyectoGrado-frontend": [
+          "proyecto-grado-usb"
+        ]
+      }
+    }
+  }
+}

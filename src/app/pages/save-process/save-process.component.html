@@ -1,0 +1,45 @@
+<div *ngIf="!this.modalService.processModalHiden" class="modal-backdrop animate__animated animate__fadeInDown animate__faster">
+  <div id="responsive-modal" class="modal fade show" tabindex="-1"
+       role="dialog" aria-labelledby="myModalLabel" style="display: block;">
+
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Nuevo {{ this.modalService.processTypeName }}</h4>
+          <button type="button" class="close" data-dismiss="modal"
+                  aria-hidden="true" (click)="closeModal()">×
+          </button>
+        </div>
+
+        <form (ngSubmit)="save()">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="process-name">Nombre</label>
+              <input type="text" class="form-control" id="process-name"
+                     name="processName" autocomplete="off" [(ngModel)]="process.name">
+            </div>
+            <div class="form-group">
+              <label for="process-description">Descripción</label>
+              <textarea class="form-control" id="process-description" rows="3"
+                        name="processDescription" [(ngModel)]="process.description">
+              </textarea>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default waves-effect"
+                    data-dismiss="modal" (click)="closeModal()">Cancelar
+            </button>
+            <button type="submit" [disabled]="process.name.length === 0"
+                    class="btn btn-primary waves-effect waves-light">
+              Guardar
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</div>
