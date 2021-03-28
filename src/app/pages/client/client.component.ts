@@ -17,7 +17,7 @@ import { showErrorAlert, showSuccesAlert, showWarningDeleteAlert } from '../../h
 export class ClientComponent implements OnInit, OnDestroy {
 
   public params = this.activedRoute.params[`_value`];
-  public client: Client = new Client('', '', '', '', '', '', '');
+  public client: Client = new Client('', '', '', '', '', '', true, '', '');
   public personalIdTypes: PersonalIdType[] = [];
   public processes: Process[] = [];
 

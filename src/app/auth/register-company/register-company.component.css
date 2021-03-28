@@ -1,14 +1,7 @@
-.background {
-  /*background-color: #fafafa;*/
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  /*height: 100vh;*/
-  /*width: 100vw;*/
-}
-
 .register-container {
   background-color: white;
-  max-width: 430px !important;
+  width: 430px !important;
+  /*max-width: 430px !important;*/
   border: 1px solid #dee2e6;
   margin: auto;
   padding: 1.5rem;

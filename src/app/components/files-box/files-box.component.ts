@@ -19,7 +19,7 @@ export class FilesBoxComponent implements OnInit {
 
   @Input() processId: string;
   public documents: Document[] = [];
-  public newDocument: Document = new Document('0', '', '', '', null, true, '', environment.DEFAULT_DOCUMENT_TYPE);
+  public newDocument: Document = new Document('0', '', '', '', null, true, true, {uid: '', name: ''}, environment.DEFAULT_DOCUMENT_TYPE);
 
   public subscriptions: Subscription[] = [];
 

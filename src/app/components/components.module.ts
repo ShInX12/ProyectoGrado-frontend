@@ -12,6 +12,8 @@ import { FileCardComponent } from './file-card/file-card.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ObservationsBoxComponent } from './observations-box/observations-box.component';
 import { FilesBoxComponent } from './files-box/files-box.component';
+import { RegisterStepperComponent } from './register-stepper/register-stepper.component';
+import { AuthModule } from '../auth/auth.module';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { FilesBoxComponent } from './files-box/files-box.component';
     FileCardComponent,
     SearchBarComponent,
     ObservationsBoxComponent,
-    FilesBoxComponent
+    FilesBoxComponent,
+    RegisterStepperComponent
   ],
   exports: [
     HomeClientListComponent,
@@ -36,10 +39,11 @@ import { FilesBoxComponent } from './files-box/files-box.component';
     ObservationsBoxComponent,
     FilesBoxComponent
   ],
-  imports: [
-    CommonModule,
-    ModalModule,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        ModalModule,
+        FormsModule,
+        AuthModule
+    ]
 })
 export class ComponentsModule { }

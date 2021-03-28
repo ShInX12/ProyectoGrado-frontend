@@ -32,7 +32,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     InboxComponent,
     SaveProcessComponent,
     SaveClientComponent,
-    UserProfileComponent
+    UserProfileComponent,
   ],
     imports: [
         CommonModule,

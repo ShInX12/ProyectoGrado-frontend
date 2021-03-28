@@ -51,7 +51,7 @@ export class InboxComponent implements OnInit, OnDestroy {
   public addFile(): void {
     this.files.push(this.currentFile);
     this.documents.push(
-      new Document('', this.currentFile.name, '', '', new Date(), false, '', '')
+      new Document('', this.currentFile.name, '', '', new Date(), false, false, {uid: '', name: ''}, '')
     );
     this.closeFileModal();
   }
@@ -80,7 +80,7 @@ export class InboxComponent implements OnInit, OnDestroy {
       finalize(() => ref.getDownloadURL().subscribe(
         downloadUrl => {
           this.sendDocumentsDTO.documents.push(
-            new Document('', file.name, '', downloadUrl, new Date(), false, '', '')
+            new Document('', file.name, '', downloadUrl, new Date(), false, false, {uid: '', name: ''}, '')
           );
           this.complete.push(true);
           this.sendDocuments();

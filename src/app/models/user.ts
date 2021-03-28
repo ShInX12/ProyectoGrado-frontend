@@ -11,7 +11,10 @@ export class User {
     public photo_url: string,
     public bio: string,
     // tslint:disable-next-line:variable-name
-    public user_type: number
+    public user_type_id: string,
+    public enable: boolean,
+    // tslint:disable-next-line:variable-name
+    public company_id: string
   ) {}
 
 }
