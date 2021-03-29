@@ -17,6 +17,9 @@ import { SaveProcessComponent } from './save-process/save-process.component';
 import { SaveClientComponent } from './save-client/save-client.component';
 import { FormsModule } from '@angular/forms';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { SaveUserComponent } from './save-user/save-user.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -33,6 +36,9 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     SaveProcessComponent,
     SaveClientComponent,
     UserProfileComponent,
+    UserListComponent,
+    SaveUserComponent,
+    UserComponent,
   ],
     imports: [
         CommonModule,

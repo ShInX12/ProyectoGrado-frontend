@@ -11,6 +11,6 @@ export class ClientDTO {
     public bio: string,
     // tslint:disable-next-line:variable-name
     public personal_id_type: { uid: string, name: string }
-  ) {}
+  ) { }
 
 }

@@ -5,8 +5,30 @@ import { Injectable } from '@angular/core';
 })
 export class NavbarService {
 
-  public menu = [
-    { title: 'Inicio', url: '' },
+  public menuAdministrador = [
+    { title: 'Inicio Admin', url: '' },
+    { title: 'Casos', url: 'procesos' },
+    { title: 'Movimientos', url: 'movimientos' },
+    { title: 'Clientes', url: 'clientes' },
+    { title: 'Usuarios', url: 'usuarios' },
+  ];
+
+  public menuAbogado = [
+    { title: 'Inicio Abogado', url: '' },
+    { title: 'Casos', url: 'procesos' },
+    { title: 'Movimientos', url: 'movimientos' },
+    { title: 'Clientes', url: 'clientes' },
+  ];
+
+  public menuAsistente = [
+    { title: 'Inicio Asistente', url: '' },
+    { title: 'Casos', url: 'procesos' },
+    { title: 'Movimientos', url: 'movimientos' },
+    { title: 'Clientes', url: 'clientes' },
+  ];
+
+  public menuCliente = [
+    { title: 'Inicio Cliente', url: '' },
     { title: 'Casos', url: 'procesos' },
     { title: 'Movimientos', url: 'movimientos' },
     { title: 'Clientes', url: 'clientes' },

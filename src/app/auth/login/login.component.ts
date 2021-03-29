@@ -23,8 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public loginSub: Subscription;
 
   constructor(private router: Router,
-              private authService: AuthService) {
-  }
+              private authService: AuthService) { }
 
   ngOnInit(): void { }
 

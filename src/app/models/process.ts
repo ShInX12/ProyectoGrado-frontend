@@ -8,6 +8,6 @@ export class Process {
     public state: string,
     // tslint:disable-next-line:variable-name
     public process_type: string
-  ) {}
+  ) { }
 
 }

@@ -10,6 +10,8 @@ import { MovementComponent } from './movement/movement.component';
 import { ClientListComponent } from './client-list/client-list.component';
 import { ClientComponent } from './client/client.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserComponent } from './user/user.component';
 
 const childRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +22,8 @@ const childRoutes: Routes = [
   { path: 'clientes', component: ClientListComponent },
   { path: 'cliente/:id', component: ClientComponent },
   { path: 'perfil', component: UserProfileComponent },
+  { path: 'usuarios', component: UserListComponent },
+  { path: 'usuario/:id', component: UserComponent },
 ];
 
 @NgModule({

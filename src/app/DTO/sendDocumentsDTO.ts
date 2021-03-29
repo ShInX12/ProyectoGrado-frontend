@@ -6,6 +6,6 @@ export class SendDocumentsDTO {
     public documents: Document[],
     public code: string,
     public observation: string
-  ) {}
+  ) { }
 
 }

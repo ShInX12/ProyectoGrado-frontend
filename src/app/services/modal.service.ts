@@ -10,6 +10,8 @@ export class ModalService {
   private _clientModalHiden = true;
   // tslint:disable-next-line:variable-name
   private _processModalHiden = true;
+  // tslint:disable-next-line:variable-name
+  private _userModalHiden = true;
 
   public processType: string;
   public processTypeName: string;
@@ -22,6 +24,10 @@ export class ModalService {
 
   get processModalHiden(): boolean {
     return this._processModalHiden;
+  }
+
+  get userModalHiden(): boolean {
+    return this._userModalHiden;
   }
 
   public openClient(): void {
@@ -38,9 +44,14 @@ export class ModalService {
     this._processModalHiden = false;
   }
 
+  public openUser(): void {
+    this._userModalHiden = false;
+  }
+
   public close(): void {
     this._clientModalHiden = true;
     this._processModalHiden = true;
+    this._userModalHiden = true;
   }
 
 }

@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { User } from '../models/user';
+import { Company } from '../models/company';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
@@ -12,6 +13,7 @@ import { catchError, map } from 'rxjs/operators';
 export class AuthService {
 
   public user: User;
+  public company: Company;
   public url: string;
 
   constructor(private httpClient: HttpClient,
@@ -46,6 +48,7 @@ export class AuthService {
         map((response: any) => {
           this.saveToken(response.token);
           this.user = response.user;
+          this.company = response.company;
           return true;
         }),
         catchError(() => of(false))
@@ -55,6 +58,11 @@ export class AuthService {
   public login(email: string, password: string): Observable<any> {
     const body = { email, password };
     return this.httpClient.post(this.url, body, this.headers);
+  }
+
+  public registerUserWithCompany(user: User, company: Company): Observable<any> {
+    const body = { user, company };
+    return this.httpClient.post(this.url + 'registerUserWithCompany', body);
   }
 
   public logout(): void {

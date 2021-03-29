@@ -27,6 +27,22 @@ export class UserService {
     };
   }
 
+  public findAll(page: number = 0): Observable<any> {
+    return this.httpClient.get(this.url + 'findAll', this.headers);
+  }
+
+  public findAllPaginated(page: number = 0): Observable<any> {
+    return this.httpClient.get(this.url + 'findAllPaginated/?page=' + page, this.headers);
+  }
+
+  public findAllPaginatedDTO(page: number = 0): Observable<any> {
+    return this.httpClient.get(this.url + 'findAllPaginatedDTO/?page=' + page, this.headers);
+  }
+
+  public findById(id: string): Observable<any> {
+    return this.httpClient.get(this.url + 'findById/' + id, this.headers);
+  }
+
   public save(user: User): Observable<any> {
     return this.httpClient.post(this.url + 'save', user);
   }

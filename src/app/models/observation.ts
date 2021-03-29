@@ -9,6 +9,6 @@ export class Observation {
     public from_lawyer: boolean,
     // tslint:disable-next-line:variable-name
     public observation_type?: string,
-  ) {}
+  ) { }
 
 }

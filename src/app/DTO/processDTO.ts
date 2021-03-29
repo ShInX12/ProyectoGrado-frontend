@@ -10,6 +10,6 @@ export class ProcessDTO {
     public process_type: { uid: string, name: string },
     public createdAt: Date,
     public updatedAt: Date
-  ) {}
+  ) { }
 
 }

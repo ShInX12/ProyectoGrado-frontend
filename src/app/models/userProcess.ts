@@ -7,6 +7,6 @@ export class UserProcess {
     public owner: boolean,
     // tslint:disable-next-line:variable-name
     public can_edit: boolean
-  ) {}
+  ) { }
 
 }

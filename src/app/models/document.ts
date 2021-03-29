@@ -15,6 +15,6 @@ export class Document {
     public process: string,
     // tslint:disable-next-line:variable-name
     public document_type?: string
-  ) {}
+  ) { }
 
 }

@@ -4,6 +4,6 @@ class UserType {
     public uid: string,
     public name: string,
     public enable: boolean
-  ) {}
+  ) { }
 
 }

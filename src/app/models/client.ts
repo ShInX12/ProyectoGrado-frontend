@@ -14,6 +14,6 @@ export class Client {
     public personal_id_type: string,
     // tslint:disable-next-line:variable-name
     public company_id: string,
-  ) {}
+  ) { }
 
 }

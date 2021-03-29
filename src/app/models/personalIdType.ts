@@ -4,6 +4,6 @@ export class PersonalIdType {
     public uid: string,
     public name: string,
     public enable: boolean
-  ) {}
+  ) { }
 
 }

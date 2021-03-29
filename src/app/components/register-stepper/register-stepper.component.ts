@@ -1,23 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import Stepper from 'bs-stepper';
 import { RegisterStepperService } from '../../services/register-stepper.service';
+import { User } from '../../models/user';
+import { Company } from '../../models/company';
+import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-register-stepper',
   templateUrl: './register-stepper.component.html',
   styleUrls: ['./register-stepper.component.css']
 })
-export class RegisterStepperComponent implements OnInit {
+export class RegisterStepperComponent implements OnInit, OnDestroy {
 
   private stepper: Stepper;
 
-  constructor(public RSService: RegisterStepperService) { }
+  public user: User = new User('', '', '', true, '', '', '', '', '', '', true, environment.DEFAULT_DOCUMENT_TYPE, null);
+  public company: Company = new Company('', '', '', '', '', '', 0);
+
+  private registerSub: Subscription;
+
+  public showError = false;
+  public error = '';
+
+  constructor(public RSService: RegisterStepperService,
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.stepper = new Stepper(document.querySelector('#stepper1'), {
       linear: true,
       animation: true
     });
+  }
+
+  ngOnDestroy(): void {
+    this.registerSub?.unsubscribe();
   }
 
   next(): any {
@@ -29,9 +49,30 @@ export class RegisterStepperComponent implements OnInit {
   }
 
   register(): any {
-    console.log(this.RSService.registerUserForm.value);
-    console.log(this.RSService.registerUserDetailsForm.value);
-    console.log(this.RSService.registerCompanyForm.value);
+    this.user.email = this.RSService.registerUserForm.get('email').value;
+    this.user.password = this.RSService.registerUserForm.get('password1').value;
+    this.user.name = this.RSService.registerUserDetailsForm.get('name').value;
+    this.user.phone = this.RSService.registerUserDetailsForm.get('phone').value;
+    this.user.bio = this.RSService.registerUserDetailsForm.get('bio').value;
+    this.user.user_type_id = environment.USER_TYPE_ADMINISTRADOR;
+
+    this.company.nit = this.RSService.registerCompanyForm.get('nit').value;
+    this.company.name = this.RSService.registerCompanyForm.get('name').value;
+    this.company.phone = this.RSService.registerCompanyForm.get('phone').value;
+    this.company.address = this.RSService.registerCompanyForm.get('address').value;
+
+    this.registerSub = this.authService.registerUserWithCompany(this.user, this.company).subscribe(
+      value => {
+        localStorage.setItem('token', value.token);
+        this.authService.user = value.user;
+        this.authService.company = value.company;
+        this.router.navigateByUrl('');
+      },
+      error => {
+        this.error = error.error.message;
+        this.showError = true;
+      }
+    );
     return false;
   }
 

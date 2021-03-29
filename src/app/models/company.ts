@@ -1,4 +1,4 @@
-class Company {
+export class Company {
 
   constructor(
     public uid: string,
@@ -8,6 +8,6 @@ class Company {
     public nit: string,
     public logo: string,
     public code: number,
-  ) {}
+  ) { }
 
 }

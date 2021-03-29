@@ -1,4 +1,4 @@
-<div *ngIf="!modalService.clientModalHiden" class="modal-backdrop animate__animated animate__fadeInDown animate__faster">
+<div *ngIf="!modalService.userModalHiden" class="modal-backdrop animate__animated animate__fadeInDown animate__faster">
   <div id="responsive-modal" class="modal fade show" tabindex="-1"
        role="dialog" aria-labelledby="myModalLabel" style="display: block;">
 
@@ -6,7 +6,7 @@
       <div class="modal-content">
 
         <div class="modal-header">
-          <h4 class="modal-title">Nuevo cliente</h4>
+          <h4 class="modal-title">Nuevo usuario</h4>
           <button type="button" class="close" data-dismiss="modal"
                   aria-hidden="true" (click)="closeModal()">×
           </button>
@@ -16,16 +16,16 @@
           <div class="modal-body">
 
             <div class="form-group">
-              <label for="client-name">Nombre del cliente</label>
-              <input type="text" class="form-control" id="client-name" name="client-name"
-                     autocomplete="off" autofocus [(ngModel)]="client.name">
+              <label for="user-name">Nombre del usuario</label>
+              <input type="text" class="form-control" id="user-name" name="user-name"
+                     autocomplete="off" autofocus [(ngModel)]="user.name">
             </div>
 
             <div class="form-row">
               <div class="form-group col-3">
                 <label for="select-personal-id-type">Tipo</label>
                 <select class="custom-select" id="select-personal-id-type"
-                        name="personal-id-type-select" required [(ngModel)]="client.personal_id_type">
+                        name="personal-id-type-select" required [(ngModel)]="user.personal_id_type">
                   <option *ngFor="let personalIdType of personalIdTypes" [value]="personalIdType.uid">
                     {{ personalIdType.name }}
                   </option>
@@ -34,20 +34,20 @@
               <div class="form-group col-9">
                 <label for="client-id">Identificación</label>
                 <input type="text" class="form-control" id="client-id" autocomplete="off"
-                       name="client-personal-id" [(ngModel)]="client.personal_id">
+                       name="client-personal-id" [(ngModel)]="user.personal_id">
               </div>
             </div>
 
             <div class="form-group">
               <label for="client-phone">Teléfono</label>
               <input type="text" class="form-control" id="client-phone" name="client-phone"
-                     autocomplete="off" [(ngModel)]="client.phone">
+                     autocomplete="off" [(ngModel)]="user.phone">
             </div>
 
             <div class="form-group">
-              <label for="client-bio">Observaciones</label>
+              <label for="client-bio">Sobre mi</label>
               <textarea class="form-control" id="client-bio" rows="2"
-                        name="client-bio" [(ngModel)]="client.bio">
+                        name="client-bio" [(ngModel)]="user.bio">
               </textarea>
             </div>
 
@@ -57,7 +57,7 @@
             <button type="button" class="btn btn-default waves-effect"
                     data-dismiss="modal" (click)="closeModal()">Cancelar
             </button>
-            <button type="submit" [disabled]="client.name.length === 0"
+            <button type="submit" [disabled]="user.name.length === 0"
                     class="btn btn-primary waves-effect waves-light">
               Guardar
             </button>
