@@ -2,70 +2,105 @@
   <div id="responsive-modal" class="modal fade show" tabindex="-1"
        role="dialog" aria-labelledby="myModalLabel" style="display: block;">
 
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+    <form [formGroup]="saveUserForm" (ngSubmit)="save()">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
 
-        <div class="modal-header">
-          <h4 class="modal-title">Nuevo usuario</h4>
-          <button type="button" class="close" data-dismiss="modal"
-                  aria-hidden="true" (click)="closeModal()">×
-          </button>
-        </div>
+          <div class="modal-header">
+            <h4 class="modal-title">Nuevo usuario</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closeModal()">×
+            </button>
+          </div>
 
-        <form (ngSubmit)="save()">
           <div class="modal-body">
 
             <div class="form-group">
-              <label for="user-name">Nombre del usuario</label>
-              <input type="text" class="form-control" id="user-name" name="user-name"
-                     autocomplete="off" autofocus [(ngModel)]="user.name">
+
+              <label for="input-name">Nombre*</label>
+              <input type="text" class="form-control" id="input-name" autocomplete="off"
+                     [class.is-invalid]="name.invalid && name.touched" formControlName="name">
+              <div *ngIf="name.invalid && name.touched" class="invalid-feedback">
+                <div *ngIf="name.errors.required">El nombre es necesario</div>
+                <div *ngIf="name.errors.minlength">El nombre no puede ser una letra</div>
+              </div>
             </div>
 
             <div class="form-row">
-              <div class="form-group col-3">
-                <label for="select-personal-id-type">Tipo</label>
-                <select class="custom-select" id="select-personal-id-type"
-                        name="personal-id-type-select" required [(ngModel)]="user.personal_id_type">
-                  <option *ngFor="let personalIdType of personalIdTypes" [value]="personalIdType.uid">
-                    {{ personalIdType.name }}
-                  </option>
+              <div class="form-group col-md-6">
+                <label for="user_type_id">Tipo de usuario*</label>
+                <select id="user_type_id" class="form-control" formControlName="user_type_id"
+                        [class.is-invalid]="user_type_id.invalid && user_type_id.touched">
+                  <option *ngFor="let type of userTypes" [value]="type.uid">{{ type.name }}</option>
+                </select>
+                <div *ngIf="user_type_id.invalid && user_type_id.touched" class="invalid-feedback">
+                  <div *ngIf="user_type_id.errors.required">El tipo de usuario es necesario</div>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="enable">Estado</label>
+                <select id="enable" class="form-control" formControlName="enable">
+                  <option [value]="true">Activo</option>
+                  <option [value]="false">Inactivo</option>
                 </select>
               </div>
-              <div class="form-group col-9">
-                <label for="client-id">Identificación</label>
-                <input type="text" class="form-control" id="client-id" autocomplete="off"
-                       name="client-personal-id" [(ngModel)]="user.personal_id">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-5">
+                <label for="input-personal-id">Tipo de id</label>
+                <select id="input-personal-id" class="form-control" formControlName="personal_id_type">
+                  <option *ngFor="let type of personalIdTypes" [value]="type.uid">{{ type.name }}</option>
+                </select>
+              </div>
+              <div class="form-group col-md-7">
+                <label for="input-personal-id-type">Número de identificación</label>
+                <input type="text" class="form-control" id="input-personal-id-type"
+                       autocomplete="off" formControlName="personal_id">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="client-phone">Teléfono</label>
-              <input type="text" class="form-control" id="client-phone" name="client-phone"
-                     autocomplete="off" [(ngModel)]="user.phone">
+              <label for="input-email">Correo electrónico*</label>
+              <input type="email" class="form-control" id="input-email"
+                     [class.is-invalid]="email.invalid && email.touched" autocomplete="off" formControlName="email">
+              <div *ngIf="email.invalid && email.touched" class="invalid-feedback">
+                <div *ngIf="email.errors.required">El correo electrónico es necesario</div>
+                <div *ngIf="email.errors.email">El correo electrónico no es válido</div>
+              </div>
             </div>
 
             <div class="form-group">
-              <label for="client-bio">Sobre mi</label>
-              <textarea class="form-control" id="client-bio" rows="2"
-                        name="client-bio" [(ngModel)]="user.bio">
+              <label for="input-password">Contraseña*</label>
+              <input type="password" class="form-control" id="input-password" formControlName="password"
+                     [class.is-invalid]="password.invalid && password.touched">
+              <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+                <div *ngIf="password.errors.required">La contraseña es necesaria</div>
+                <div *ngIf="password.errors.minlength">La contraseña debe tener mínimo 6 caracteres</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="input-phone">Teléfono</label>
+              <input type="text" class="form-control" id="input-phone"
+                     autocomplete="off" formControlName="phone">
+            </div>
+
+            <div class="form-group">
+              <label for="input-bio">Sobre mí</label>
+              <textarea class="form-control" id="input-bio" rows="2" formControlName="bio">
               </textarea>
             </div>
 
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-default waves-effect"
-                    data-dismiss="modal" (click)="closeModal()">Cancelar
-            </button>
-            <button type="submit" [disabled]="user.name.length === 0"
-                    class="btn btn-primary waves-effect waves-light">
-              Guardar
-            </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeModal()">Cancelar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!saveUserForm.valid">Guardar</button>
           </div>
-        </form>
 
+        </div>
       </div>
-    </div>
+    </form>
 
   </div>
 </div>

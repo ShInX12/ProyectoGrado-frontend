@@ -5,37 +5,61 @@
     <h3 class="mb-3">Detalles del usuario</h3>
 
     <div class="form-group">
-      <label for="input-name">Nombre</label>
-      <input type="text" class="form-control" id="input-name" autocomplete="off"
-             [class.is-invalid]="user?.name?.length === 0" name="user-name" [(ngModel)]="user.name">
-      <div *ngIf="user.name.length === 0" id="invalid-input-name" class="invalid-feedback">
-        El nombre es necesario
+
+      <h4 class="font-italic font-weight-light">{{ user.name }}</h4>
+<!--      <label for="input-name">Nombre</label>-->
+<!--      <input type="text" class="form-control" id="input-name" autocomplete="off"-->
+<!--             [class.is-invalid]="user?.name?.length === 0" name="user-name" [(ngModel)]="user.name" readonly>-->
+<!--      <div *ngIf="user.name.length === 0" id="invalid-input-name" class="invalid-feedback">-->
+<!--        El nombre es necesario-->
+<!--      </div>-->
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="user_type_id">Tipo de usuario</label>
+        <select id="user_type_id" class="form-control" [(ngModel)]="user.user_type_id">
+          <option *ngFor="let type of userTypes" [value]="type.uid">{{ type.name }}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="enable">Estado</label>
+        <select id="enable" class="form-control" [(ngModel)]="user.enable">
+          <option [value]="true">Activo</option>
+          <option [value]="false">Inactivo</option>
+        </select>
       </div>
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-5">
         <label for="input-personal-id">Tipo</label>
-        <select id="input-personal-id" class="form-control" [(ngModel)]="user.personal_id_type">
-          <option *ngFor="let type of personalIdTypes" [value]="type.uid">{{ type.name }}</option>
+        <select id="input-personal-id" class="form-control" [(ngModel)]="user.personal_id_type" readonly>
+          <option *ngFor="let type of personalIdTypes" disabled [value]="type.uid">{{ type.name }}</option>
         </select>
       </div>
-      <div class="form-group col-md-8">
+      <div class="form-group col-md-7">
         <label for="input-personal-id-type">Número de identificación</label>
         <input type="text" class="form-control" id="input-personal-id-type" autocomplete="off"
-               name="user-personal-id" [(ngModel)]="user.personal_id">
+               name="user-personal-id" [(ngModel)]="user.personal_id" readonly>
       </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input-email">Correo electrónico</label>
+      <input type="text" class="form-control" id="input-email" autocomplete="off"
+             name="user-phone" [(ngModel)]="user.email" readonly>
     </div>
 
     <div class="form-group">
       <label for="input-phone">Teléfono</label>
       <input type="text" class="form-control" id="input-phone" autocomplete="off"
-             name="user-phone" [(ngModel)]="user.phone">
+             name="user-phone" [(ngModel)]="user.phone" readonly>
     </div>
 
     <div class="form-group">
-      <label for="input-bio">Observaciones</label>
-      <textarea class="form-control" id="input-bio" rows="2" name="client-bio" [(ngModel)]="user.bio"></textarea>
+      <label for="input-bio">Sobre mí</label>
+      <textarea class="form-control" id="input-bio" rows="2" name="client-bio" [(ngModel)]="user.bio" readonly></textarea>
     </div>
 
     <div class="row justify-content-between px-3">

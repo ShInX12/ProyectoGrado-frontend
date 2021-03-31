@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import Stepper from 'bs-stepper';
-import { RegisterStepperService } from '../../services/register-stepper.service';
+import { Subscription } from 'rxjs';
 import { User } from '../../models/user';
 import { Company } from '../../models/company';
 import { AuthService } from '../../services/auth.service';
-import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { RegisterStepperService } from '../../services/register-stepper.service';
 
 @Component({
   selector: 'app-register-stepper',
@@ -53,7 +53,8 @@ export class RegisterStepperComponent implements OnInit, OnDestroy {
     this.user.password = this.RSService.registerUserForm.get('password1').value;
     this.user.name = this.RSService.registerUserDetailsForm.get('name').value;
     this.user.phone = this.RSService.registerUserDetailsForm.get('phone').value;
-    this.user.bio = this.RSService.registerUserDetailsForm.get('bio').value;
+    this.user.personal_id_type = this.RSService.registerUserDetailsForm.get('personal_id_type').value;
+    this.user.personal_id = this.RSService.registerUserDetailsForm.get('personal_id').value;
     this.user.user_type_id = environment.USER_TYPE_ADMINISTRADOR;
 
     this.company.nit = this.RSService.registerCompanyForm.get('nit').value;
@@ -75,7 +76,5 @@ export class RegisterStepperComponent implements OnInit, OnDestroy {
     );
     return false;
   }
-
-
 
 }

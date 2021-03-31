@@ -17,7 +17,8 @@ export class RegisterStepperService {
   registerUserDetailsForm = new FormGroup({
     name: new FormControl('Sergio Naranjo', [Validators.required]),
     phone: new FormControl('3108278538'),
-    bio: new FormControl('Me gusta comer'),
+    personal_id: new FormControl('11211331'),
+    personal_id_type: new FormControl(''),
   });
 
   registerCompanyForm = new FormGroup({

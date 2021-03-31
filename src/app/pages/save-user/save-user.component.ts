@@ -1,12 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { User } from '../../models/user';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { PersonalIdTypeService } from '../../services/personal-id-type.service';
+import { UserTypeService } from '../../services/user-type.service';
 import { environment } from '../../../environments/environment';
 import { PersonalIdType } from '../../models/personalIdType';
-import { Subscription } from 'rxjs';
 import { ModalService } from '../../services/modal.service';
 import { UserService } from '../../services/user.service';
-import { PersonalIdTypeService } from '../../services/personal-id-type.service';
 import { AuthService } from '../../services/auth.service';
+import { UserType } from '../../models/userType';
+import { User } from '../../models/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-save-user',
@@ -19,41 +22,90 @@ export class SaveUserComponent implements OnInit, OnDestroy {
     '', '', '', false, '', '', '', '', '', '', true, environment.DEFAULT_DOCUMENT_TYPE, this.authService.company.uid);
 
   public personalIdTypes: PersonalIdType[] = [];
+  public userTypes: UserType[] = [];
 
-  public userSub: Subscription;
-  public personalIdSub: Subscription;
+  public saveUserForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    user_type_id: new FormControl(environment.USER_TYPE_ABOGADO, [Validators.required]),
+    enable: new FormControl(true),
+    personal_id_type: new FormControl(''),
+    personal_id: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    phone: new FormControl(''),
+    bio: new FormControl('')
+  });
+
+  get name(): AbstractControl {
+    return this.saveUserForm.get('name');
+  }
+
+  get user_type_id(): AbstractControl {
+    return this.saveUserForm.get('user_type_id');
+  }
+
+  get email(): AbstractControl {
+    return this.saveUserForm.get('email');
+  }
+
+  get password(): AbstractControl {
+    return this.saveUserForm.get('password');
+  }
+
+  public subscriptions: Subscription[] = [];
 
   constructor(public modalService: ModalService,
               public userService: UserService,
               public authService: AuthService,
+              public userTypeService: UserTypeService,
               public personalIdTypeService: PersonalIdTypeService) { }
 
   ngOnInit(): void {
     this.findPersonalIdTypes();
+    this.findUserTypes();
   }
 
   ngOnDestroy(): void {
-    this.userSub?.unsubscribe();
-    this.personalIdSub?.unsubscribe();
+    this.subscriptions.forEach((sb) => sb?.unsubscribe());
   }
 
   public save(): void {
-    this.userSub = this.userService.save(this.user).subscribe(
+
+    this.user.name = this.saveUserForm.get('name').value;
+    this.user.user_type_id = this.saveUserForm.get('user_type_id').value;
+    this.user.enable = this.saveUserForm.get('enable').value;
+    this.user.personal_id_type = this.saveUserForm.get('personal_id_type').value;
+    this.user.personal_id = this.saveUserForm.get('personal_id').value;
+    this.user.email = this.saveUserForm.get('email').value;
+    this.user.password = this.saveUserForm.get('password').value;
+    this.user.phone = this.saveUserForm.get('phone').value;
+    this.user.bio = this.saveUserForm.get('bio').value;
+
+    const userSub = this.userService.save(this.user).subscribe(
       value => console.log(value),
       error => console.log(error)
     );
-  } // TODO: Agregar demás campos, mandar el usuario en admin false
+    this.subscriptions.push(userSub);
+  }
 
   public findPersonalIdTypes(): void {
-    this.personalIdSub = this.personalIdTypeService.findAll().subscribe(
+    const personalIdSub = this.personalIdTypeService.findAll().subscribe(
       ({personal_id_types}) => this.personalIdTypes = personal_id_types,
       error => console.log(error.error.message)
     );
+    this.subscriptions.push(personalIdSub);
+  }
+
+  public findUserTypes(): void {
+    const userTypeSub = this.userTypeService.findAll().subscribe(
+      ({user_types}) => this.userTypes = user_types,
+      error => console.log(error.error.message)
+    );
+    this.subscriptions.push(userTypeSub);
   }
 
   public closeModal(): void {
-    this.user.name = '';
-    // TODO: Agregar las que faltan
+    this.saveUserForm.reset();
     this.modalService.close();
   }
 

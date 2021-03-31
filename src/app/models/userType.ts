@@ -1,4 +1,4 @@
-class UserType {
+export class UserType {
 
   constructor(
     public uid: string,
