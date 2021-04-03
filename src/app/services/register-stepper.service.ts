@@ -9,7 +9,7 @@ export class RegisterStepperService {
   constructor() { }
 
   registerUserForm = new FormGroup({
-    email: new FormControl('sergio@homail.com', [Validators.required, Validators.email]),
+    email: new FormControl('test@user.com', [Validators.required, Validators.email]),
     password1: new FormControl('123456', [Validators.required, Validators.minLength(6)]),
     password2: new FormControl('123456', [Validators.required, Validators.minLength(6)])
   });
@@ -17,7 +17,7 @@ export class RegisterStepperService {
   registerUserDetailsForm = new FormGroup({
     name: new FormControl('Sergio Naranjo', [Validators.required]),
     phone: new FormControl('3108278538'),
-    personal_id: new FormControl('11211331'),
+    personal_id: new FormControl(''),
     personal_id_type: new FormControl(''),
   });
 

@@ -17,7 +17,8 @@ export class RegisterStepperComponent implements OnInit, OnDestroy {
 
   private stepper: Stepper;
 
-  public user: User = new User('', '', '', true, '', '', '', '', '', '', true, environment.DEFAULT_DOCUMENT_TYPE, null);
+  public user: User
+    = new User('', '', '', '', '', '', '', '', true, environment.DEFAULT_DOCUMENT_TYPE, '', '', true);
   public company: Company = new Company('', '', '', '', '', '', 0);
 
   private registerSub: Subscription;
@@ -27,7 +28,8 @@ export class RegisterStepperComponent implements OnInit, OnDestroy {
 
   constructor(public RSService: RegisterStepperService,
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.stepper = new Stepper(document.querySelector('#stepper1'), {
@@ -46,7 +48,7 @@ export class RegisterStepperComponent implements OnInit, OnDestroy {
 
   previus(): any {
     this.stepper.previous();
-  }
+  } // TODO: Hacer un boton para devolverse al login
 
   register(): any {
     this.user.email = this.RSService.registerUserForm.get('email').value;
@@ -65,7 +67,7 @@ export class RegisterStepperComponent implements OnInit, OnDestroy {
     this.registerSub = this.authService.registerUserWithCompany(this.user, this.company).subscribe(
       value => {
         localStorage.setItem('token', value.token);
-        this.authService.user = value.user;
+        this.authService.person = value.user;
         this.authService.company = value.company;
         this.router.navigateByUrl('');
       },

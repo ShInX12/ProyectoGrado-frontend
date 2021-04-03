@@ -23,19 +23,26 @@ export class NavbarComponent implements OnInit {
 
   public loadMenu(): void {
 
-    switch (this.authService.user.user_type_id) {
+    if (this.authService.isClient) {
+      this.menu = this.navbarService.menuCliente;
 
-      case environment.USER_TYPE_ADMINISTRADOR:
-        this.menu = this.navbarService.menuAdministrador;
-        break;
+    } else {
 
-      case environment.USER_TYPE_ABOGADO:
-        this.menu = this.navbarService.menuAbogado;
-        break;
+      // @ts-ignore
+      switch (this.authService.person.user_type_id) {
 
-      case environment.USER_TYPE_ASISTENTE:
-        this.menu = this.navbarService.menuAsistente;
-        break;
+        case environment.USER_TYPE_ADMINISTRADOR:
+          this.menu = this.navbarService.menuAdministrador;
+          break;
+
+        case environment.USER_TYPE_ABOGADO:
+          this.menu = this.navbarService.menuAbogado;
+          break;
+
+        case environment.USER_TYPE_ASISTENTE:
+          this.menu = this.navbarService.menuAsistente;
+          break;
+      }
     }
 
   }

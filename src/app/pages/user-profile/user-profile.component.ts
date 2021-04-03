@@ -39,7 +39,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   }
 
   public loadClient(): void {
-    this.user = this.authService.user;
+    this.user = this.authService.person as User;
     console.log(this.authService.company.name);
   }
 

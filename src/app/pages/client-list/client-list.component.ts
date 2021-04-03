@@ -58,10 +58,6 @@ export class ClientListComponent implements OnInit, OnDestroy {
     );
   }
 
-  public navigate(uid: string): void {
-    this.router.navigate(['../cliente', uid]);
-  }
-
   public deleteClient(name: string, uid: string, event): void {
 
     event.stopPropagation();

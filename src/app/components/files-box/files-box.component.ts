@@ -55,7 +55,7 @@ export class FilesBoxComponent implements OnInit {
 
   public uploadFile(): void {
 
-    const id = this.authService.user.uid + '-' + Math.random().toString(32).substring(2, 7);
+    const id = this.authService.person.uid + '-' + Math.random().toString(32).substring(2, 7);
     // const filePath = `files/${id}.${this.newFile.name.split('.').pop()}`;
     const filePath = `files/${id}_${this.newFile.name}`;
     const ref = this.fireStorage.ref(filePath);

@@ -15,8 +15,4 @@ export class ClientCardComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  public onClic(): void {
-    this.router.navigate(['/cliente', this.client.uid]);
-  }
-
 }

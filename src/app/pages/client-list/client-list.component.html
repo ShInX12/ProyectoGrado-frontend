@@ -34,7 +34,7 @@
     </thead>
 
     <tbody>
-    <tr *ngFor="let client of clients" (click)="navigate(client?.uid)" style="cursor: pointer">
+    <tr *ngFor="let client of clients" [routerLink]="[ '../cliente', client?.uid ]" style="cursor: pointer">
       <td>{{ client?.name }}</td>
       <td>{{ client?.phone }}</td>
       <td>{{ client?.personal_id_type?.name }}</td>

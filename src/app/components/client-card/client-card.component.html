@@ -1,4 +1,4 @@
-<div class="row mx-1 my-2 client-card" (click)="onClic()">
+<div class="row mx-1 my-2 client-card" [routerLink]="[ './cliente', client.uid ]">
 
   <div class="mx-auto avatar">
     <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"

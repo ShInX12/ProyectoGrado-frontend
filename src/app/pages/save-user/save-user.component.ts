@@ -18,8 +18,8 @@ import { Subscription } from 'rxjs';
 })
 export class SaveUserComponent implements OnInit, OnDestroy {
 
-  public user: User = new User(
-    '', '', '', false, '', '', '', '', '', '', true, environment.DEFAULT_DOCUMENT_TYPE, this.authService.company.uid);
+  public user: User
+    = new User('', '', '', '', '', '', '', '', true, environment.DEFAULT_DOCUMENT_TYPE, this.authService.company.uid, '', false);
 
   public personalIdTypes: PersonalIdType[] = [];
   public userTypes: UserType[] = [];
@@ -28,12 +28,11 @@ export class SaveUserComponent implements OnInit, OnDestroy {
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     user_type_id: new FormControl(environment.USER_TYPE_ABOGADO, [Validators.required]),
     enable: new FormControl(true),
-    personal_id_type: new FormControl(''),
+    personal_id_type: new FormControl(environment.DEAFULT_PERSONAL_ID_TYPE),
     personal_id: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    phone: new FormControl(''),
-    bio: new FormControl('')
+    phone: new FormControl('')
   });
 
   get name(): AbstractControl {
@@ -68,9 +67,10 @@ export class SaveUserComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.forEach((sb) => sb?.unsubscribe());
   }
-
+// TODO: Mostrar alerta de guardado correctamente y ajustar si traer el token o no
   public save(): void {
 
+    // TODO: Optimizar
     this.user.name = this.saveUserForm.get('name').value;
     this.user.user_type_id = this.saveUserForm.get('user_type_id').value;
     this.user.enable = this.saveUserForm.get('enable').value;
@@ -79,7 +79,6 @@ export class SaveUserComponent implements OnInit, OnDestroy {
     this.user.email = this.saveUserForm.get('email').value;
     this.user.password = this.saveUserForm.get('password').value;
     this.user.phone = this.saveUserForm.get('phone').value;
-    this.user.bio = this.saveUserForm.get('bio').value;
 
     const userSub = this.userService.save(this.user).subscribe(
       value => console.log(value),
@@ -105,7 +104,11 @@ export class SaveUserComponent implements OnInit, OnDestroy {
   }
 
   public closeModal(): void {
-    this.saveUserForm.reset();
+    this.saveUserForm.reset({
+      personal_id_type: environment.DEAFULT_PERSONAL_ID_TYPE,
+      user_type_id: environment.USER_TYPE_ABOGADO,
+      enable: true
+    });
     this.modalService.close();
   }
 

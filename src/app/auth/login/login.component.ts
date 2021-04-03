@@ -12,8 +12,8 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    email: new FormControl('test1@user.com', [Validators.required, Validators.email]),
+    password: new FormControl('123456', [Validators.required, Validators.minLength(6)]),
   });
 
   public hidePassword = false;
@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         value => {
           localStorage.setItem('token', value.token);
           this.router.navigateByUrl('');
+          // TODO: Redireccionar dependiendo el tipo de usuario, Crear pantalla inicial de cliente
         },
         error => {
           this.error = error.error.message;
@@ -45,4 +46,11 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       );
   }
+
+  // redirect(user: User): void {
+  //
+  //   switch (user.user_type_id) {
+  //
+  //   }
+  // }
 }

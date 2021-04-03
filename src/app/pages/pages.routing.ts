@@ -4,8 +4,9 @@ import { PagesComponent } from './pages.component';
 import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'inicio', pathMatch: 'full'},
   {
-    path: '', component: PagesComponent,
+    path: 'inicio', component: PagesComponent,
     canActivate: [AuthGuard],
     canLoad: [AuthGuard],
     loadChildren: () => import('./child-routes.module')

@@ -57,7 +57,7 @@ export class UserService {
   }
 
   public delete(user: User): Observable<any> {
-    return this.httpClient.put(this.url + 'delete/' + user.uid, user, this.headers);
+    return this.httpClient.delete(this.url + 'delete/' + user.uid, this.headers);
   }
 
 }

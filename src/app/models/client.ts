@@ -1,19 +1,57 @@
-export class Client {
+import { Person } from './person';
+
+export class Client extends Person {
 
   constructor(
-    public uid: string,
-    public name: string,
+    uid: string,
+    email: string,
+    password: string,
+    name: string,
     // tslint:disable-next-line:variable-name
-    public personal_id: string,
-    public phone: string,
+    personal_id: string,
+    phone: string,
     // tslint:disable-next-line:variable-name
-    public photo_url: string,
-    public bio: string,
-    public enable: true,
+    photo_url: string,
+    bio: string,
+    enable: boolean,
     // tslint:disable-next-line:variable-name
-    public personal_id_type: string,
+    personal_id_type: string,
     // tslint:disable-next-line:variable-name
-    public company_id: string,
-  ) { }
+    company_id: string
+  ) {
+    super(
+      uid,
+      email,
+      password,
+      name,
+      personal_id,
+      phone,
+      photo_url,
+      bio,
+      enable,
+      personal_id_type,
+      company_id
+    );
+  }
 
 }
+
+// export class Client {
+//
+//   constructor(
+//     public uid: string,
+//     public name: string,
+//     // tslint:disable-next-line:variable-name
+//     public personal_id: string,
+//     public phone: string,
+//     // tslint:disable-next-line:variable-name
+//     public photo_url: string,
+//     public bio: string,
+//     public enable: true,
+//     // tslint:disable-next-line:variable-name
+//     public personal_id_type: string,
+//     // tslint:disable-next-line:variable-name
+//     public company_id: string,
+//   ) { }
+//
+// }

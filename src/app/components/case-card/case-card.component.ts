@@ -36,10 +36,6 @@ export class CaseCardComponent implements OnInit, OnDestroy {
     this.documentsSub?.unsubscribe();
   }
 
-  public onClic(): void {
-    this.router.navigate(['/proceso', this.process.uid]);
-  }
-
   public findClientsByProcess(): void {
     this.clientsSub = this.clientService.findNameDTOByProcess(this.process.uid).subscribe(
       clientsNameDTO => {

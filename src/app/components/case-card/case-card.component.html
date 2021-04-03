@@ -1,4 +1,4 @@
-<div class="col case-card" (click)="onClic()">
+<div class="col case-card" [routerLink]="[ './proceso', process.uid ]" >
 
   <div class="row px-2 pt-2">
     <p class="text-truncate font-weight-bold">{{ process.name }}</p>

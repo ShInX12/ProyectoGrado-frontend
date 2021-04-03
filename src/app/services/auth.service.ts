@@ -1,19 +1,22 @@
 import { Injectable, NgZone } from '@angular/core';
-import { User } from '../models/user';
-import { Company } from '../models/company';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { User } from '../models/user';
+import { Person } from '../models/person';
+import { Client } from '../models/client';
+import { Company } from '../models/company';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public user: User;
+  public person: Person;
   public company: Company;
+  public isClient: boolean;
   public url: string;
 
   constructor(private httpClient: HttpClient,
@@ -27,7 +30,7 @@ export class AuthService {
   }
 
   get uid(): string {
-    return this.user.uid || '';
+    return this.person.uid || '';
   }
 
   get headers(): object {
@@ -47,7 +50,8 @@ export class AuthService {
       .pipe(
         map((response: any) => {
           this.saveToken(response.token);
-          this.user = response.user;
+          this.isClient = response.is_client;
+          this.person = response.is_client ? response.person as Client : response.person as User;
           this.company = response.company;
           return true;
         }),

@@ -18,7 +18,8 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public params = this.activedRoute.params[`_value`];
 
-  public user: User = new User('', '', '', false, '', '', '', '', '', '', true, '', '');
+  public user: User
+    = new User('', '', '', '', '', '', '', '', true, '', '', '', false);
 
   public personalIdTypes: PersonalIdType[] = [];
   public userTypes: UserType[] = [];
@@ -43,15 +44,11 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public findUserById(): void {
     const findUserSub = this.userService.findById(this.params.id).subscribe(
-      user => {
-        this.user = user;
-        console.log(this.user);
-      },
-      error => console.log(error)
+      user => this.user = user,
+      error => console.log(error.error.message)
     );
     this.subscriptions.push(findUserSub);
-  } // TODO: Hacer que solo se pueda editar si es admin (el activo), solo el admin puede cambiar el rol de usuario
-  // agregar los demas campos, agregar validaciones nuevas
+  }
 
   public findPersonalIdTypes(): void {
     const personalIdSub = this.personalIdTypeService.findAll().subscribe(
@@ -63,10 +60,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public findUserTypes(): void {
     const userTypeSub = this.userTypeService.findAll().subscribe(
-      ({user_types}) => {
-        this.userTypes = user_types;
-        console.log(this.userTypes);
-      },
+      ({user_types}) => this.userTypes = user_types,
       error => console.log(error.error.message)
     );
     this.subscriptions.push(userTypeSub);
@@ -76,20 +70,20 @@ export class UserComponent implements OnInit, OnDestroy {
     const updateUserSub = this.userService.update(this.user).subscribe(
       user => {
         this.user = user;
-        console.log(this.user);
+        showSuccesAlert('Usuario actualizado correctamente', () => {});
       },
-      error => console.log(error)
+      error => console.log(error.error.message)
     );
     this.subscriptions.push(updateUserSub);
   }
 
   public deleteUser(): void {
     showWarningDeleteAlert(
-      '¿Desea eliminar el cliente?', 'Esta acción no se puede deshacer', result => {
+      '¿Desea eliminar el usuario?', 'Esta acción no se puede deshacer', result => {
         if (result.isConfirmed){
           const deleteUserSub = this.userService.delete(this.user).subscribe(
             value => showSuccesAlert('Usuario eliminado', () => this.router.navigateByUrl('/usuarios')),
-            error => showErrorAlert('No se pudo eliminar el usuario', error.error.message, () => {})
+            error => showErrorAlert('No se pudo eliminar el usuario', error, () => {})
           );
           this.subscriptions.push(deleteUserSub);
         }

@@ -1,12 +1,12 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from '@angular/fire';
 import { registerLocaleData } from '@angular/common';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import localeEsCo from '@angular/common/locales/es-CO';
 
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireModule } from '@angular/fire';
-import { HttpClientModule } from '@angular/common/http';
 import { ComponentsModule } from './components/components.module';
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
