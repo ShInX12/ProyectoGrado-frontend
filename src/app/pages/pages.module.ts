@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 
 import { PagesComponent } from './pages.component';
-import { HomeComponent } from './home/home.component';
+import { LawyerHomeComponent } from './lawyer-home/lawyer-home.component';
 import { ProcessComponent } from './process/process.component';
 import { ProcessListComponent } from './process-list/process-list.component';
 import { MovementComponent } from './movement/movement.component';
@@ -20,12 +20,15 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { SaveUserComponent } from './save-user/save-user.component';
 import { UserComponent } from './user/user.component';
+import { ClientHomeComponent } from './client-home/client-home.component';
+import { ClientProcessesListComponent } from './client-processes-list/client-processes-list.component';
+import { ClientProcessComponent } from './client-process/client-process.component';
 
 
 @NgModule({
   declarations: [
     PagesComponent,
-    HomeComponent,
+    LawyerHomeComponent,
     ProcessComponent,
     ProcessListComponent,
     MovementComponent,
@@ -39,6 +42,9 @@ import { UserComponent } from './user/user.component';
     UserListComponent,
     SaveUserComponent,
     UserComponent,
+    ClientHomeComponent,
+    ClientProcessesListComponent,
+    ClientProcessComponent,
   ],
     imports: [
         CommonModule,

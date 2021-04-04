@@ -2,7 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
+import { AuthService, Role } from '../../services/auth.service';
+import { Person } from '../../models/person';
+import { User } from '../../models/user';
+import { Client } from 'src/app/models/client';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(
         value => {
           localStorage.setItem('token', value.token);
-          this.router.navigateByUrl('');
+          this.redirect(value.is_client, value.person as User);
           // TODO: Redireccionar dependiendo el tipo de usuario, Crear pantalla inicial de cliente
         },
         error => {
@@ -47,10 +51,27 @@ export class LoginComponent implements OnInit, OnDestroy {
       );
   }
 
-  // redirect(user: User): void {
-  //
-  //   switch (user.user_type_id) {
-  //
-  //   }
-  // }
+  redirect(isClient: boolean, person: User): void {
+
+    if (isClient){
+      this.router.navigateByUrl(Role.Client);
+
+    } else {
+      switch (person.user_type_id) {
+
+        case environment.USER_TYPE_ADMINISTRADOR:
+          this.router.navigateByUrl(Role.Administrator);
+          break;
+
+        case environment.USER_TYPE_ABOGADO:
+          this.router.navigateByUrl(Role.Lawyer);
+          break;
+
+        case environment.USER_TYPE_ASISTENTE:
+          this.router.navigateByUrl(Role.Assistant);
+          break;
+      }
+    }
+  }
+
 }

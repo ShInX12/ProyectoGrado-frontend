@@ -18,8 +18,10 @@ import { showErrorAlert, showSuccesAlert } from '../../helpers/alerts';
 export class FilesBoxComponent implements OnInit {
 
   @Input() processId: string;
+  @Input() documentsFromLawyer = true;
   public documents: Document[] = [];
-  public newDocument: Document = new Document('0', '', '', '', null, true, true, {uid: '', name: ''}, environment.DEFAULT_DOCUMENT_TYPE);
+  public newDocument: Document =
+    new Document('0', '', '', '', null, this.documentsFromLawyer, true, {uid: '', name: ''}, environment.DEFAULT_DOCUMENT_TYPE);
 
   public subscriptions: Subscription[] = [];
 
@@ -42,7 +44,7 @@ export class FilesBoxComponent implements OnInit {
 
   public findDocumentsByProcess(): void {
     const documentsByProcessSub = this.documentService.findByProcess(this.processId).subscribe(
-      documents => this.documents = documents.filter(doc => doc.from_lawyer === true),
+      documents => this.documents = documents.filter(doc => doc.from_lawyer === this.documentsFromLawyer),
       error => console.log(error.error.message)
     );
     this.subscriptions.push(documentsByProcessSub);
@@ -76,15 +78,12 @@ export class FilesBoxComponent implements OnInit {
                 this.modalRef.hide();
               });
             },
-            error => {
-              console.log(error);
-              showErrorAlert(
+            error => showErrorAlert(
                 'No se pudo guardar el documento', error.error.message, () => {
                   this.newFile = null;
                   this.modalRef.hide();
                 }
-              );
-            }
+              )
           );
           this.subscriptions.push(saveDocumentSub);
         },

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavbarService } from '../../services/navbar.service';
-import { AuthService } from '../../services/auth.service';
-import { environment } from '../../../environments/environment';
+import { AuthService, Role } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,26 +22,23 @@ export class NavbarComponent implements OnInit {
 
   public loadMenu(): void {
 
-    if (this.authService.isClient) {
-      this.menu = this.navbarService.menuCliente;
+      switch (this.authService.role) {
 
-    } else {
-
-      // @ts-ignore
-      switch (this.authService.person.user_type_id) {
-
-        case environment.USER_TYPE_ADMINISTRADOR:
+        case Role.Administrator:
           this.menu = this.navbarService.menuAdministrador;
           break;
 
-        case environment.USER_TYPE_ABOGADO:
+        case Role.Lawyer:
           this.menu = this.navbarService.menuAbogado;
           break;
 
-        case environment.USER_TYPE_ASISTENTE:
+        case Role.Assistant:
           this.menu = this.navbarService.menuAsistente;
           break;
-      }
+
+        case Role.Client:
+          this.menu = this.navbarService.menuCliente;
+          break;
     }
 
   }

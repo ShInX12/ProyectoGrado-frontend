@@ -16,7 +16,7 @@ export class AuthService {
 
   public person: Person;
   public company: Company;
-  public isClient: boolean;
+  public role: Role;
   public url: string;
 
   constructor(private httpClient: HttpClient,
@@ -41,6 +41,28 @@ export class AuthService {
     };
   }
 
+  setRole(isClient: boolean, person: User): void {
+    if (isClient){
+      this.role = Role.Client;
+
+    } else {
+      switch (person.user_type_id) {
+
+        case environment.USER_TYPE_ADMINISTRADOR:
+          this.role = Role.Administrator;
+          break;
+
+        case environment.USER_TYPE_ABOGADO:
+          this.role = Role.Lawyer;
+          break;
+
+        case environment.USER_TYPE_ASISTENTE:
+          this.role = Role.Assistant;
+          break;
+      }
+    }
+  }
+
   public saveToken(token: string): void {
     localStorage.setItem('token', token);
   }
@@ -50,9 +72,9 @@ export class AuthService {
       .pipe(
         map((response: any) => {
           this.saveToken(response.token);
-          this.isClient = response.is_client;
           this.person = response.is_client ? response.person as Client : response.person as User;
           this.company = response.company;
+          this.setRole(response.is_client, response.person as User);
           return true;
         }),
         catchError(() => of(false))
@@ -76,4 +98,11 @@ export class AuthService {
       this.router.navigateByUrl('login');
     });
   }
+}
+
+export enum Role {
+  Administrator = 'administrador',
+  Lawyer = 'abogado',
+  Assistant = 'asistente',
+  Client = 'cliente'
 }

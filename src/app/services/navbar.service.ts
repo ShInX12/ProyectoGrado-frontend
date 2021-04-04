@@ -29,9 +29,7 @@ export class NavbarService {
 
   public menuCliente = [
     { title: 'Inicio Cliente', url: '' },
-    { title: 'Casos', url: 'procesos' },
-    { title: 'Movimientos', url: 'movimientos' },
-    { title: 'Clientes', url: 'clientes' },
+    { title: 'Mis procesos', url: 'procesos' }
   ];
 
   constructor() { }
