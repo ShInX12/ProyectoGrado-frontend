@@ -12,15 +12,13 @@ export class PagesComponent implements OnInit {
               public authService: AuthService) { }
 
   ngOnInit(): void { // TODO: Quitar comentarios y hacer que funcione bien la redireccion
-    console.log('Redirect...');
     this.redirect();
   }
 
   redirect(): void {
 
-    console.log('Pages:');
+    console.log('Redirect...');
     console.log('Rol actual: ' + this.authService.role);
-    console.log('Rol administrador: ' + Role.Administrator);
 
     switch (this.authService.role) {
 

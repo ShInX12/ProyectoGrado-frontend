@@ -32,7 +32,7 @@ export class ObservationsBoxComponent implements OnInit, OnDestroy {
   public findObservationsByProcess(): void {
     const observationsSub = this.observationService.findByProcess(this.processId).subscribe(
       observations => this.observations = observations,
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
     this.subscriptions.push(observationsSub);
   }

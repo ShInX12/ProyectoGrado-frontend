@@ -81,14 +81,14 @@ export class MovementComponent implements OnInit, OnDestroy {
       this.clientsLabel = '';
       clients.forEach(client => this.clientsLabel += client.name + ', ');
       this.clientsLabel = this.clientsLabel.slice(0, -2);
-    }, error => console.log(error.error.message));
+    }, error => console.warn(error.error.message));
     this.subscriptions.push(clientsByProcessSub);
   }
 
   public findAllClients(): void {
     const clientsSub = this.clientService.findAll().subscribe(
       ({clients}) => this.totalClients = clients,
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
     this.subscriptions.push(clientsSub);
   }
@@ -151,7 +151,7 @@ export class MovementComponent implements OnInit, OnDestroy {
   public deleteDocuments(): void {
     const deleteDocs = this.documentService.findByProcess(this.params.id).subscribe(
       documents => documents.forEach(document => this.fireStorage.refFromURL(document.url).delete()),
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
     this.subscriptions.push(deleteDocs);
   }

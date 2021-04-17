@@ -78,7 +78,7 @@ export class ClientProcessComponent implements OnInit, OnDestroy {
   public findDocumentsByProcess(): void {
     const documentsByProcessSub = this.documentService.findByProcess(this.params.id).subscribe(
       documents => this.clientDocuments = documents.filter(doc => doc.from_lawyer === false),
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
     this.subscriptions.push(documentsByProcessSub);
   }

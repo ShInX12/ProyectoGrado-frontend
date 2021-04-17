@@ -48,7 +48,7 @@ export class RegisterStepperComponent implements OnInit, OnDestroy {
 
   previus(): any {
     this.stepper.previous();
-  } // TODO: Hacer un boton para devolverse al login
+  }
 
   register(): any {
     this.user.email = this.RSService.registerUserForm.get('email').value;

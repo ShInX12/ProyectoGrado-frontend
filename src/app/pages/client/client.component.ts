@@ -50,21 +50,21 @@ export class ClientComponent implements OnInit, OnDestroy {
   public findClientById(): void {
     this.findClientSub = this.clientService.findById(this.params.id).subscribe(
       client => this.client = client,
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
   }
 
   public findProcessByClient(): void {
     this.findProcessSub = this.processService.findByClient(this.params.id).subscribe(
       processes => this.processes = processes,
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
   }
 
   public findPersonalIdTypes(): void {
     this.findPersonalIdSub = this.personalIdTypeService.findAll().subscribe(
       ({personal_id_types}) => this.personalIdTypes = personal_id_types,
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
   }
 

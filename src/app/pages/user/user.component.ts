@@ -45,7 +45,7 @@ export class UserComponent implements OnInit, OnDestroy {
   public findUserById(): void {
     const findUserSub = this.userService.findById(this.params.id).subscribe(
       user => this.user = user,
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
     this.subscriptions.push(findUserSub);
   }
@@ -53,7 +53,7 @@ export class UserComponent implements OnInit, OnDestroy {
   public findPersonalIdTypes(): void {
     const personalIdSub = this.personalIdTypeService.findAll().subscribe(
       ({personal_id_types}) => this.personalIdTypes = personal_id_types,
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
     this.subscriptions.push(personalIdSub);
   }
@@ -61,7 +61,7 @@ export class UserComponent implements OnInit, OnDestroy {
   public findUserTypes(): void {
     const userTypeSub = this.userTypeService.findAll().subscribe(
       ({user_types}) => this.userTypes = user_types,
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
     this.subscriptions.push(userTypeSub);
   }
@@ -72,7 +72,7 @@ export class UserComponent implements OnInit, OnDestroy {
         this.user = user;
         showSuccesAlert('Usuario actualizado correctamente', () => {});
       },
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
     this.subscriptions.push(updateUserSub);
   }

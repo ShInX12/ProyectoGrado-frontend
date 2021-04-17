@@ -37,7 +37,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
           this.clients = clients;
           this.processes = processes;
         },
-        error => console.log(error.error.message)
+        error => console.warn(error.error.message)
       );
     }
   }

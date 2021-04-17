@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() { } // TODO: Crear pantalla de inicio de cliente
 
   ngOnInit(): void {
   }

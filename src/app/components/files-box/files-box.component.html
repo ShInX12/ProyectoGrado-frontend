@@ -1,5 +1,6 @@
 <div class="row justify-content-between pr-md-4 pr-md-0">
-  <h5>Documentos ({{ documents.length }})</h5>
+  <h5 *ngIf="documentsFromLawyer">Documentos ({{ documents.length }})</h5>
+  <h5 *ngIf="!documentsFromLawyer">Mis documentos enviados ({{ documents.length }})</h5>
   <button class="btn btn-primary btn-sm" style="height: 1.8rem" (click)="openModal(uploadFileModal)">Subir</button>
 </div>
 <div class="row">

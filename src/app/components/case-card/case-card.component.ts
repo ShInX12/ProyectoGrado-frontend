@@ -42,14 +42,14 @@ export class CaseCardComponent implements OnInit, OnDestroy {
         this.clients = clientsNameDTO;
         this.createClientsLabel();
       },
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
   }
 
   public findDocumentsByProcess(): void {
     this.documentsSub = this.documentService.findLastestByProcess(this.process.uid).subscribe(
       documents => this.documents = documents,
-      error => console.log(error.error)
+      error => console.warn(error.error)
     );
   }
 

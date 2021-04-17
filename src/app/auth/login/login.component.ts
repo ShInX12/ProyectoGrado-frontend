@@ -3,9 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService, Role } from '../../services/auth.service';
-import { Person } from '../../models/person';
 import { User } from '../../models/user';
-import { Client } from 'src/app/models/client';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -42,7 +40,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         value => {
           localStorage.setItem('token', value.token);
           this.redirect(value.is_client, value.person as User);
-          // TODO: Redireccionar dependiendo el tipo de usuario, Crear pantalla inicial de cliente
         },
         error => {
           this.error = error.error.message;

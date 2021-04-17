@@ -32,7 +32,7 @@ export class RegisterUserDetailsComponent implements OnInit {
   public findPersonalIdTypes(): void {
     this.personalIdSub = this.personalIdTypeService.findAll().subscribe(
       ({personal_id_types}) => this.personalIdTypes = personal_id_types,
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
   }
 

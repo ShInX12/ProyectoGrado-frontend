@@ -42,7 +42,7 @@ export class CaseSliderComponent implements OnInit, OnDestroy {
           this.noData = true;
         }
       },
-      error => console.log(error.error)
+      error => console.warn(error.error.message)
     );
   }
 }

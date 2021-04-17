@@ -18,10 +18,10 @@ import { showErrorAlert, showSuccesAlert } from '../../helpers/alerts';
 export class FilesBoxComponent implements OnInit {
 
   @Input() processId: string;
-  @Input() documentsFromLawyer = true;
+  @Input() documentsFromLawyer: boolean;
   public documents: Document[] = [];
   public newDocument: Document =
-    new Document('0', '', '', '', null, this.documentsFromLawyer, true, {uid: '', name: ''}, environment.DEFAULT_DOCUMENT_TYPE);
+    new Document('0', '', '', '', null, null, null, {uid: '', name: ''}, '', environment.DEFAULT_DOCUMENT_TYPE);
 
   public subscriptions: Subscription[] = [];
 
@@ -45,7 +45,7 @@ export class FilesBoxComponent implements OnInit {
   public findDocumentsByProcess(): void {
     const documentsByProcessSub = this.documentService.findByProcess(this.processId).subscribe(
       documents => this.documents = documents.filter(doc => doc.from_lawyer === this.documentsFromLawyer),
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
     this.subscriptions.push(documentsByProcessSub);
   }
@@ -57,9 +57,8 @@ export class FilesBoxComponent implements OnInit {
 
   public uploadFile(): void {
 
-    const id = this.authService.person.uid + '-' + Math.random().toString(32).substring(2, 7);
-    // const filePath = `files/${id}.${this.newFile.name.split('.').pop()}`;
-    const filePath = `files/${id}_${this.newFile.name}`;
+    const id = Math.random().toString(32).substring(2, 7);
+    const filePath = `files/${this.processId}/${id}-${this.newFile.name}`;
     const ref = this.fireStorage.ref(filePath);
     const task = this.fireStorage.upload(filePath, this.newFile);
     task.percentageChanges().subscribe(value => this.percentUpload = value);
@@ -69,6 +68,8 @@ export class FilesBoxComponent implements OnInit {
           this.newDocument.url = downloadUrl;
           this.newDocument.upload_date = new Date();
           this.newDocument.process = this.processId;
+          this.newDocument.user = { uid: this.authService.person.uid, name: this.authService.person.name };
+          this.newDocument.from_lawyer = this.documentsFromLawyer;
 
           const saveDocumentSub = this.documentService.save(this.newDocument).subscribe(
             document => {
@@ -87,7 +88,7 @@ export class FilesBoxComponent implements OnInit {
           );
           this.subscriptions.push(saveDocumentSub);
         },
-        error => console.log(error.error.message)
+        error => console.warn(error.error.message)
         )
       )
     ).subscribe();

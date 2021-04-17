@@ -40,8 +40,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   public loadClient(): void {
     this.user = this.authService.person as User;
-    console.log(this.authService.company.name);
-  }
+  }// TODO: Hacer que funcione en cliente tambien
 
   public updateClient(): void {
     this.trimFields();

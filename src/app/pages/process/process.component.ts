@@ -97,7 +97,7 @@ export class ProcessComponent implements OnInit, OnDestroy {
   public findDocumentsByProcess(): void {
     const documentsByProcessSub = this.documentService.findByProcess(this.params.id).subscribe(
       documents => this.documentsReceived = documents.filter(doc => doc.from_lawyer === false),
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
     this.subscriptions.push(documentsByProcessSub);
   }
@@ -164,7 +164,7 @@ export class ProcessComponent implements OnInit, OnDestroy {
   public deleteDocuments(): void {
     const deleteDocs = this.documentService.findByProcess(this.params.id).subscribe(
       documents => documents.forEach(document => this.fireStorage.refFromURL(document.url).delete()),
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
     this.subscriptions.push(deleteDocs);
   }

@@ -44,9 +44,6 @@ export class ClientProcessesListComponent implements OnInit, OnDestroy {
         this.totalCount = total_count;
         this.totalPages = total_pages;
 
-        console.log(this.authService.person.uid);
-        console.log(processes);
-
         if (processes?.length === 0) {
           this.noData = true;
         }

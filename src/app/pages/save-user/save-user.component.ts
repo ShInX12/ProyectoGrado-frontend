@@ -10,6 +10,7 @@ import { AuthService } from '../../services/auth.service';
 import { UserType } from '../../models/userType';
 import { User } from '../../models/user';
 import { Subscription } from 'rxjs';
+import { showErrorAlert, showSuccesAlert } from '../../helpers/alerts';
 
 @Component({
   selector: 'app-save-user',
@@ -67,10 +68,9 @@ export class SaveUserComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.forEach((sb) => sb?.unsubscribe());
   }
-// TODO: Mostrar alerta de guardado correctamente y ajustar si traer el token o no
+
   public save(): void {
 
-    // TODO: Optimizar
     this.user.name = this.saveUserForm.get('name').value;
     this.user.user_type_id = this.saveUserForm.get('user_type_id').value;
     this.user.enable = this.saveUserForm.get('enable').value;
@@ -81,8 +81,8 @@ export class SaveUserComponent implements OnInit, OnDestroy {
     this.user.phone = this.saveUserForm.get('phone').value;
 
     const userSub = this.userService.save(this.user).subscribe(
-      value => console.log(value),
-      error => console.log(error)
+      value => showSuccesAlert('Usuario guardado correctamente', () => this.closeModal()),
+      error => showErrorAlert('No se pudo crear el usuario', error.error.message, () => {})
     );
     this.subscriptions.push(userSub);
   }
@@ -90,7 +90,7 @@ export class SaveUserComponent implements OnInit, OnDestroy {
   public findPersonalIdTypes(): void {
     const personalIdSub = this.personalIdTypeService.findAll().subscribe(
       ({personal_id_types}) => this.personalIdTypes = personal_id_types,
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
     this.subscriptions.push(personalIdSub);
   }
@@ -98,7 +98,7 @@ export class SaveUserComponent implements OnInit, OnDestroy {
   public findUserTypes(): void {
     const userTypeSub = this.userTypeService.findAll().subscribe(
       ({user_types}) => this.userTypes = user_types,
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
     this.subscriptions.push(userTypeSub);
   }

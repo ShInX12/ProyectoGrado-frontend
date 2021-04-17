@@ -39,7 +39,7 @@ export class HomeClientListComponent implements OnInit, OnDestroy {
           this.noData = true;
         }
       },
-      error => console.log(error.error.message)
+      error => console.warn(error.error.message)
     );
   }
 
