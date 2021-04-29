@@ -1,0 +1,17 @@
+.message-tile {
+  width: 100%;
+  border-radius: 0.25rem;
+  border: 1px solid #dee2e6;
+  background-color: white;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  /*padding: 5px;*/
+}
+
+/*.message-tile-host {*/
+/*  width: 100%;*/
+/*  border-radius: 0.25rem;*/
+/*  border: 1px solid #dee2e6;*/
+/*  background-color: white;*/
+/*  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);*/
+/*  !*padding: 5px;*!*/
+/*}*/

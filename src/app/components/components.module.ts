@@ -15,6 +15,8 @@ import { ObservationComponent } from './observation/observation.component';
 import { HomeClientListComponent } from './home-client-list/home-client-list.component';
 import { ObservationsBoxComponent } from './observations-box/observations-box.component';
 import { RegisterStepperComponent } from './register-stepper/register-stepper.component';
+import { ChatBoxComponent } from './chat-box/chat-box.component';
+import { MessageTileComponent } from './message-tile/message-tile.component';
 
 
 @NgModule({
@@ -28,18 +30,21 @@ import { RegisterStepperComponent } from './register-stepper/register-stepper.co
     ObservationComponent,
     HomeClientListComponent,
     ObservationsBoxComponent,
-    RegisterStepperComponent
+    RegisterStepperComponent,
+    ChatBoxComponent,
+    MessageTileComponent
   ],
-  exports: [
-    FilesBoxComponent,
-    CaseCardComponent,
-    FileCardComponent,
-    SearchBarComponent,
-    CaseSliderComponent,
-    ObservationComponent,
-    HomeClientListComponent,
-    ObservationsBoxComponent
-  ],
+    exports: [
+        FilesBoxComponent,
+        CaseCardComponent,
+        FileCardComponent,
+        SearchBarComponent,
+        CaseSliderComponent,
+        ObservationComponent,
+        HomeClientListComponent,
+        ObservationsBoxComponent,
+        ChatBoxComponent
+    ],
   imports: [
     AuthModule,
     FormsModule,
