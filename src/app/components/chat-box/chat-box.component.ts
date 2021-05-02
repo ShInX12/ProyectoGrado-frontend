@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { Message } from '../../models/message';
 import { AuthService, Role } from '../../services/auth.service';
@@ -9,9 +9,12 @@ import { Subscription } from 'rxjs';
   templateUrl: './chat-box.component.html',
   styleUrls: ['./chat-box.component.css']
 })
-export class ChatBoxComponent implements OnInit {
+export class ChatBoxComponent implements OnInit, OnChanges {
 
   @Input() processId: string;
+  @Input() reload: boolean;
+  @Input() rounded = false;
+  public containerChat: HTMLElement;
 
   public newMessage: Message = new Message('', '', this.authService.person.name, this.authService.person.uid, null, '');
 
@@ -23,20 +26,32 @@ export class ChatBoxComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.containerChat = document.getElementById('container-chat');
     this.findLatestByProcess();
     this.listen();
+    setTimeout(() => this.containerChat.scrollTop = this.containerChat.scrollHeight, 190);
+  }
+
+  ngOnChanges(): void {
+    this.findLatestByProcess();
   }
 
   public listen(): void {
     const listenSub = this.chatService.listen(this.processId).subscribe(
-      message => this.messages.push(message)
+      message => {
+        this.messages.push(message);
+        setTimeout(() => this.containerChat.scrollTop = this.containerChat.scrollHeight, 190);
+      }
     );
     this.subscriptions.push(listenSub);
   }
 
   public findLatestByProcess(): void {
     this.chatService.findLatestByProcess(this.processId).subscribe(
-      data => this.messages = data.messages
+      data => {
+        this.messages = data.messages;
+        setTimeout(() => this.containerChat.scrollTop = this.containerChat.scrollHeight, 190);
+      }
     );
   }
 

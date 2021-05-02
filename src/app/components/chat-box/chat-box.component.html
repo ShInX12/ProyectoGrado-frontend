@@ -1,6 +1,6 @@
-<div><h5>Mensajes</h5></div>
+<!--<div><h5>Mensajes</h5></div>-->
 
-<div class="px-2 chat-box">
+<div class="px-2 chat-box" [class.rounded]="rounded" id="container-chat">
   <div *ngFor="let message of messages">
     <app-message-tile [message]="message"></app-message-tile>
   </div>

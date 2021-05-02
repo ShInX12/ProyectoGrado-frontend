@@ -38,7 +38,12 @@
   </div>
 
   <div class="col-md-4 mt-md-2 mt-4">
-    <app-chat-box [processId]="params.id"></app-chat-box>
+    <div><h5 *ngIf="!process.enable_chat" [class.text-muted]="!process.enable_chat">(Conversación no disponible)</h5></div>
+    <div *ngIf="!process.enable_chat" class="disabled-chat">
+      <img src="/assets/svg/undraw_Add_notes_re_ln36.svg" class="my-3" style="max-width: 170px" alt="empty">
+    </div>
+    <div><h5 *ngIf="process.enable_chat">Conversación</h5></div>
+    <app-chat-box *ngIf="process.enable_chat" [processId]="params.id" [rounded]="true"></app-chat-box>
   </div>
 
 <!--  <div class="col-md-4 mt-md-2 mt-4">-->

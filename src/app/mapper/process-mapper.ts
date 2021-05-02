@@ -9,5 +9,6 @@ export function toProcess(processDTO: ProcessDTO): Process {
     processDTO.description,
     processDTO.state.uid,
     processDTO.process_type.uid,
+    processDTO.enable_chat
   );
 }

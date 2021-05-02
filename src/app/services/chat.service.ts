@@ -40,7 +40,15 @@ export class ChatService {
   }
 
   public findLatestByProcess(process: string): Observable<any> {
-    return this.httpClient.get(this.url + 'findLatestByProcess/' + process);
+    return this.httpClient.get(this.url + 'findLatestByProcess/' + process, this.headers);
+  }
+
+  public enableProcessChat(process: string): Observable<any> {
+    return this.httpClient.get(this.url + 'enableProcessChat/' + process, this.headers);
+  }
+
+  public deleteMessagesByProcess(process: string): Observable<any> {
+    return this.httpClient.delete(this.url + 'deleteMessagesByProcess/' + process, this.headers);
   }
 
 }

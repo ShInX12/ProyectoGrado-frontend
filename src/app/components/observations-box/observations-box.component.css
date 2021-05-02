@@ -1,8 +1,12 @@
 .observation-box {
   background-color: #f7f7f7;
   width: 100%;
-  height: 51vh;
+  height: 48.5vh;
   overflow: auto;
-  border-radius: 10px 10px 0 0;
   border: 1px solid #dee2e6;
+}
+
+.rounded {
+  height: 50.5vh !important;
+  border-radius: 10px 10px 0 0;
 }

@@ -49,7 +49,28 @@
   </div>
 
   <div class="col-md-4 mt-md-2 mt-4">
-    <app-observations-box [processId]="params.id"></app-observations-box>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+          <h6>Observaciones</h6>
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+          <h6>Conversación</h6>
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <app-observations-box [processId]="params.id"></app-observations-box>
+      </div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <app-chat-box *ngIf="process.enable_chat" [processId]="params.id" [reload]="reloadChatBox"></app-chat-box>
+        <app-enable-chat-message *ngIf="!process.enable_chat" [processId]="params.id" (enabled)="enableChat()"></app-enable-chat-message>
+      </div>
+    </div>
+
   </div>
 
 </div>
@@ -67,23 +88,19 @@
       <div class="col-sm-9">
         <input class="form-control" type="text" id="process-name" [class.is-invalid]="process?.name?.length === 0"
                autocomplete="off" [(ngModel)]="process.name">
-        <div id="invalid-process-name" class="invalid-feedback">
-          El nombre es necesario
-        </div>
+        <div id="invalid-process-name" class="invalid-feedback">El nombre es necesario</div>
       </div>
     </div>
     <div class="form-group row">
       <label for="process-description" class="col-sm-3 col-form-label">Descripción:</label>
       <div class="col-sm-9">
-        <input class="form-control" type="text" id="process-description"
-               autocomplete="off" [(ngModel)]="process.description">
+        <input class="form-control" type="text" id="process-description" autocomplete="off" [(ngModel)]="process.description">
       </div>
     </div>
     <div class="form-group row">
       <label for="process-code" class="col-sm-3 col-form-label">Código</label>
       <div class="col-sm-9">
-        <input class="form-control" type="text" id="process-code"
-               autocomplete="off" [(ngModel)]="process.code">
+        <input class="form-control" type="text" id="process-code" autocomplete="off" [(ngModel)]="process.code">
       </div>
     </div>
     <div class="form-group row">
@@ -96,6 +113,20 @@
         </select>
       </div>
     </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="process.enable_chat">
+      <label class="form-check-label" for="exampleCheck1">Habilitar pestaña de conversación</label>
+    </div>
+    <div class="form-group row">
+      <div class="col">
+        <button type="button" class="btn btn-outline-danger" (click)="deleteMessages()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-dots" viewBox="0 0 16 16">
+            <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+            <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+          </svg> Vaciar conversación</button>
+      </div>
+    </div>
+
   </div>
 
   <div class="modal-footer justify-content-between">

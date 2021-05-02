@@ -19,6 +19,7 @@ import { ClientProcessService } from '../../services/client-process.service';
 import { showErrorAlert, showSuccesAlert, showWarningDeleteAlert } from '../../helpers/alerts';
 import { ProcessDTO } from '../../DTO/processDTO';
 import { toProcess } from '../../mapper/process-mapper';
+import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-process',
@@ -29,7 +30,7 @@ export class ProcessComponent implements OnInit, OnDestroy {
 
   public params = this.activedRoute.params[`_value`];
 
-  public process: Process = new Process('0', '', 0, '', '', '');
+  public process: Process = new Process('0', '', 0, '', '', '', false);
   public currentClients: Client[] = [];
   public states: State[] = [];
   public totalClients: Client[] = [];
@@ -38,6 +39,7 @@ export class ProcessComponent implements OnInit, OnDestroy {
   public clientsLabel = '';
   public stateName: string;
   public selectedClient: string;
+  public reloadChatBox = false;
 
   public subscriptions: Subscription[] = [];
 
@@ -52,6 +54,7 @@ export class ProcessComponent implements OnInit, OnDestroy {
               public processService: ProcessService,
               public documentService: DocumentService,
               public snackbarService: SnackbarService,
+              public chatService: ChatService,
               public clientProcessService: ClientProcessService) { }
 
   ngOnInit(): void {
@@ -173,4 +176,18 @@ export class ProcessComponent implements OnInit, OnDestroy {
     this.modalRef = this.modalService.show(modal, {class: 'modal-lg'});
   }
 
+  public deleteMessages(): void {
+    const deleteMessages = this.chatService.deleteMessagesByProcess(this.params.id).subscribe(
+      () => showSuccesAlert('Mensajes eliminados', () => {
+        this.modalRef.hide();
+        this.reloadChatBox = !this.reloadChatBox;
+      }),
+      error => showErrorAlert('No se lograron eliminar los mensajes', error.error.message, () => {})
+    );
+    this.subscriptions.push(deleteMessages);
+  }
+
+  public enableChat(): void {
+    this.process.enable_chat = true;
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Process } from '../../models/process';
 import { UserProcess } from '../../models/userProcess';
 import { ModalService } from '../../services/modal.service';
@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 })
 export class SaveProcessComponent implements OnInit, OnDestroy {
 
-  public process: Process = new Process('', '', 0, '', '', '');
+  public process: Process = new Process('', '', 0, '', '', '', false);
 
   public saveProcessSub: Subscription;
   public userProcessSub: Subscription;
@@ -25,6 +25,7 @@ export class SaveProcessComponent implements OnInit, OnDestroy {
   constructor(public modalService: ModalService,
               public processService: ProcessService,
               public userProcessService: UserProcessService,
+              public activatedRoute: ActivatedRoute,
               public router: Router) { }
 
   ngOnInit(): void { }
@@ -59,9 +60,9 @@ export class SaveProcessComponent implements OnInit, OnDestroy {
             this.modalService.close();
             if (result.isConfirmed) {
               if (this.modalService.processTypeName === 'caso') {
-                this.router.navigateByUrl(`/proceso/${process.uid}`);
+                this.router.navigate([`proceso/${process.uid}`], {relativeTo: this.activatedRoute});
               } else {
-                this.router.navigateByUrl(`/movimiento/${process.uid}`);
+                this.router.navigate([`movimiento/${process.uid}`], {relativeTo: this.activatedRoute});
               }
             }
           });

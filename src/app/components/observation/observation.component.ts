@@ -12,7 +12,7 @@ import { Observation } from '../../models/observation';
 export class ObservationComponent implements OnInit, OnDestroy {
 
   @Input() observation: Observation;
-  @Output() public deleteObservation: EventEmitter<string> = new EventEmitter();
+  @Output() deleteObservation: EventEmitter<string> = new EventEmitter();
 
   public deleteObservationSub: Subscription;
 

@@ -1,6 +1,6 @@
-<div><h5>Observaciones ({{ observations.length }})</h5></div>
+<!--<div><h5>Observaciones ({{ observations.length }})</h5></div>-->
 
-<div class="px-2 observation-box">
+<div class="px-2 observation-box" [class.rounded]="rounded">
   <div *ngFor="let observation of observations">
     <app-observation [observation]="observation" (deleteObservation)="deleteObservation($event)"></app-observation>
   </div>

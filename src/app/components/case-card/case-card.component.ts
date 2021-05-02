@@ -14,7 +14,7 @@ import { DocumentService } from '../../services/document.service';
 })
 export class CaseCardComponent implements OnInit, OnDestroy {
 
-  @Input() process: Process = new Process('', '', 0, '', '', '');
+  @Input() process: Process = new Process('', '', 0, '', '', '', false);
   public clients: ClientNameDTO[] = [];
   public documents: Document[] = [];
   public clientsLabel = '';

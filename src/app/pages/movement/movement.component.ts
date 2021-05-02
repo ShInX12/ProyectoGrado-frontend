@@ -28,7 +28,7 @@ export class MovementComponent implements OnInit, OnDestroy {
 
   public params = this.activedRoute.params[`_value`];
 
-  public process: Process = new Process('1', '', 0, '', '', '');
+  public process: Process = new Process('1', '', 0, '', '', '', false);
   public currentClients: Client[] = [];
   public states: State[] = [];
   public totalClients: Client[] = [];

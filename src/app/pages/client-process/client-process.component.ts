@@ -2,9 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Process } from '../../models/process';
 import { Document } from '../../models/document';
 import { Subscription } from 'rxjs';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AngularFireStorage } from '@angular/fire/storage';
 import { ProcessService } from '../../services/process.service';
 import { DocumentService } from '../../services/document.service';
 import { SnackbarService } from '../../services/snackbar.service';
@@ -22,7 +21,7 @@ export class ClientProcessComponent implements OnInit, OnDestroy {
 
   public params = this.activedRoute.params[`_value`];
 
-  public process: Process = new Process('0', '', 0, '', '', '');
+  public process: Process = new Process('0', '', 0, '', '', '', false);
   public currentClients: Client[] = [];
   public clientDocuments: Document[] = [];
 
@@ -35,8 +34,6 @@ export class ClientProcessComponent implements OnInit, OnDestroy {
 
   constructor(public router: Router,
               public activedRoute: ActivatedRoute,
-              private modalService: BsModalService,
-              private fireStorage: AngularFireStorage,
               public clientService: ClientService,
               public processService: ProcessService,
               public documentService: DocumentService,

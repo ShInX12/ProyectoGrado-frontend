@@ -17,6 +17,7 @@ import { ObservationsBoxComponent } from './observations-box/observations-box.co
 import { RegisterStepperComponent } from './register-stepper/register-stepper.component';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
 import { MessageTileComponent } from './message-tile/message-tile.component';
+import { EnableChatMessageComponent } from './enable-chat-message/enable-chat-message.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { MessageTileComponent } from './message-tile/message-tile.component';
     ObservationsBoxComponent,
     RegisterStepperComponent,
     ChatBoxComponent,
-    MessageTileComponent
+    MessageTileComponent,
+    EnableChatMessageComponent
   ],
     exports: [
         FilesBoxComponent,
@@ -43,7 +45,8 @@ import { MessageTileComponent } from './message-tile/message-tile.component';
         ObservationComponent,
         HomeClientListComponent,
         ObservationsBoxComponent,
-        ChatBoxComponent
+        ChatBoxComponent,
+        EnableChatMessageComponent
     ],
   imports: [
     AuthModule,

@@ -7,7 +7,9 @@ export class Process {
     public description: string,
     public state: string,
     // tslint:disable-next-line:variable-name
-    public process_type: string
+    public process_type: string,
+    // tslint:disable-next-line:variable-name
+    public enable_chat: boolean
   ) { }
 
 }
