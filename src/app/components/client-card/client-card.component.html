@@ -1,7 +1,8 @@
 <div class="row mx-1 my-2 client-card" [routerLink]="[ './cliente', client.uid ]">
 
   <div class="mx-auto avatar">
-    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
+    <img *ngIf="client.photo_url?.length > 0" class="img-avatar" [src]="client.photo_url" alt="profile">
+    <svg *ngIf="client.photo_url?.length === 0" xmlns="http://www.w3.org/2000/svg" width="45" height="45"
          fill="white" class="bi bi-person-fill" viewBox="0 0 16 16">
       <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
     </svg>

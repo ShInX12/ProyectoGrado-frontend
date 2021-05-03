@@ -55,6 +55,11 @@ export class ClientService {
     return this.httpClient.put(this.url + 'update/' + client.uid, client, this.headers);
   }
 
+  public updatePassword(clientId: string, oldPassword: string, newPassword: string): Observable<any> {
+    const body = {old_password: oldPassword, new_password: newPassword};
+    return this.httpClient.put(this.url + 'updatePassword/' + clientId, body, this.headers);
+  }
+
   public delete(id: string): Observable<any> {
     return this.httpClient.delete(this.url + 'delete/' + id, this.headers);
   }

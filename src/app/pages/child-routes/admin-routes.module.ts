@@ -12,6 +12,7 @@ import { ClientComponent } from '../client/client.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { UserListComponent } from '../user-list/user-list.component';
 import { UserComponent } from '../user/user.component';
+import { CompanyComponent } from '../company/company.component';
 
 const adminRoutes: Routes = [
   { path: '', component: LawyerHomeComponent },
@@ -24,6 +25,7 @@ const adminRoutes: Routes = [
   { path: 'perfil', component: UserProfileComponent },
   { path: 'usuarios', component: UserListComponent },
   { path: 'usuario/:id', component: UserComponent },
+  { path: 'compania', component: CompanyComponent },
 ];
 
 @NgModule({

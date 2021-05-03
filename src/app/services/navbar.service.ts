@@ -6,29 +6,30 @@ import { Injectable } from '@angular/core';
 export class NavbarService {
 
   public menuAdministrador = [
-    { title: 'Inicio Admin', url: '' },
+    { title: 'Inicio', url: '' },
     { title: 'Casos', url: 'procesos' },
     { title: 'Movimientos', url: 'movimientos' },
     { title: 'Clientes', url: 'clientes' },
     { title: 'Usuarios', url: 'usuarios' },
+    { title: 'Compañia', url: 'compania' }
   ];
 
   public menuAbogado = [
-    { title: 'Inicio Abogado', url: '' },
+    { title: 'Inicio', url: '' },
     { title: 'Casos', url: 'procesos' },
     { title: 'Movimientos', url: 'movimientos' },
-    { title: 'Clientes', url: 'clientes' },
+    { title: 'Clientes', url: 'clientes' }
   ];
 
   public menuAsistente = [
-    { title: 'Inicio Asistente', url: '' },
+    { title: 'Inicio', url: '' },
     { title: 'Casos', url: 'procesos' },
     { title: 'Movimientos', url: 'movimientos' },
-    { title: 'Clientes', url: 'clientes' },
+    { title: 'Clientes', url: 'clientes' }
   ];
 
   public menuCliente = [
-    { title: 'Inicio Cliente', url: '' },
+    { title: 'Inicio', url: '' },
     { title: 'Mis procesos', url: 'procesos' }
   ];
 

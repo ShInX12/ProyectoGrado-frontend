@@ -1,0 +1,77 @@
+<div class="row my-4 mx-5"><h2>Mi compañia</h2></div>
+
+<div class="row mt-2 px-5">
+
+  <div class="col-md-5 mb-4">
+
+    <div class="row justify-content-center">
+      <img *ngIf="company.logo?.length > 0 && !logoTemp" class="img-picture img-thumbnail" [src]="company.logo" alt="profile">
+      <img *ngIf="company.logo?.length > 0 && logoTemp" class="img-picture img-thumbnail" [src]="logoTemp" alt="profile">
+      <img *ngIf="company.logo?.length === 0 && !logoTemp" class="img-picture img-thumbnail" src="assets/img/no-logo.png" alt="profile">
+      <img *ngIf="company.logo?.length === 0 && logoTemp" class="img-picture img-thumbnail" [src]="logoTemp" alt="profile">
+    </div>
+
+    <div class="row justify-content-center my-2"><h4>Logo</h4></div>
+
+    <div class="row justify-content-center mt-4">
+      <div class="input-group mb-3 width-300">
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-danger btn-sm" style="width: 45px" (click)="deleteLogo()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+              <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 45px" id="inputGroupFileAddon01">
+            <span *ngIf="uploading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          </span>
+        </div>
+
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="inputGroupFile01" accept="image/*" (change)="changeImage($event.target.files[0])">
+          <label class="custom-file-label" for="inputGroupFile01">Subir logo</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5 mb-4">
+
+    <div class="form-group">
+      <label for="input-name">Nombre de la compañia</label>
+      <input type="text" class="form-control" [class.is-invalid]="company.name?.length === 0" id="input-name"
+             name="company-name" autocomplete="off" [(ngModel)]="company.name">
+      <div id="input-name-validation" class="invalid-feedback">El nombre es obligatorio</div>
+    </div>
+
+    <div class="form-group">
+      <label for="input-phone">Teléfono</label>
+      <input type="text" class="form-control" id="input-phone" autocomplete="off"
+             name="company-phone" [(ngModel)]="company.phone">
+    </div>
+
+    <div class="form-group">
+      <label for="input-address">Dirección</label>
+      <input type="text" class="form-control" id="input-address"
+             name="company-address" autocomplete="off" [(ngModel)]="company.address">
+    </div>
+
+    <div class="form-group">
+      <label for="input-nit">NIT</label>
+      <input type="text" class="form-control" id="input-nit"
+             name="company-address" autocomplete="off" [(ngModel)]="company.nit">
+    </div>
+
+    <div class="row justify-content-between px-3 mt-4">
+      <button class="btn btn-primary align-items-end" [disabled]="company.name?.length === 0"
+              (click)="updateCompany()">Actualizar datos
+      </button>
+    </div>
+  </div>
+
+  <div class="col-md-2 mb-4"></div>
+
+</div>

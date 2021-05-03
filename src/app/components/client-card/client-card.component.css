@@ -12,10 +12,19 @@
 }
 
 .avatar {
+  display: flex;
+  object-fit: cover;
   background-color: #80bdff;
   width: 62px;
   height: 60px;
   border-radius: 5px;
   text-align: center;
-  padding-top: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-avatar {
+  width: 62px;
+  height: 60px;
+  border-radius: 5px;
 }

@@ -23,6 +23,7 @@ import { UserComponent } from './user/user.component';
 import { ClientHomeComponent } from './client-home/client-home.component';
 import { ClientProcessesListComponent } from './client-processes-list/client-processes-list.component';
 import { ClientProcessComponent } from './client-process/client-process.component';
+import { CompanyComponent } from './company/company.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { ClientProcessComponent } from './client-process/client-process.componen
     ClientHomeComponent,
     ClientProcessesListComponent,
     ClientProcessComponent,
+    CompanyComponent,
   ],
     imports: [
         CommonModule,
