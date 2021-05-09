@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 
 @Component({
@@ -6,14 +6,12 @@ import { ChatService } from '../../services/chat.service';
   templateUrl: './enable-chat-message.component.html',
   styleUrls: ['./enable-chat-message.component.css']
 })
-export class EnableChatMessageComponent implements OnInit {
+export class EnableChatMessageComponent {
 
   @Input() processId: string;
   @Output() enabled: EventEmitter<boolean> = new EventEmitter();
 
   constructor(public chatService: ChatService) { }
-
-  ngOnInit(): void { }
 
   public enableChat(): void {
     this.chatService.enableProcessChat(this.processId).subscribe(

@@ -10,6 +10,8 @@ import { Person } from '../../models/person';
 import { ClientService } from '../../services/client.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { PersonalIdTypeService } from '../../services/personal-id-type.service';
+import { PersonalIdType } from '../../models/personalIdType';
 
 @Component({
   selector: 'app-user-profile',
@@ -29,24 +31,26 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   public newImage: File;
   public uploading = false;
 
-  public updateUserSub: Subscription;
-  public updatePasswordSub: Subscription;
+  public subscriptions: Subscription[] = [];
+
+  public personalIdTypes: PersonalIdType[] = [];
 
   modalRef: BsModalRef;
 
   constructor(public authService: AuthService,
               public userService: UserService,
               public clientService: ClientService,
+              public personalIdTypeService: PersonalIdTypeService,
               private modalService: BsModalService,
               private fireStorage: AngularFireStorage) { }
 
   ngOnInit(): void {
     this.loadPerson();
+    this.findPersonalIdTypes();
   }
 
   ngOnDestroy(): void {
-    this.updateUserSub?.unsubscribe();
-    this.updatePasswordSub?.unsubscribe();
+    this.subscriptions.forEach((sb) => sb?.unsubscribe());
   }
 
   public loadPerson(): void {
@@ -66,6 +70,14 @@ export class UserProfileComponent implements OnInit, OnDestroy {
         error => showErrorAlert('Error al actualizar el usuario', error.error.message, () => {}),
       );
     }
+  }
+
+  public findPersonalIdTypes(): void {
+    const personalIdSub = this.personalIdTypeService.findAll().subscribe(
+      ({personal_id_types}) => this.personalIdTypes = personal_id_types,
+      error => console.warn(error.error.message)
+    );
+    this.subscriptions.push(personalIdSub);
   }
 
   public updatePasword(): void {

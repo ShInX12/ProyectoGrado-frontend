@@ -53,6 +53,20 @@
       <div id="input-email-validation" class="invalid-feedback">El correo electrónico es obligatorio</div>
     </div>
 
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="input-personal-id">Tipo</label>
+        <select id="input-personal-id" class="form-control" [(ngModel)]="person.personal_id_type">
+          <option *ngFor="let type of personalIdTypes" [value]="type.uid">{{ type.name }}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-8">
+        <label for="input-personal-id-type">Número de identificación</label>
+        <input type="text" class="form-control" id="input-personal-id-type" autocomplete="off"
+               name="client-personal-id" [(ngModel)]="person.personal_id">
+      </div>
+    </div>
+
     <div class="form-group">
       <label for="input-phone">Teléfono</label>
       <input type="text" class="form-control" id="input-phone" autocomplete="off"

@@ -30,8 +30,16 @@ export class SearchService {
     return this.httpClient.get(this.url + term, this.headers);
   }
 
+  public allByCompany(company: string, term: string): Observable<any> {
+    return this.httpClient.get(this.url + 'allByCompany/' + company + '/' + term, this.headers);
+  }
+
   public collection(collection: string, term: string): Observable<any> {
     return this.httpClient.get(this.url + 'collection/' + collection + '/' + term, this.headers);
+  }
+
+  public collectionByCompany(company: string, collection: string, term: string): Observable<any> {
+    return this.httpClient.get(this.url + 'collectionByCompany/' + company + '/' + collection + '/' + term, this.headers);
   }
 
 }

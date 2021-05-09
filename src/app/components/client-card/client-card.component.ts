@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Client } from '../../models/client';
 
@@ -7,12 +7,10 @@ import { Client } from '../../models/client';
   templateUrl: './client-card.component.html',
   styleUrls: ['./client-card.component.css']
 })
-export class ClientCardComponent implements OnInit {
+export class ClientCardComponent {
 
   @Input() client: Client;
 
   constructor(public router: Router) { }
-
-  ngOnInit(): void { }
 
 }

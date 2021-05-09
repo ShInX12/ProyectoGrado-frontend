@@ -28,14 +28,20 @@
     </div>
 
     <div class="form-group">
+      <label for="input-email">Correo electrónico</label>
+      <input type="email" class="form-control" id="input-email" autocomplete="off"
+             name="client-email" [(ngModel)]="client.email">
+    </div>
+
+    <div class="form-group">
       <label for="input-phone">Teléfono</label>
       <input type="text" class="form-control" id="input-phone" autocomplete="off"
              name="client-phone" [(ngModel)]="client.phone">
     </div>
 
     <div class="form-group">
-      <label for="input-bio">Observaciones</label>
-      <textarea class="form-control" id="input-bio" rows="2" name="client-bio" [(ngModel)]="client.bio"></textarea>
+      <label for="input-bio">Sobre mi</label>
+      <textarea class="form-control" id="input-bio" rows="2" disabled name="client-bio" [(ngModel)]="client.bio"></textarea>
     </div>
 
     <div class="row justify-content-between px-3">
@@ -55,7 +61,7 @@
     <h3 class="mb-4">Procesos asociados</h3>
     <div *ngIf="processes?.length === 0" class="text-center" style="width: 100%; padding: 3rem">
       <img src="/assets/svg/undraw_empty_xct9.svg" style="max-width: 250px" class="my-4" alt="empty">
-      <p>El cliente no tiene procesos actualmente</p>
+      <p>No tienes procesos con el cliente actualmente</p>
     </div>
     <div *ngIf="processes?.length > 0" class="processes-box">
       <div *ngFor="let process of processes">

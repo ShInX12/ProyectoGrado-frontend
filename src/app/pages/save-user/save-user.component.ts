@@ -20,7 +20,7 @@ import { showErrorAlert, showSuccesAlert } from '../../helpers/alerts';
 export class SaveUserComponent implements OnInit, OnDestroy {
 
   public user: User
-    = new User('', '', '', '', '', '', '', '', true, environment.DEFAULT_DOCUMENT_TYPE, this.authService.company.uid, '', false);
+    = new User('', '', '', '', '', '', '', '', true, environment.DEFAULT_DOCUMENT_TYPE, this.authService.company.uid, false,  '', false);
 
   public personalIdTypes: PersonalIdType[] = [];
   public userTypes: UserType[] = [];

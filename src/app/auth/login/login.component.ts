@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnDestroy {
 
   loginForm = new FormGroup({
     email: new FormControl('test1@user.com', [Validators.required, Validators.email]),
@@ -26,8 +26,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
               private authService: AuthService) { }
-
-  ngOnInit(): void { }
 
   ngOnDestroy(): void {
     this.loginSub?.unsubscribe();

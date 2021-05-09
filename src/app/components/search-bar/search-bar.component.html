@@ -13,14 +13,14 @@
 
       <p *ngIf="clients.length > 0"><b>Clientes: ({{ clients.length }})</b></p>
 
-      <div *ngFor="let client of clients" class="suggest" (click)="navigate('./cliente', client.uid)">
+      <div *ngFor="let client of clients" class="suggest" (click)="navigate('cliente', client.uid)">
         {{client.name}}
       </div>
 
-      <p *ngIf="processes.length > 0"><b>Procesos: ({{ processes.length }})</b></p>
+      <p *ngIf="users.length > 0"><b>Usuarios: ({{ users.length }})</b></p>
 
-      <div *ngFor="let process of processes" class="suggest" (click)="navigate('./proceso/', process.uid)">
-        {{process.name}}
+      <div *ngFor="let user of users" class="suggest" (click)="navigate('usuario', user.uid)">
+        {{user.name}}
       </div>
     </div>
 

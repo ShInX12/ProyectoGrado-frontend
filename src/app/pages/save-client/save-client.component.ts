@@ -17,7 +17,7 @@ import { environment } from '../../../environments/environment';
 })
 export class SaveClientComponent implements OnInit, OnDestroy {
 
-  public client: Client = new Client('', '', '', '', '', '', '', '', true, '', this.authService.person.company_id);
+  public client: Client = new Client('', '', '', '', '', '', '', '', true, '', this.authService.person.company_id, false);
   public personalIdTypes: PersonalIdType[] = [];
 
   public saveClientForm = new FormGroup({

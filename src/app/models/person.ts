@@ -16,6 +16,8 @@ export abstract class Person {
     public personal_id_type: string,
     // tslint:disable-next-line:variable-name
     public company_id: string,
+    // tslint:disable-next-line:variable-name
+    public verified_email: boolean,
   ) { }
 
 }

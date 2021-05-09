@@ -3,6 +3,7 @@ import { ClientService } from '../../services/client.service';
 import { ModalService } from '../../services/modal.service';
 import { Subscription } from 'rxjs';
 import { Client } from '../../models/client';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home-client-list',
@@ -17,6 +18,7 @@ export class HomeClientListComponent implements OnInit, OnDestroy {
   public clientsSub: Subscription;
 
   constructor(private modalService: ModalService,
+              public authService: AuthService,
               public clientService: ClientService) { }
 
   ngOnInit(): void {
@@ -32,7 +34,7 @@ export class HomeClientListComponent implements OnInit, OnDestroy {
   }
 
   public findClients(): void {
-    this.clientsSub = this.clientService.findLastest().subscribe(
+    this.clientsSub = this.clientService.findLastestByCompany(this.authService.company.uid).subscribe(
       clients => {
         this.clients = clients;
         if (clients?.length === 0){

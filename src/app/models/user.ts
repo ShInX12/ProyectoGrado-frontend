@@ -19,6 +19,8 @@ export class User extends Person {
     // tslint:disable-next-line:variable-name
     company_id: string,
     // tslint:disable-next-line:variable-name
+    verified_email: boolean,
+    // tslint:disable-next-line:variable-name
     public user_type_id: string,
     public admin: boolean
   ) {
@@ -33,7 +35,8 @@ export class User extends Person {
       bio,
       enable,
       personal_id_type,
-      company_id
+      company_id,
+      verified_email
     );
   }
 

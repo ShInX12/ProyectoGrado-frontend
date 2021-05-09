@@ -17,7 +17,9 @@ export class Client extends Person {
     // tslint:disable-next-line:variable-name
     personal_id_type: string,
     // tslint:disable-next-line:variable-name
-    company_id: string
+    company_id: string,
+    // tslint:disable-next-line:variable-name
+    verified_email: boolean,
   ) {
     super(
       uid,
@@ -30,7 +32,8 @@ export class Client extends Person {
       bio,
       enable,
       personal_id_type,
-      company_id
+      company_id,
+      verified_email
     );
   }
 

@@ -35,12 +35,24 @@ export class ClientService {
     return this.httpClient.get(this.url + 'findAllPaginated/?page=' + page, this.headers);
   }
 
+  public findAllPaginatedByCompany(company: string, page: number = 0): Observable<any> {
+    return this.httpClient.get(this.url + 'findAllPaginatedByCompany/' + company + '?page=' + page, this.headers);
+  }
+
   public findAllPaginatedDTO(page: number = 0): Observable<any> {
     return this.httpClient.get(this.url + 'findAllPaginatedDTO/?page=' + page, this.headers);
   }
 
+  public findAllPaginatedDTOByCompany(company: string, page: number = 0): Observable<any> {
+    return this.httpClient.get(this.url + 'findAllPaginatedDTOByCompany/' + company + '?page=' + page, this.headers);
+  }
+
   public findLastest(limit: number = 10): Observable<any> {
     return this.httpClient.get(this.url + 'findLastest/?limit=' + limit, this.headers);
+  }
+
+  public findLastestByCompany(company: string, limit: number = 10): Observable<any> {
+    return this.httpClient.get(this.url + 'findLastestByCompany/' + company + '?limit=' + limit, this.headers);
   }
 
   public findById(id: string): Observable<any> {

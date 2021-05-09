@@ -149,7 +149,7 @@ export class ProcessComponent implements OnInit, OnDestroy {
             () => {
               showSuccesAlert('Proceso eliminado', () => {
                 this.modalRef.hide();
-                this.router.navigateByUrl('/procesos');
+                this.router.navigate(['../../procesos'], { relativeTo: this.activedRoute });
               });
             },
             error => showErrorAlert('No se pudo eliminar el proceso', error.error.message, () => {})

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { ModalService } from '../../services/modal.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-list',
@@ -27,6 +28,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   constructor(public router: Router,
               public userService: UserService,
+              public authService: AuthService,
               private modalService: ModalService) { }
 
   ngOnInit(): void {
@@ -46,7 +48,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   public findUsers(): void {
-    this.userSub = this.userService.findAllPaginatedDTO().subscribe(
+    this.userSub = this.userService.findAllPaginatedDTOByCompany(this.authService.company.uid).subscribe(
       ({users, from, to, total_count, total_pages}) => {
         this.users = users;
         this.from = from;

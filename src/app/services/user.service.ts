@@ -39,6 +39,10 @@ export class UserService {
     return this.httpClient.get(this.url + 'findAllPaginatedDTO/?page=' + page, this.headers);
   }
 
+  public findAllPaginatedDTOByCompany(company: string, page: number = 0): Observable<any> {
+    return this.httpClient.get(this.url + 'findAllPaginatedDTOByCompany/' + company + '?page=' + page, this.headers);
+  }
+
   public findById(id: string): Observable<any> {
     return this.httpClient.get(this.url + 'findById/' + id, this.headers);
   }

@@ -8,6 +8,8 @@ import { ClientService } from '../../services/client.service';
 import { ProcessService } from '../../services/process.service';
 import { PersonalIdTypeService } from '../../services/personal-id-type.service';
 import { showErrorAlert, showSuccesAlert, showWarningDeleteAlert } from '../../helpers/alerts';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-client',
@@ -17,7 +19,7 @@ import { showErrorAlert, showSuccesAlert, showWarningDeleteAlert } from '../../h
 export class ClientComponent implements OnInit, OnDestroy {
 
   public params = this.activedRoute.params[`_value`];
-  public client: Client = new Client('', '', '', '', '', '', '', '', true, '', '');
+  public client: Client = new Client('', '', '', '', '', '', '', '', true, '', '', false);
   public personalIdTypes: PersonalIdType[] = [];
   public processes: Process[] = [];
 
@@ -30,8 +32,10 @@ export class ClientComponent implements OnInit, OnDestroy {
   constructor(public router: Router,
               public activedRoute: ActivatedRoute,
               public clientService: ClientService,
+              public authService: AuthService,
               public personalIdTypeService: PersonalIdTypeService,
-              public processService: ProcessService) { }
+              public processService: ProcessService,
+              private fireStorage: AngularFireStorage) { }
 
   ngOnInit(): void {
     this.findClientById();
@@ -55,8 +59,11 @@ export class ClientComponent implements OnInit, OnDestroy {
   }
 
   public findProcessByClient(): void {
-    this.findProcessSub = this.processService.findByClient(this.params.id).subscribe(
-      processes => this.processes = processes,
+    this.findProcessSub = this.processService.findByClientUser(this.params.id, this.authService.person.uid).subscribe(
+      ({ processes }) => {
+        this.processes = processes;
+        console.log(processes);
+      },
       error => console.warn(error.error.message)
     );
   }
@@ -82,7 +89,13 @@ export class ClientComponent implements OnInit, OnDestroy {
     showWarningDeleteAlert('¿Desea eliminar el cliente?', 'Esta acción no se puede deshacer', result => {
       if (result.isConfirmed) {
         this.deleteClientSub = this.clientService.delete(this.client.uid).subscribe(
-          value => showSuccesAlert('Cliente eliminado', () => this.router.navigateByUrl('/clientes')),
+          () => {
+            if (this.client.photo_url.trim().length > 0) { this.fireStorage.refFromURL(this.client.photo_url).delete(); }
+            showSuccesAlert(
+              'Cliente eliminado',
+              () => this.router.navigate(['../../clientes'], { relativeTo: this.activedRoute })
+            );
+          },
           error => showErrorAlert('No se pudo eliminar el cliente', error.error.message, () => {})
         );
       }

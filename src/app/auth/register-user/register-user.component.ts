@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AbstractControl} from '@angular/forms';
 import { RegisterStepperService } from '../../services/register-stepper.service';
 
@@ -7,13 +7,11 @@ import { RegisterStepperService } from '../../services/register-stepper.service'
   templateUrl: './register-user.component.html',
   styleUrls: ['./register-user.component.css']
 })
-export class RegisterUserComponent implements OnInit {
+export class RegisterUserComponent {
 
   registerForm = this.RSService.registerUserForm;
 
   constructor(private RSService: RegisterStepperService) { }
-
-  ngOnInit(): void { }
 
   get email(): AbstractControl {
     return this.registerForm.get('email');

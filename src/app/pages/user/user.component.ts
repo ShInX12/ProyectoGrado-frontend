@@ -8,6 +8,7 @@ import { PersonalIdTypeService } from '../../services/personal-id-type.service';
 import { showErrorAlert, showSuccesAlert, showWarningDeleteAlert } from '../../helpers/alerts';
 import { UserTypeService } from '../../services/user-type.service';
 import { UserType } from '../../models/userType';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-user',
@@ -19,7 +20,7 @@ export class UserComponent implements OnInit, OnDestroy {
   public params = this.activedRoute.params[`_value`];
 
   public user: User
-    = new User('', '', '', '', '', '', '', '', true, '', '', '', false);
+    = new User('', '', '', '', '', '', '', '', true, '', '', false,  '', false);
 
   public personalIdTypes: PersonalIdType[] = [];
   public userTypes: UserType[] = [];
@@ -30,7 +31,8 @@ export class UserComponent implements OnInit, OnDestroy {
               public activedRoute: ActivatedRoute,
               public userService: UserService,
               public userTypeService: UserTypeService,
-              public personalIdTypeService: PersonalIdTypeService) { }
+              public personalIdTypeService: PersonalIdTypeService,
+              private fireStorage: AngularFireStorage) { }
 
   ngOnInit(): void {
     this.findUserById();
@@ -82,7 +84,13 @@ export class UserComponent implements OnInit, OnDestroy {
       '¿Desea eliminar el usuario?', 'Esta acción no se puede deshacer', result => {
         if (result.isConfirmed){
           const deleteUserSub = this.userService.delete(this.user).subscribe(
-            value => showSuccesAlert('Usuario eliminado', () => this.router.navigateByUrl('/usuarios')),
+            () => {
+              if (this.user.photo_url.trim().length > 0) { this.fireStorage.refFromURL(this.user.photo_url).delete(); }
+              showSuccesAlert(
+                'Usuario eliminado',
+                () => this.router.navigate(['../../usuarios'], { relativeTo: this.activedRoute })
+              );
+            },
             error => showErrorAlert('No se pudo eliminar el usuario', error, () => {})
           );
           this.subscriptions.push(deleteUserSub);

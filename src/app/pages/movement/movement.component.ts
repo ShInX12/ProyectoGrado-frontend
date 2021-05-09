@@ -137,7 +137,7 @@ export class MovementComponent implements OnInit, OnDestroy {
             () => {
               showSuccesAlert('Movimiento eliminado', () => {
                 this.modalRef.hide();
-                this.router.navigateByUrl('/movimientos');
+                this.router.navigate(['../../movimientos'], { relativeTo: this.activedRoute });
               });
             },
             error => showErrorAlert('No se pudo eliminar el movimiento', error.error.message, () => {})

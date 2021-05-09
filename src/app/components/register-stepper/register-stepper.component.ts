@@ -18,7 +18,7 @@ export class RegisterStepperComponent implements OnInit, OnDestroy {
   private stepper: Stepper;
 
   public user: User
-    = new User('', '', '', '', '', '', '', '', true, environment.DEFAULT_DOCUMENT_TYPE, '', '', true);
+    = new User('', '', '', '', '', '', '', '', true, environment.DEFAULT_DOCUMENT_TYPE, '', false, '', true);
   public company: Company = new Company('', '', '', '', '', '', 0);
 
   private registerSub: Subscription;

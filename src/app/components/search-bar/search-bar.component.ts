@@ -1,14 +1,15 @@
-import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SearchService } from '../../services/search.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.css']
 })
-export class SearchBarComponent implements OnInit, OnDestroy {
+export class SearchBarComponent implements OnDestroy {
 
   public showSuggest = false;
   public query = '';
@@ -18,12 +19,12 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   @ViewChild('searchInput') searchInput;
 
   public clients = [];
-  public processes = [];
+  public users = [];
 
   constructor(public router: Router,
+              public authService: AuthService,
+              public activedRoute: ActivatedRoute,
               public searchService: SearchService) { }
-
-  ngOnInit(): void { }
 
   ngOnDestroy(): void {
     this.searchSub?.unsubscribe();
@@ -32,10 +33,10 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   public search(): void {
     if (this.query.trim().length > 0) {
 
-      this.searchSub = this.searchService.all(this.query).subscribe(
-        ({clients, processes}) => {
+      this.searchSub = this.searchService.allByCompany(this.authService.company.uid, this.query).subscribe(
+        ({clients, users}) => {
           this.clients = clients;
-          this.processes = processes;
+          this.users = users;
         },
         error => console.warn(error.error.message)
       );
@@ -43,10 +44,10 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   }
 
   public navigate(entity: string, uid: string): void {
-    this.router.navigate([entity, uid]);
+    this.router.navigate([entity, uid], { relativeTo: this.activedRoute });
     this.closeSuggest();
     this.query = '';
-    this.processes = [];
+    this.users = [];
     this.clients = [];
   }
 

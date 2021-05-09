@@ -5,6 +5,8 @@ import { ModalService } from '../../services/modal.service';
 import { Subscription } from 'rxjs';
 import { ClientService } from '../../services/client.service';
 import { showErrorAlert, showSuccesAlert, showWarningDeleteAlert } from '../../helpers/alerts';
+import { AuthService } from '../../services/auth.service';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-client-list',
@@ -27,7 +29,9 @@ export class ClientListComponent implements OnInit, OnDestroy {
   public clientsSub: Subscription;
 
   constructor(public clientService: ClientService,
+              public authService: AuthService,
               public router: Router,
+              private fireStorage: AngularFireStorage,
               private modalService: ModalService) { }
 
   ngOnInit(): void {
@@ -43,7 +47,7 @@ export class ClientListComponent implements OnInit, OnDestroy {
   }
 
   public findClients(): void {
-    this.clientsSub = this.clientService.findAllPaginatedDTO(this.page).subscribe(
+    this.clientsSub = this.clientService.findAllPaginatedDTOByCompany(this.authService.company.uid, this.page).subscribe(
       ({clients, from, to, total_count, total_pages}) => {
         this.clients = clients;
         this.from = from;
@@ -58,7 +62,7 @@ export class ClientListComponent implements OnInit, OnDestroy {
     );
   }
 
-  public deleteClient(name: string, uid: string, event): void {
+  public deleteClient(name: string, uid: string, photoUrl: string, event): void {
 
     event.stopPropagation();
     showWarningDeleteAlert(
@@ -68,6 +72,7 @@ export class ClientListComponent implements OnInit, OnDestroy {
         if (result.isConfirmed) {
           this.clientService.delete(uid).subscribe(
             () => {
+              if (photoUrl.trim().length > 0) { this.fireStorage.refFromURL(photoUrl).delete(); }
               this.clients = this.clients.filter(client => client.uid !== uid);
               showSuccesAlert('Cliente eliminado', () => {});
             },

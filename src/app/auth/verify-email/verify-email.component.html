@@ -1,0 +1,21 @@
+<div class="container py-5">
+  <div *ngIf="loading && !successful">
+    <div class="">
+      <div class="spinner-border spinner-border-sm ml-auto" role="status" aria-hidden="true"></div>
+      <strong> Cargando...</strong>
+    </div>
+  </div>
+  <div *ngIf="successful && !loading" class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Correo electrónico verificado</h4>
+    <p>Gracias por usar nuestros servicios, tu correo electrónico <b>{{ email }}</b> ha sido verificado con éxito.</p>
+    <hr>
+    <p class="mb-0">Ya puedes usar tu cuenta normalmente.</p>
+    <button class="btn btn-light mt-2" [routerLink]="[ '/' ]">Volver</button>
+  </div>
+  <div *ngIf="!successful && !loading" class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Oops!</h4>
+    <p>No se pudo verificar tu correo electrónico</p>
+    <hr>
+    <p class="mb-0">Intenta nuevamente.</p>
+  </div>
+</div>

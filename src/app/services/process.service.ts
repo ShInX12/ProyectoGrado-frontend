@@ -44,6 +44,10 @@ export class ProcessService {
     return this.httpClient.get(this.url + 'findByClient/' + client, this.headers);
   }
 
+  public findByClientUser(client: string, user: string): Observable<any> {
+    return this.httpClient.get(this.url + 'findByClientUser/' + client + '/' + user, this.headers);
+  }
+
   public findById(id: string): Observable<any> {
     return this.httpClient.get(this.url + 'findById/' + id, this.headers);
   }

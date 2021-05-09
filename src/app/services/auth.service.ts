@@ -22,7 +22,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient,
               private router: Router,
               private ngZone: NgZone) {
-    this.url = environment.apiUrl + '/api/login/';
+    this.url = environment.apiUrl + '/api/auth/';
   }
 
   get token(): string {
@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   setRole(isClient: boolean, person: User): void {
-    if (isClient){
+    if (isClient) {
       this.role = Role.Client;
 
     } else {
@@ -83,7 +83,7 @@ export class AuthService {
 
   public login(email: string, password: string): Observable<any> {
     const body = { email, password };
-    return this.httpClient.post(this.url, body, this.headers);
+    return this.httpClient.post(this.url + 'login', body, this.headers);
   }
 
   public registerUserWithCompany(user: User, company: Company): Observable<any> {
@@ -97,6 +97,23 @@ export class AuthService {
     this.ngZone.run(() => {
       this.router.navigateByUrl('login');
     });
+  }
+
+  public verifyEmail(token: string): Observable<any> {
+    return this.httpClient.get(this.url + 'activate/' + token);
+  }
+
+  public resetPassword(email: string): Observable<any> {
+    return this.httpClient.get(this.url + 'resetPassword/' + email);
+  }
+
+  public findPersonByToken(token: string): Observable<any> {
+    return this.httpClient.get(this.url + 'findPersonByToken/' + token);
+  }
+
+  public changePassword(uid: string, isClient: boolean, newPassword: string): Observable<any> {
+    const body = { uid, isClient, newPassword };
+    return this.httpClient.post(this.url + 'changePassword', body);
   }
 }
 
