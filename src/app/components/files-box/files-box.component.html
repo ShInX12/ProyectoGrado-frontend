@@ -1,12 +1,12 @@
 <div class="row justify-content-between pr-md-4 pr-md-0">
   <h5 *ngIf="documentsFromLawyer">Documentos ({{ documents.length }})</h5>
   <h5 *ngIf="!documentsFromLawyer">Mis documentos enviados ({{ documents.length }})</h5>
-  <button class="btn btn-primary btn-sm" style="height: 1.8rem" (click)="openModal(uploadFileModal)">Subir</button>
+  <button *ngIf="!disabled" class="btn btn-primary btn-sm" style="height: 1.8rem" (click)="openModal(uploadFileModal)">Subir</button>
 </div>
 <div class="row">
   <div class="mr-0 mr-md-4 justify-content-center files-box">
     <div *ngFor="let document of documents">
-      <app-file-card [document]="document" (deletedFile)="deleteDocument($event)"></app-file-card>
+      <app-file-card [document]="document" [disabled]="disabled" (deletedFile)="deleteDocument($event)"></app-file-card>
     </div>
   </div>
 </div>

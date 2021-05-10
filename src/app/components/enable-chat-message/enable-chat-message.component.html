@@ -1,6 +1,6 @@
 <div class="enable-chat-message" style="width: 100%; padding: 1.5rem">
   <img src="/assets/svg/undraw_Personal_text_re_vqj3.svg" class="my-3" style="max-width: 170px" alt="empty">
   <h5 class="my-3">El chat no está activado</h5>
-  <h6 class="my-3">¿Deseas activarlo?</h6>
-  <button class="btn btn-primary" (click)="enableChat()">Activar</button>
+  <h6 *ngIf="!disabled" class="my-3">¿Deseas activarlo?</h6>
+  <button *ngIf="!disabled" class="btn btn-primary" (click)="enableChat()">Activar</button>
 </div>

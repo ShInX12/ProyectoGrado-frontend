@@ -30,4 +30,12 @@ export class UserProcessService {
   public save(userProcess: UserProcess): Observable<any> {
     return this.httpClient.post(this.url + 'save', userProcess, this.headers);
   }
+
+  public update(userProcess: UserProcess): Observable<any> {
+    return this.httpClient.put(this.url + 'update/' + userProcess.uid, userProcess, this.headers);
+  }
+
+  public delete(uid: string): Observable<any> {
+    return this.httpClient.delete(this.url + 'delete/' + uid);
+  }
 }

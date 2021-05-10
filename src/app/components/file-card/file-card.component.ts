@@ -17,6 +17,7 @@ export class FileCardComponent implements OnInit, OnDestroy {
 
   @Input() document: Document;
   @Input() showAll = true;
+  @Input() disabled = false;
   @Output() public deletedFile: EventEmitter<string> = new EventEmitter();
   public safeUrl;
   modalRef: BsModalRef;

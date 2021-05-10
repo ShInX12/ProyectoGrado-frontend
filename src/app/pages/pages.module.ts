@@ -24,6 +24,7 @@ import { ClientHomeComponent } from './client-home/client-home.component';
 import { ClientProcessesListComponent } from './client-processes-list/client-processes-list.component';
 import { ClientProcessComponent } from './client-process/client-process.component';
 import { CompanyComponent } from './company/company.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { CompanyComponent } from './company/company.component';
         RouterModule,
         ComponentsModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TooltipModule
     ]
 })
 export class PagesModule { }

@@ -31,6 +31,10 @@ export class ClientService {
     return this.httpClient.get(this.url + 'findAll', this.headers);
   }
 
+  public findAllByCompany(company: string): Observable<any> {
+    return this.httpClient.get(this.url + 'findAllByCompany/' + company, this.headers);
+  }
+
   public findAllPaginated(page: number = 0): Observable<any> {
     return this.httpClient.get(this.url + 'findAllPaginated/?page=' + page, this.headers);
   }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
+import { UserProcessDTO } from '../DTO/userProcessDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,12 @@ export class UserService {
     };
   }
 
-  public findAll(page: number = 0): Observable<any> {
+  public findAll(): Observable<any> {
     return this.httpClient.get(this.url + 'findAll', this.headers);
+  }
+
+  public findAllByCompany(company: string): Observable<any> {
+    return this.httpClient.get(this.url + 'findAllByCompany/' + company, this.headers);
   }
 
   public findAllPaginated(page: number = 0): Observable<any> {
@@ -45,6 +50,10 @@ export class UserService {
 
   public findById(id: string): Observable<any> {
     return this.httpClient.get(this.url + 'findById/' + id, this.headers);
+  }
+
+  public findByProcess(id: string): Observable<UserProcessDTO[]> {
+    return this.httpClient.get<UserProcessDTO[]>(this.url + 'findByProcess/' + id, this.headers);
   }
 
   public save(user: User): Observable<any> {

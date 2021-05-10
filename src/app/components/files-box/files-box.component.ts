@@ -18,6 +18,7 @@ import { showErrorAlert, showSuccesAlert } from '../../helpers/alerts';
 export class FilesBoxComponent implements OnInit {
 
   @Input() processId: string;
+  @Input() disabled: boolean;
   @Input() documentsFromLawyer: boolean;
   public documents: Document[] = [];
   public newDocument: Document =

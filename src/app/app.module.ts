@@ -8,6 +8,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import localeEsCo from '@angular/common/locales/es-CO';
 
 import { ComponentsModule } from './components/components.module';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -31,6 +32,7 @@ registerLocaleData(localeEsCo);
     AngularFireStorageModule,
     HttpClientModule,
     ComponentsModule,
+    TooltipModule.forRoot(),
     SharedModule,
     PagesModule,
     ModalModule.forRoot(),

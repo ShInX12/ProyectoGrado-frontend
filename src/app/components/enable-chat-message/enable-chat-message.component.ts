@@ -9,6 +9,7 @@ import { ChatService } from '../../services/chat.service';
 export class EnableChatMessageComponent {
 
   @Input() processId: string;
+  @Input() disabled: boolean;
   @Output() enabled: EventEmitter<boolean> = new EventEmitter();
 
   constructor(public chatService: ChatService) { }

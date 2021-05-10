@@ -46,17 +46,17 @@
   <nav aria-label="Client page navigation">
     <ul class="pagination">
       <li class="page-item">
-        <a class="page-link" (click)="changePage(this.page - 1)" aria-label="Anterior">
+        <a class="pointer" (click)="changePage(this.page - 1)" aria-label="Anterior">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
       <li class="page-item"
           *ngFor="let item of [].constructor(totalPages); let i = index"
           [class.active]="this.page === i + 1">
-        <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+        <a class="pointer" (click)="changePage(i + 1)">{{ i + 1 }}</a>
       </li>
       <li class="page-item">
-        <a class="page-link" (click)="changePage(this.page + 1)" aria-label="Siguiente">
+        <a class="pointer" (click)="changePage(this.page + 1)" aria-label="Siguiente">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
