@@ -4,7 +4,7 @@ import { NavbarService } from '../../services/navbar.service';
 import { AuthService, Role } from '../../services/auth.service';
 import { Company } from '../../models/company';
 import { Person } from 'src/app/models/person';
-import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
 
 @Component({
@@ -35,16 +35,29 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.breakpointObserver
-    //   .observe(['(max-width: 800px)'])
-    //   .subscribe((state: BreakpointState) => {
-    //     if (state.matches) {
-    //       console.log('match');
+    this.breakpointObserver
+      .observe([Breakpoints.XSmall])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
 
-    //       this.sidebar.nativeElement.classList.remove('active');
+          console.log(
+            state
+          );
+          this.sidebar.nativeElement.classList.remove('active');
+          this.sidebar.nativeElement.classList.add('d-none');
 
-    //     }
-    //   });
+        } else {
+
+
+          console.log(
+            state
+          );
+
+          this.sidebar?.nativeElement?.classList.add('active');
+          this.sidebar?.nativeElement?.classList.remove('d-none');
+
+        }
+      });
     this.loadMenu();
 
 
