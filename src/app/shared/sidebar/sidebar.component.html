@@ -1,0 +1,49 @@
+<div class="sidebar active" #sidebar>
+    <div class="logo_content">
+        <div class="logo">
+            <!-- <i class='bx bxl-angular'></i> -->
+            <img [src]="company.logo || noLogo" alt="">
+            <div class="logo_name"> {{company.name}} </div>
+        </div>
+        <i class='bx bx-menu' #btn id="btn" (click)="onClickBtn()"></i>
+    </div>
+    <ul class="nav_list">
+        <!-- <li>
+
+            <i class='bx bx-search' #searchBtn (click)="onClickSearch()"></i>
+            <input type="text" placeholder="Buscar...">
+            <span class="tooltip">Buscar</span>
+        </li> -->
+        <li *ngFor="let item of menu">
+            <a [routerLink]="item.url" [routerLinkActive]="active">
+                <i [class]='item.icono'></i>
+                <span class="links_name"> {{item.title}} </span>
+            </a>
+            <span class="tooltip">{{item.title}}</span>
+        </li>
+        <!--  -->
+    </ul>
+
+    <div class="profile_content">
+        <div class="profile">
+            <div class="profile_details">
+                <!-- person.photo_url -->
+                <img [src]="person.photo_url || noFoto" [alt]="person.name">
+                <div class="name_job">
+                    <div class="name"> {{person.name}} </div>
+                    <div class="job"> {{role}} </div>
+                </div>
+            </div>
+            <i class='bx bx-log-out' id="log_out" (click)="logout()"></i>
+        </div>
+    </div>
+</div>
+
+<div class="home_content ">
+    <app-navbar></app-navbar>
+    <div class="container-fluid" style="padding: 0 4% 0 4%;">
+
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

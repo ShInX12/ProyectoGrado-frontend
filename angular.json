@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "ProyectoGrado-frontend"
+  "defaultProject": "ProyectoGrado-frontend",
+  "cli": {
+    "analytics": "9fa92d1a-3f71-457d-b8df-f5193fbcefc8"
+  }
 }

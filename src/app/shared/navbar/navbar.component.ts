@@ -6,15 +6,28 @@ import { AuthService, Role } from '../../services/auth.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styles: []
+  styles: [
+    `
+      img{
+        height: 40px;
+        width: 40px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      
+    `
+  ]
 })
 export class NavbarComponent implements OnInit {
 
   public menu = [];
+  public noLogo: string = '../../../assets/img/no-logo.png';
+
 
   constructor(public router: Router,
-              public authService: AuthService,
-              public navbarService: NavbarService) { }
+    public authService: AuthService,
+    public navbarService: NavbarService) { }
 
   ngOnInit(): void {
     this.loadMenu();
@@ -22,23 +35,23 @@ export class NavbarComponent implements OnInit {
 
   public loadMenu(): void {
 
-      switch (this.authService.role) {
+    switch (this.authService.role) {
 
-        case Role.Administrator:
-          this.menu = this.navbarService.menuAdministrador;
-          break;
+      case Role.Administrator:
+        this.menu = this.navbarService.menuAdministrador;
+        break;
 
-        case Role.Lawyer:
-          this.menu = this.navbarService.menuAbogado;
-          break;
+      case Role.Lawyer:
+        this.menu = this.navbarService.menuAbogado;
+        break;
 
-        case Role.Assistant:
-          this.menu = this.navbarService.menuAsistente;
-          break;
+      case Role.Assistant:
+        this.menu = this.navbarService.menuAsistente;
+        break;
 
-        case Role.Client:
-          this.menu = this.navbarService.menuCliente;
-          break;
+      case Role.Client:
+        this.menu = this.navbarService.menuCliente;
+        break;
     }
 
   }

@@ -6,31 +6,35 @@ import { Injectable } from '@angular/core';
 export class NavbarService {
 
   public menuAdministrador = [
-    { title: 'Inicio', url: '' },
-    { title: 'Casos', url: 'procesos' },
-    { title: 'Movimientos', url: 'movimientos' },
-    { title: 'Clientes', url: 'clientes' },
-    { title: 'Usuarios', url: 'usuarios' },
-    { title: 'Compañia', url: 'compania' }
+    { title: 'Inicio', url: '', icono: 'bx bx-grid-alt' },
+    { title: 'Casos', url: 'procesos', icono: 'bx bx-briefcase' },
+    { title: 'Movimientos', url: 'movimientos', icono: 'bx bx-collection' },
+    { title: 'Clientes', url: 'clientes', icono: 'bx bx-user-pin' },
+    { title: 'Usuarios', url: 'usuarios', icono: 'bx bx-user' },
+    { title: 'Compañia', url: 'compania', icono: 'bx bx-store' },
+    { title: 'Perfil', url: 'perfil', icono: 'bx bx-user-circle' }
   ];
 
   public menuAbogado = [
-    { title: 'Inicio', url: '' },
-    { title: 'Casos', url: 'procesos' },
-    { title: 'Movimientos', url: 'movimientos' },
-    { title: 'Clientes', url: 'clientes' }
+    { title: 'Inicio', url: '', icono: 'bx bx-grid-alt' },
+    { title: 'Casos', url: 'procesos', icono: 'bx bx-briefcase' },
+    { title: 'Movimientos', url: 'movimientos', icono: 'bx bx-collection' },
+    { title: 'Clientes', url: 'clientes', icono: 'bx bx-user-pin' },
+    { title: 'Perfil', url: 'perfil', icono: 'bx bx-user-circle' }
   ];
 
   public menuAsistente = [
-    { title: 'Inicio', url: '' },
-    { title: 'Casos', url: 'procesos' },
-    { title: 'Movimientos', url: 'movimientos' },
-    { title: 'Clientes', url: 'clientes' }
+    { title: 'Inicio', url: '', icono: 'bx bx-grid-alt' },
+    { title: 'Casos', url: 'procesos', icono: 'bx bx-briefcase' },
+    { title: 'Movimientos', url: 'movimientos', icono: 'bx bx-collection' },
+    { title: 'Clientes', url: 'clientes', icono: 'bx bx-user-pin' },
+    { title: 'Perfil', url: 'perfil', icono: 'bx bx-user-circle' }
   ];
 
   public menuCliente = [
-    { title: 'Inicio', url: '' },
-    { title: 'Mis procesos', url: 'procesos' }
+    { title: 'Inicio', url: '', icono: 'bx bx-grid-alt' },
+    { title: 'Mis procesos', url: 'procesos', icono: 'bx bx-briefcase' },
+    { title: 'Perfil', url: 'perfil', icono: 'bx bx-user-circle' }
   ];
 
   constructor() { }
