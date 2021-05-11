@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PersonalIdTypeService } from '../../services/personal-id-type.service';
 import { UserTypeService } from '../../services/user-type.service';
@@ -11,6 +11,7 @@ import { UserType } from '../../models/userType';
 import { User } from '../../models/user';
 import { Subscription } from 'rxjs';
 import { showErrorAlert, showSuccesAlert } from '../../helpers/alerts';
+import { UserDTO } from '../../DTO/userDTO';
 
 @Component({
   selector: 'app-save-user',
@@ -21,6 +22,8 @@ export class SaveUserComponent implements OnInit, OnDestroy {
 
   public user: User
     = new User('', '', '', '', '', '', '', '', true, environment.DEFAULT_DOCUMENT_TYPE, this.authService.company.uid, false,  '', false);
+
+  @Output() newUser: EventEmitter<UserDTO> = new EventEmitter();
 
   public personalIdTypes: PersonalIdType[] = [];
   public userTypes: UserType[] = [];
@@ -81,7 +84,10 @@ export class SaveUserComponent implements OnInit, OnDestroy {
     this.user.phone = this.saveUserForm.get('phone').value;
 
     const userSub = this.userService.save(this.user).subscribe(
-      value => showSuccesAlert('Usuario guardado correctamente', () => this.closeModal()),
+      userDTO => {
+        this.newUser.emit(userDTO);
+        showSuccesAlert('Usuario guardado correctamente', () => this.closeModal());
+      },
       error => showErrorAlert('No se pudo crear el usuario', error.error.message, () => {})
     );
     this.subscriptions.push(userSub);

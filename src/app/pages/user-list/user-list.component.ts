@@ -73,4 +73,10 @@ export class UserListComponent implements OnInit, OnDestroy {
     this.findUsers();
   }
 
+  public addNewUser(user: UserDTO): void {
+    this.users.push(user);
+    this.to++;
+    this.totalCount++;
+  }
+
 }

@@ -65,4 +65,10 @@ export class MovementListComponent implements OnInit, OnDestroy {
     }
     this.findProcessByUser();
   }
+
+  public addNewProcess(process: Process): void {
+    this.processes.push(process);
+    this.to++;
+    this.totalCount++;
+  }
 }

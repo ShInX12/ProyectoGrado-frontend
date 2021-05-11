@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Process } from '../../models/process';
 import { UserProcess } from '../../models/userProcess';
@@ -18,6 +18,8 @@ import Swal from 'sweetalert2';
 export class SaveProcessComponent implements OnInit, OnDestroy {
 
   public process: Process = new Process('', '', 0, '', '', '', false);
+
+  @Output() newProcess: EventEmitter<Process> = new EventEmitter();
 
   public saveProcessSub: Subscription;
   public userProcessSub: Subscription;
@@ -57,6 +59,7 @@ export class SaveProcessComponent implements OnInit, OnDestroy {
             showCancelButton: true,
             cancelButtonText: 'Aceptar',
           }).then(result => {
+            this.newProcess.emit(process);
             this.modalService.close();
             if (result.isConfirmed) {
               if (this.modalService.processTypeName === 'caso') {

@@ -7,6 +7,7 @@ import { ClientService } from '../../services/client.service';
 import { showErrorAlert, showSuccesAlert, showWarningDeleteAlert } from '../../helpers/alerts';
 import { AuthService } from '../../services/auth.service';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Client } from 'src/app/models/client';
 
 @Component({
   selector: 'app-client-list',
@@ -74,6 +75,8 @@ export class ClientListComponent implements OnInit, OnDestroy {
             () => {
               if (photoUrl.trim().length > 0) { this.fireStorage.refFromURL(photoUrl).delete(); }
               this.clients = this.clients.filter(client => client.uid !== uid);
+              this.to--;
+              this.totalCount--;
               showSuccesAlert('Cliente eliminado', () => {});
             },
             error => showErrorAlert('No se pudo eliminar el cliente', error.error.message, () => {})
@@ -93,4 +96,9 @@ export class ClientListComponent implements OnInit, OnDestroy {
     this.findClients();
   }
 
+  addClient(client: ClientDTO): void {
+    this.clients.push(client);
+    this.to++;
+    this.totalCount++;
+  }
 }

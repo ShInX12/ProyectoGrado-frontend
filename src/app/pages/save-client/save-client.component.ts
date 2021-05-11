@@ -1,13 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PersonalIdTypeService } from '../../services/personal-id-type.service';
 import { showErrorAlert, showSuccesAlert } from '../../helpers/alerts';
 import { ClientService } from '../../services/client.service';
 import { PersonalIdType } from '../../models/personalIdType';
+import { Subscription } from 'rxjs';
 import { ModalService } from '../../services/modal.service';
 import { AuthService } from '../../services/auth.service';
+import { ClientDTO } from '../../DTO/clientDTO';
 import { Client } from '../../models/client';
-import { Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -19,6 +20,8 @@ export class SaveClientComponent implements OnInit, OnDestroy {
 
   public client: Client = new Client('', '', '', '', '', '', '', '', true, '', this.authService.person.company_id, false);
   public personalIdTypes: PersonalIdType[] = [];
+
+  @Output() newClient: EventEmitter<ClientDTO> = new EventEmitter();
 
   public saveClientForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -78,7 +81,10 @@ export class SaveClientComponent implements OnInit, OnDestroy {
     this.client.phone = this.saveClientForm.get('phone').value;
 
     this.saveClientSub = this.clientService.save(this.client).subscribe(
-      value => showSuccesAlert('Cliente guardado correctamente', () => this.closeModal()),
+      clientDTO => {
+        this.newClient.emit(clientDTO);
+        showSuccesAlert('Cliente guardado correctamente', () => this.closeModal());
+      },
       error => showErrorAlert('No se pudo crear el cliente', error.error.message, () => {})
     );
   }
