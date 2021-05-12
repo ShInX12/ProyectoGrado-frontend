@@ -27,6 +27,7 @@
     <tr>
       <th>Nombre</th>
       <th>Código</th>
+      <th>Estado</th>
       <th>Descripción</th>
     </tr>
     </thead>
@@ -35,6 +36,7 @@
     <tr *ngFor="let process of processes" [routerLink]="[ '../proceso', process.uid ]" style="cursor: pointer">
       <td>{{ process?.name }}</td>
       <td>{{ process?.code }}</td>
+      <td>{{ process?.state.name }}</td>
       <td>{{ process?.description }}</td>
     </tr>
     </tbody>
@@ -67,4 +69,4 @@
 
 </div>
 
-<app-save-process (newProcess)="addNewProcess($event)"></app-save-process>
+<app-save-process (newProcess)="addNewProcess($event)" url="../"></app-save-process>

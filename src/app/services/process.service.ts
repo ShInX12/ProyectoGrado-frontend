@@ -40,6 +40,10 @@ export class ProcessService {
     return this.httpClient.get(this.url + 'findByUser/0' + '?page=' + page + '&type=' + processType, this.headers);
   }
 
+  public findDTOByUserToken(processType: string = '0', page: number = 0): Observable<any> {
+    return this.httpClient.get(this.url + 'findDTOByUser/0' + '?page=' + page + '&type=' + processType, this.headers);
+  }
+
   public findByClient(client: string): Observable<any> {
     return this.httpClient.get(this.url + 'findByClient/' + client, this.headers);
   }

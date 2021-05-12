@@ -12,7 +12,7 @@
 
   <div *ngIf="clients.length > 0 && !noData" class="home-client-list">
     <div *ngFor="let client of clients">
-      <app-client-card [client]="client"></app-client-card>
+      <app-client-card [client]="client" url="./cliente"></app-client-card>
     </div>
   </div>
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Process } from '../../models/process';
 import { UserProcess } from '../../models/userProcess';
@@ -8,6 +8,7 @@ import { UserProcessService } from '../../services/user-process.service';
 import { showErrorAlert } from '../../helpers/alerts';
 import { Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { ProcessDTO } from '../../DTO/processDTO';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,7 +20,8 @@ export class SaveProcessComponent implements OnInit, OnDestroy {
 
   public process: Process = new Process('', '', 0, '', '', '', false);
 
-  @Output() newProcess: EventEmitter<Process> = new EventEmitter();
+  @Input() url = '';
+  @Output() newProcess: EventEmitter<ProcessDTO> = new EventEmitter();
 
   public saveProcessSub: Subscription;
   public userProcessSub: Subscription;
@@ -47,8 +49,8 @@ export class SaveProcessComponent implements OnInit, OnDestroy {
     this.process.name = this.process.name.trim();
     this.process.description = this.process.description.trim();
     this.saveProcessSub = this.processService.save(this.process).subscribe(
-      (process) => {
-        const userProcess = new UserProcess('0', '0', process.uid, true, true);
+      (processDTO) => {
+        const userProcess = new UserProcess('0', '0', processDTO.uid, true, true);
         this.userProcessSub = this.userProcessService.save(userProcess).subscribe((value => {
           Swal.fire({
             icon: 'success',
@@ -59,13 +61,13 @@ export class SaveProcessComponent implements OnInit, OnDestroy {
             showCancelButton: true,
             cancelButtonText: 'Aceptar',
           }).then(result => {
-            this.newProcess.emit(process);
+            this.newProcess.emit(processDTO);
             this.modalService.close();
             if (result.isConfirmed) {
               if (this.modalService.processTypeName === 'caso') {
-                this.router.navigate([`proceso/${process.uid}`], {relativeTo: this.activatedRoute});
+                this.router.navigate([`${this.url}proceso/${processDTO.uid}`], {relativeTo: this.activatedRoute});
               } else {
-                this.router.navigate([`movimiento/${process.uid}`], {relativeTo: this.activatedRoute});
+                this.router.navigate([`${this.url}movimiento/${processDTO.uid}`], {relativeTo: this.activatedRoute});
               }
             }
           });

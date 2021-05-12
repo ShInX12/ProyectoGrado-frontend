@@ -35,7 +35,7 @@
       <div class="form-group col-md-5">
         <label for="input-personal-id">Tipo</label>
         <select id="input-personal-id" class="form-control" [(ngModel)]="user.personal_id_type" readonly>
-          <option *ngFor="let type of personalIdTypes" disabled [value]="type.uid">{{ type.name }}</option>
+          <option *ngFor="let type of personalIdTypes" readonly [value]="type.uid">{{ type.name }}</option>
         </select>
       </div>
       <div class="form-group col-md-7">

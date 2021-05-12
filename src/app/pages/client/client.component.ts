@@ -23,6 +23,7 @@ export class ClientComponent implements OnInit, OnDestroy {
   public personalIdTypes: PersonalIdType[] = [];
   public processes: Process[] = [];
 
+  public noData = false;
   public findClientSub: Subscription;
   public findProcessSub: Subscription;
   public findPersonalIdSub: Subscription;
@@ -62,7 +63,9 @@ export class ClientComponent implements OnInit, OnDestroy {
     this.findProcessSub = this.processService.findByClientUser(this.params.id, this.authService.person.uid).subscribe(
       ({ processes }) => {
         this.processes = processes;
-        console.log(processes);
+        if (processes?.length === 0) {
+          this.noData = true;
+        }
       },
       error => console.warn(error.error.message)
     );
@@ -75,15 +78,15 @@ export class ClientComponent implements OnInit, OnDestroy {
     );
   }
 
-  public updateClient(): void {
-    this.updateClientSub = this.clientService.update(this.client).subscribe(
-      client => {
-        this.client = client;
-        showSuccesAlert('Cliente actualizado correctamente', () => {});
-      },
-      error => showErrorAlert('No se pudo actualizar el cliente', error.error.message, () => {})
-    );
-  }
+  // public updateClient(): void {
+  //   this.updateClientSub = this.clientService.update(this.client).subscribe(
+  //     client => {
+  //       this.client = client;
+  //       showSuccesAlert('Cliente actualizado correctamente', () => {});
+  //     },
+  //     error => showErrorAlert('No se pudo actualizar el cliente', error.error.message, () => {})
+  //   );
+  // }
 
   public deleteClient(): void {
     showWarningDeleteAlert('¿Desea eliminar el cliente?', 'Esta acción no se puede deshacer', result => {

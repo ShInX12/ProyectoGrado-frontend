@@ -103,7 +103,6 @@ body {
   margin: 0 5px;
   list-style: none;
   line-height: 50px;
-  margin: 5px 0;
 }
 
 .sidebar ul li .tooltip {
@@ -176,7 +175,6 @@ body {
   color: #11101d;
   background: #fff;
 }
-
 
 .sidebar ul li i {
   font-size: 18px;
@@ -253,12 +251,10 @@ body {
 .profile .profile_details .name {
   font-size: 15px;
   font-weight: 400;
-
 }
 
 .profile .profile_details .name_job {
   font-size: 12px;
-
 }
 
 .profile #log_out {
@@ -276,14 +272,10 @@ body {
   cursor: pointer;
 }
 
-
-
 .sidebar.active .profile #log_out {
   left: 88%;
   background: none;
 }
-
-
 
 .home_content {
   position: absolute;
@@ -291,7 +283,7 @@ body {
   width: calc(100% - 78px);
   left: 78px;
   /* background: #E4E9F7; */
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.5s ease;
 }
 
@@ -299,24 +291,20 @@ body {
   position: absolute;
   height: 100%;
   width: 100%;
-  left: 0px;
+  left: 0;
   background: #E4E9F7;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.5s ease;
 }
-
 
 .sidebar.active~.home_content {
   z-index: 100;
 }
 
-
-
 .sidebar.active~.home_content {
   width: calc(100% - 240px);
   left: 240px;
 }
-
 
 .modal-backdrop {
   background-color: rgba(0, 0, 0, 0.4);
@@ -330,9 +318,7 @@ body {
 
 .pointer {
   cursor: pointer;
-
 }
-
 
 #snackbar {
   visibility: hidden;

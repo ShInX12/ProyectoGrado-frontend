@@ -6,7 +6,6 @@ import { Subscription } from 'rxjs';
 import { ClientNameDTO } from '../../DTO/client-nameDTO';
 import { ClientService } from '../../services/client.service';
 import { DocumentService } from '../../services/document.service';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-case-card',
@@ -16,10 +15,10 @@ import { environment } from '../../../environments/environment';
 export class CaseCardComponent implements OnInit, OnDestroy {
 
   @Input() process: Process = new Process('', '', 0, '', '', '', false);
+  @Input() url = '';
   public clients: ClientNameDTO[] = [];
   public documents: Document[] = [];
   public clientsLabel = '';
-  public url = '';
 
   public clientsSub: Subscription;
   public documentsSub: Subscription;
@@ -29,7 +28,6 @@ export class CaseCardComponent implements OnInit, OnDestroy {
               public documentService: DocumentService) { }
 
   ngOnInit(): void {
-    this.setUrl();
     this.findClientsByProcess();
     this.findDocumentsByProcess();
   }
@@ -62,14 +60,6 @@ export class CaseCardComponent implements OnInit, OnDestroy {
       this.clientsLabel = this.clientsLabel.slice(0, -2);
     } else {
       this.clientsLabel = '(Sin clientes)';
-    }
-  }
-
-  public setUrl(): void {
-    if (this.process.process_type === environment.MOVEMENT_CODE){
-      this.url = './movimiento';
-    } else {
-      this.url = './proceso';
     }
   }
 

@@ -108,8 +108,8 @@ export class MovementComponent implements OnInit, OnDestroy {
 
   public updateProcess(): void {
     const updateProcessSub = this.processService.update(this.process).subscribe(
-      process => {
-        this.process = process;
+      () => {
+        this.findProcessById();
         showSuccesAlert('Caso actualizado', () => this.modalRef.hide());
       },
       error => showErrorAlert('Error al actualizar el proceso', error.error.message, () => {})

@@ -149,7 +149,6 @@ export class ProcessComponent implements OnInit, OnDestroy {
 
   public updateUser(uid: string, user: string, owner: boolean, canEdit: boolean): void { // Actualizar al evento onChage
     const userProcess = new UserProcess(uid, user, this.params.id, owner, canEdit);
-    console.log(userProcess);
     const userProcessSub = this.userProcessService.update(userProcess).subscribe(
       () => this.findUsersByProcess(),
       error => this.snackbarService.showSnackBar(error.error.message)
@@ -202,8 +201,8 @@ export class ProcessComponent implements OnInit, OnDestroy {
 
   public updateProcess(): void {
     const updateProcessSub = this.processService.update(this.process).subscribe(
-      process => {
-        this.process = process;
+      () => {
+        this.findProcessById();
         showSuccesAlert('Caso Actualizado', () => this.modalRef.hide());
       },
       error => showErrorAlert('Error al actualizar el proceso', error.error.message, () => {})

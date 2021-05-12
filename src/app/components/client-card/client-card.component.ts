@@ -10,6 +10,7 @@ import { Client } from '../../models/client';
 export class ClientCardComponent {
 
   @Input() client: Client;
+  @Input() url = '';
 
   constructor(public router: Router) { }
 

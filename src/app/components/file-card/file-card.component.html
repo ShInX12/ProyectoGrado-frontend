@@ -14,8 +14,9 @@
 <ng-template #fileModal>
 
   <div class="modal-header">
-    <input type="text" class="form-control" style="font-size: 1.2em; color: #000000"
+    <input *ngIf="!disabled" type="text" class="form-control" style="font-size: 1.2em; color: #000000"
            autocomplete="off" [(ngModel)]="document.title">
+    <h4 *ngIf="disabled">{{ document.title }}</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -28,10 +29,10 @@
   <div class="modal-footer">
     <span style="width: auto">
       <input type="text" class="form-control" placeholder="Descripción..."
-           autocomplete="off" [(ngModel)]="document.description">
+             [disabled]="disabled" autocomplete="off" [(ngModel)]="document.description">
     </span>
-    <button class="btn btn-outline-danger" [disabled]="disabled" (click)="delete()">Eliminar</button>
-    <button class="btn btn-outline-primary" [disabled]="disabled" (click)="update()">Guardar cambios</button>
+    <button *ngIf="!disabled" class="btn btn-outline-danger" (click)="delete()">Eliminar</button>
+    <button *ngIf="!disabled" class="btn btn-outline-primary" (click)="update()">Guardar cambios</button>
   </div>
 
 </ng-template>

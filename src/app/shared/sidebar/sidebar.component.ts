@@ -1,17 +1,15 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { NavbarService } from '../../services/navbar.service';
-import { AuthService, Role } from '../../services/auth.service';
-import { Company } from '../../models/company';
-import { Person } from 'src/app/models/person';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
-
+import { AuthService, Role } from '../../services/auth.service';
+import { NavbarService } from '../../services/navbar.service';
+import { Company } from '../../models/company';
+import { Router } from '@angular/router';
+import { Person } from 'src/app/models/person';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class SidebarComponent implements OnInit {
 
@@ -20,8 +18,8 @@ export class SidebarComponent implements OnInit {
   public person: Person = this.authService.person;
   public role: Role = this.authService.role;
 
-  public noFoto: string = '../../../assets/img/no-avatar.jpg';
-  public noLogo: string = '../../../assets/img/no-logo.png';
+  public noFoto = '../../../assets/img/no-avatar.jpg';
+  public noLogo = '../../../assets/img/no-logo.png';
 
   @ViewChild('btn') btn: ElementRef;
   @ViewChild('sidebar') sidebar: ElementRef;
@@ -29,41 +27,14 @@ export class SidebarComponent implements OnInit {
 
 
   constructor(private navbarService: NavbarService,
-    public router: Router,
-    private authService: AuthService,
-    public breakpointObserver: BreakpointObserver) { }
+              public router: Router,
+              private authService: AuthService,
+              public breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
-
-    this.breakpointObserver
-      .observe([Breakpoints.XSmall])
-      .subscribe((state: BreakpointState) => {
-        if (state.matches) {
-
-          console.log(
-            state
-          );
-          this.sidebar.nativeElement.classList.remove('active');
-          this.sidebar.nativeElement.classList.add('d-none');
-
-        } else {
-
-
-          console.log(
-            state
-          );
-
-          this.sidebar?.nativeElement?.classList.add('active');
-          this.sidebar?.nativeElement?.classList.remove('d-none');
-
-        }
-      });
+    this.checkBreakpoint();
     this.loadMenu();
-
-
   }
-
-
 
   public loadMenu(): void {
 
@@ -88,7 +59,21 @@ export class SidebarComponent implements OnInit {
 
   }
 
-  onClickBtn() {
+  public checkBreakpoint(): void {
+    this.breakpointObserver
+      .observe([Breakpoints.XSmall])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.sidebar.nativeElement.classList.remove('active');
+          this.sidebar.nativeElement.classList.add('d-none');
+        } else {
+          this.sidebar?.nativeElement?.classList.add('active');
+          this.sidebar?.nativeElement?.classList.remove('d-none');
+        }
+      });
+  }
+
+  public onClickBtn(): void {
 
     this.sidebar.nativeElement.classList.toggle('active');
     if (this.btn.nativeElement.classList.contains('bx-menu')) {
@@ -96,12 +81,11 @@ export class SidebarComponent implements OnInit {
     } else {
       this.btn.nativeElement.classList.replace('bx-menu-alt-right', 'bx-menu');
     }
-    // this.renderer.addClass(this.sidebar.nativeElement, 'active');
   }
 
-  onClickSearch() {
-    this.sidebar.nativeElement.classList.toggle('active');
-  }
+  // public onClickSearch(): void {
+  //   this.sidebar.nativeElement.classList.toggle('active');
+  // }
 
   public logout(): void {
     localStorage.removeItem('token');

@@ -13,6 +13,7 @@ export class CaseSliderComponent implements OnInit, OnDestroy {
 
   @Input() title: string;
   @Input() processType: string;
+  @Input() url = '';
 
   public processes: Process[] = [];
   public noData = false;

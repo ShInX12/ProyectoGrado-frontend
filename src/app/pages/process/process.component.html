@@ -40,7 +40,7 @@
 <div class="row">
 
   <div class="col-md-4 mt-md-2 mt-4">
-    <app-files-box [processId]="params.id" [documentsFromLawyer]="true" [disabled]="!canEdit"></app-files-box>
+    <app-files-box [processId]="params.id" [documentsFromLawyer]="true" [disabled]="!canEdit || stateName === 'Finalizado'"></app-files-box>
   </div>
 
   <div class="col-md-4 mt-md-2 mt-4">
@@ -48,7 +48,7 @@
     <div class="row">
       <div class="mr-0 mr-md-4 p-2 border justify-content-center files-box">
         <div *ngFor="let document of documentsReceived">
-          <app-file-card [document]="document" (deletedFile)="deleteDocument($event)"></app-file-card>
+          <app-file-card [document]="document" [disabled]="stateName === 'Finalizado'" (deletedFile)="deleteDocument($event)"></app-file-card>
         </div>
       </div>
     </div>
@@ -69,11 +69,11 @@
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-        <app-observations-box [processId]="params.id"></app-observations-box>
+        <app-observations-box [processId]="params.id" [disabled]="stateName === 'Finalizado'"></app-observations-box>
       </div>
       <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <app-chat-box *ngIf="process.enable_chat" [processId]="params.id" [reload]="reloadChatBox"></app-chat-box>
-        <app-enable-chat-message *ngIf="!process.enable_chat" [processId]="params.id" [disabled]="!owner" (enabled)="enableChat()"></app-enable-chat-message>
+        <app-enable-chat-message *ngIf="!process.enable_chat" [processId]="params.id" [disabled]="!owner || stateName === 'Finalizado'" (enabled)="enableChat()"></app-enable-chat-message>
       </div>
     </div>
 
@@ -93,7 +93,7 @@
       <label for="process-name" class="col-sm-3 col-form-label">Nombre:</label>
       <div class="col-sm-9">
         <input class="form-control" type="text" id="process-name" [class.is-invalid]="process?.name?.length === 0"
-               [disabled]="!owner" autocomplete="off" [(ngModel)]="process.name">
+               [disabled]="!owner || stateName === 'Finalizado'" autocomplete="off" [(ngModel)]="process.name">
         <div id="invalid-process-name" class="invalid-feedback">El nombre es necesario</div>
       </div>
     </div>
@@ -101,14 +101,14 @@
       <label for="process-description" class="col-sm-3 col-form-label">Descripción:</label>
       <div class="col-sm-9">
         <input class="form-control" type="text" id="process-description"
-               [disabled]="!owner" autocomplete="off" [(ngModel)]="process.description">
+               [disabled]="!owner || stateName === 'Finalizado'" autocomplete="off" [(ngModel)]="process.description">
       </div>
     </div>
     <div class="form-group row">
       <label for="process-code" class="col-sm-3 col-form-label">Código</label>
       <div class="col-sm-9">
         <input class="form-control" type="text" id="process-code"
-               [disabled]="!owner" autocomplete="off" [(ngModel)]="process.code">
+               [disabled]="!owner || stateName === 'Finalizado'" autocomplete="off" [(ngModel)]="process.code">
       </div>
     </div>
     <div class="form-group row">
@@ -122,12 +122,12 @@
       </div>
     </div>
     <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1" [disabled]="!owner" [(ngModel)]="process.enable_chat">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" [disabled]="!owner || stateName === 'Finalizado'" [(ngModel)]="process.enable_chat">
       <label class="form-check-label" for="exampleCheck1">Habilitar pestaña de conversación</label>
     </div>
     <div class="form-group row">
       <div class="col">
-        <button type="button" class="btn btn-outline-danger" [disabled]="!owner" (click)="deleteMessages()">
+        <button type="button" class="btn btn-outline-danger" [disabled]="!owner || stateName === 'Finalizado'" (click)="deleteMessages()">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-dots" viewBox="0 0 16 16">
             <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
             <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
@@ -161,7 +161,7 @@
     <div class="form-group row">
       <label for="select-client" class="col-sm-3 col-form-label">Agregar cliente: </label>
       <div class="col-sm-6 col-lg-7">
-        <select [disabled]="!canEdit" class="custom-select" id="select-client" required [(ngModel)]="selectedClient">
+        <select [disabled]="!canEdit || stateName === 'Finalizado'" class="custom-select" id="select-client" required [(ngModel)]="selectedClient">
           <option *ngFor="let client of totalClients" [value]="client.uid">
             {{ client.personal_id }} - {{ client.name }}
           </option>
@@ -215,7 +215,7 @@
     <div class="form-group row">
       <label for="select-user" class="col-sm-3 col-form-label">Agregar colaborador: </label>
       <div class="col-sm-6 col-lg-7">
-        <select [disabled]="!owner" class="custom-select" id="select-user" required [(ngModel)]="selectedUser">
+        <select [disabled]="!owner || stateName === 'Finalizado'" class="custom-select" id="select-user" required [(ngModel)]="selectedUser">
           <option *ngFor="let user of totalUsers" [value]="user.uid">
             {{ user.personal_id }} - {{ user.name }}
           </option>

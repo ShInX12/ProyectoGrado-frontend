@@ -5,43 +5,44 @@
     <h3 class="mb-3">Detalles del cliente</h3>
 
     <div class="form-group">
-      <label for="input-name">Nombre</label>
-      <input type="text" class="form-control" id="input-name" autocomplete="off"
-             [class.is-invalid]="client?.name?.length === 0" name="client-name" [(ngModel)]="client.name">
-      <div *ngIf="client.name.length === 0" id="invalid-input-name" class="invalid-feedback">
-        El nombre es necesario
-      </div>
+      <h4 class="font-italic font-weight-light">{{ client.name }}</h4>
+<!--      <label for="input-name">Nombre</label>-->
+<!--      <input type="text" class="form-control" id="input-name" autocomplete="off"-->
+<!--             [class.is-invalid]="client?.name?.length === 0" name="client-name" [(ngModel)]="client.name">-->
+<!--      <div *ngIf="client.name.length === 0" id="invalid-input-name" class="invalid-feedback">-->
+<!--        El nombre es necesario-->
+<!--      </div>-->
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="input-personal-id">Tipo</label>
-        <select id="input-personal-id" class="form-control" [(ngModel)]="client.personal_id_type">
+        <select id="input-personal-id" class="form-control" disabled [(ngModel)]="client.personal_id_type">
           <option *ngFor="let type of personalIdTypes" [value]="type.uid">{{ type.name }}</option>
         </select>
       </div>
       <div class="form-group col-md-8">
         <label for="input-personal-id-type">Número de identificación</label>
         <input type="text" class="form-control" id="input-personal-id-type" autocomplete="off"
-               name="client-personal-id" [(ngModel)]="client.personal_id">
+               name="client-personal-id" readonly [(ngModel)]="client.personal_id">
       </div>
     </div>
 
     <div class="form-group">
       <label for="input-email">Correo electrónico</label>
       <input type="email" class="form-control" id="input-email" autocomplete="off"
-             name="client-email" [(ngModel)]="client.email">
+             name="client-email" readonly [(ngModel)]="client.email">
     </div>
 
     <div class="form-group">
       <label for="input-phone">Teléfono</label>
       <input type="text" class="form-control" id="input-phone" autocomplete="off"
-             name="client-phone" [(ngModel)]="client.phone">
+             name="client-phone" readonly [(ngModel)]="client.phone">
     </div>
 
     <div class="form-group">
       <label for="input-bio">Sobre mi</label>
-      <textarea class="form-control" id="input-bio" rows="2" disabled name="client-bio" [(ngModel)]="client.bio"></textarea>
+      <textarea class="form-control" id="input-bio" rows="2" readonly name="client-bio" [(ngModel)]="client.bio"></textarea>
     </div>
 
     <div class="row justify-content-between px-3">
@@ -50,22 +51,25 @@
           <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
         </svg> Eliminar
       </button>
-      <button class="btn btn-primary align-items-end" [disabled]="client?.name?.length === 0" (click)="updateClient()">
-        Actualizar datos
-      </button>
+<!--      <button class="btn btn-primary align-items-end" [disabled]="client?.name?.length === 0" (click)="updateClient()">-->
+<!--        Actualizar datos-->
+<!--      </button>-->
     </div>
 
   </div>
 
   <div class="col-md-6 mb-4">
     <h3 class="mb-4">Procesos asociados</h3>
-    <div *ngIf="processes?.length === 0" class="text-center" style="width: 100%; padding: 3rem">
+    <div *ngIf="processes?.length === 0 && !noData" class="text-center" style="width: 100%; padding: 3rem">
+      <p>Buscando procesos asociados...</p>
+    </div>
+    <div *ngIf="processes?.length === 0 && noData" class="text-center" style="width: 100%; padding: 3rem">
       <img src="/assets/svg/undraw_empty_xct9.svg" style="max-width: 250px" class="my-4" alt="empty">
       <p>No tienes procesos con el cliente actualmente</p>
     </div>
     <div *ngIf="processes?.length > 0" class="processes-box">
       <div *ngFor="let process of processes">
-        <app-case-card [process]="process"></app-case-card>
+        <app-case-card [process]="process" url="../../proceso"></app-case-card>
       </div>
     </div>
   </div>

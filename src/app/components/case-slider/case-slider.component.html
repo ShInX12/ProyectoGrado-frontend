@@ -11,7 +11,7 @@
 
   <div *ngIf="processes?.length > 0" class="slider">
     <span *ngFor="let process of processes">
-      <app-case-card [process]="process"></app-case-card>
+      <app-case-card [process]="process" [url]="url"></app-case-card>
     </span>
   </div>
 

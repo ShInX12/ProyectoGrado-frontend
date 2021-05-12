@@ -26,14 +26,12 @@
     <thead class="thead-light">
     <tr>
       <th>Nombre</th>
-      <th>Cliente</th>
       <th>Descripción</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let process of processes" [routerLink]="[ '../movimiento', process.uid]" style="cursor: pointer">
       <td>{{ process?.name }}</td>
-      <td>Banco Nacional</td>
       <td>{{ process?.description }}</td>
     </tr>
     </tbody>
@@ -66,4 +64,4 @@
 
 </div>
 
-<app-save-process (newProcess)="addNewProcess($event)"></app-save-process>
+<app-save-process (newProcess)="addNewProcess($event)" url="../"></app-save-process>

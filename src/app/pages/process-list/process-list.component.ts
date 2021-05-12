@@ -4,6 +4,7 @@ import { ModalService } from '../../services/modal.service';
 import { environment } from '../../../environments/environment';
 import { Process } from '../../models/process';
 import { Subscription } from 'rxjs';
+import { ProcessDTO } from '../../DTO/processDTO';
 
 @Component({
   selector: 'app-process-list',
@@ -12,9 +13,8 @@ import { Subscription } from 'rxjs';
 })
 export class ProcessListComponent implements OnInit, OnDestroy {
 
-  public processes: Process[] = [];
+  public processes: ProcessDTO[] = [];
 
-  public loading = true;
   public noData = false;
 
   public page = 1;
@@ -38,7 +38,7 @@ export class ProcessListComponent implements OnInit, OnDestroy {
   }
 
   public findProcessByUser(): void {
-    this.processSub = this.processService.findByUserToken(environment.CASE_CODE, this.page).subscribe(
+    this.processSub = this.processService.findDTOByUserToken(environment.CASE_CODE, this.page).subscribe(
       ({processes, from, to, total_count, total_pages}) => {
         this.processes = processes;
         this.from = from;
@@ -67,7 +67,7 @@ export class ProcessListComponent implements OnInit, OnDestroy {
     this.findProcessByUser();
   }
 
-  public addNewProcess(process: Process): void {
+  public addNewProcess(process: ProcessDTO): void {
     this.processes.push(process);
     this.to++;
     this.totalCount++;

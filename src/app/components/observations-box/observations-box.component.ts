@@ -14,6 +14,7 @@ export class ObservationsBoxComponent implements OnInit, OnDestroy {
 
   @Input() processId: string;
   @Input() rounded = false;
+  @Input() disabled = false;
   public observations: Observation[] = [];
   public newObservation: Observation = new Observation('0', null, '', '', true, environment.DEFAULT_OBSERVATION_TYPE);
 
