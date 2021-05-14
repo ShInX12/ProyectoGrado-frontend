@@ -6,35 +6,35 @@ import { Injectable } from '@angular/core';
 export class NavbarService {
 
   public menuAdministrador = [
-    { title: 'Inicio', url: '', icono: 'bx bx-grid-alt' },
-    { title: 'Casos', url: 'procesos', icono: 'bx bx-briefcase' },
-    { title: 'Movimientos', url: 'movimientos', icono: 'bx bx-collection' },
-    { title: 'Clientes', url: 'clientes', icono: 'bx bx-user-pin' },
-    { title: 'Usuarios', url: 'usuarios', icono: 'bx bx-user' },
-    { title: 'Compañia', url: 'compania', icono: 'bx bx-store' },
-    { title: 'Perfil', url: 'perfil', icono: 'bx bx-user-circle' }
+    { title: 'Inicio', url: '', icon: 'bx bx-grid-alt' },
+    { title: 'Casos', url: 'procesos', icon: 'bx bx-briefcase' },
+    { title: 'Movimientos', url: 'movimientos', icon: 'bx bx-collection' },
+    { title: 'Clientes', url: 'clientes', icon: 'bx bx-user-pin' },
+    { title: 'Usuarios', url: 'usuarios', icon: 'bx bx-user' },
+    { title: 'Compañia', url: 'compania', icon: 'bx bx-store' },
+    { title: 'Perfil', url: 'perfil', icon: 'bx bx-user-circle' }
   ];
 
   public menuAbogado = [
-    { title: 'Inicio', url: '', icono: 'bx bx-grid-alt' },
-    { title: 'Casos', url: 'procesos', icono: 'bx bx-briefcase' },
-    { title: 'Movimientos', url: 'movimientos', icono: 'bx bx-collection' },
-    { title: 'Clientes', url: 'clientes', icono: 'bx bx-user-pin' },
-    { title: 'Perfil', url: 'perfil', icono: 'bx bx-user-circle' }
+    { title: 'Inicio', url: '', icon: 'bx bx-grid-alt' },
+    { title: 'Casos', url: 'procesos', icon: 'bx bx-briefcase' },
+    { title: 'Movimientos', url: 'movimientos', icon: 'bx bx-collection' },
+    { title: 'Clientes', url: 'clientes', icon: 'bx bx-user-pin' },
+    { title: 'Perfil', url: 'perfil', icon: 'bx bx-user-circle' }
   ];
 
   public menuAsistente = [
-    { title: 'Inicio', url: '', icono: 'bx bx-grid-alt' },
-    { title: 'Casos', url: 'procesos', icono: 'bx bx-briefcase' },
-    { title: 'Movimientos', url: 'movimientos', icono: 'bx bx-collection' },
-    { title: 'Clientes', url: 'clientes', icono: 'bx bx-user-pin' },
-    { title: 'Perfil', url: 'perfil', icono: 'bx bx-user-circle' }
+    { title: 'Inicio', url: '', icon: 'bx bx-grid-alt' },
+    { title: 'Casos', url: 'procesos', icon: 'bx bx-briefcase' },
+    { title: 'Movimientos', url: 'movimientos', icon: 'bx bx-collection' },
+    { title: 'Clientes', url: 'clientes', icon: 'bx bx-user-pin' },
+    { title: 'Perfil', url: 'perfil', icon: 'bx bx-user-circle' }
   ];
 
   public menuCliente = [
-    { title: 'Inicio', url: '', icono: 'bx bx-grid-alt' },
-    { title: 'Mis procesos', url: 'procesos', icono: 'bx bx-briefcase' },
-    { title: 'Perfil', url: 'perfil', icono: 'bx bx-user-circle' }
+    { title: 'Inicio', url: '', icon: 'bx bx-grid-alt' },
+    { title: 'Mis procesos', url: 'procesos', icon: 'bx bx-briefcase' },
+    { title: 'Perfil', url: 'perfil', icon: 'bx bx-user-circle' }
   ];
 
   constructor() { }

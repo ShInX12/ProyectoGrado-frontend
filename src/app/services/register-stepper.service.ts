@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class RegisterStepperService {
     name: new FormControl('Sergio Naranjo', [Validators.required]),
     phone: new FormControl('3108278538'),
     personal_id: new FormControl(''),
-    personal_id_type: new FormControl(''),
+    personal_id_type: new FormControl(environment.DEAFULT_PERSONAL_ID_TYPE),
   });
 
   registerCompanyForm = new FormGroup({

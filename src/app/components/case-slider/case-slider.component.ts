@@ -14,6 +14,8 @@ export class CaseSliderComponent implements OnInit, OnDestroy {
   @Input() title: string;
   @Input() processType: string;
   @Input() url = '';
+  @Input() client = false;
+  public showButton = true;
 
   public processes: Process[] = [];
   public noData = false;
@@ -24,7 +26,12 @@ export class CaseSliderComponent implements OnInit, OnDestroy {
               public processService: ProcessService) { }
 
   ngOnInit(): void {
-    this.findProcessByUser();
+    if (this.client){
+      this.findProcessByClient();
+      this.showButton = false;
+    } else {
+      this.findProcessByUser();
+    }
   }
 
   ngOnDestroy(): void {
@@ -36,7 +43,7 @@ export class CaseSliderComponent implements OnInit, OnDestroy {
   }
 
   public findProcessByUser(): void {
-    this.processesSub = this.processService.findLastest(this.processType).subscribe(
+    this.processesSub = this.processService.findLastestByUser(this.processType).subscribe(
       processes => {
         this.processes = processes;
         if (processes?.length === 0){
@@ -46,4 +53,17 @@ export class CaseSliderComponent implements OnInit, OnDestroy {
       error => console.warn(error.error.message)
     );
   }
+
+  public findProcessByClient(): void {
+    this.processesSub = this.processService.findLastestByClient(this.processType).subscribe(
+      processes => {
+        this.processes = processes;
+        if (processes?.length === 0){
+          this.noData = true;
+        }
+      },
+      error => console.warn(error.error.message)
+    );
+  }
+
 }

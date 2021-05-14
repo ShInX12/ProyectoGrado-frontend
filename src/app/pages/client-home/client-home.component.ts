@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-client-home',
   templateUrl: './client-home.component.html',
   styleUrls: ['./client-home.component.css']
 })
-export class ClientHomeComponent implements OnInit {
+export class ClientHomeComponent {
 
-  constructor() { } // TODO: Crear pantalla de inicio de cliente
+  public caseCode = environment.CASE_CODE;
 
-  ngOnInit(): void {
-  }
+  constructor() { }
 
 }

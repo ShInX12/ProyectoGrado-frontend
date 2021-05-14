@@ -25,7 +25,6 @@ export class SidebarComponent implements OnInit {
   @ViewChild('sidebar') sidebar: ElementRef;
   @ViewChild('searchBtn') searchBtn: ElementRef;
 
-
   constructor(private navbarService: NavbarService,
               public router: Router,
               private authService: AuthService,

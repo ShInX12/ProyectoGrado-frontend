@@ -80,8 +80,12 @@ export class ProcessService {
     return this.httpClient.post(this.url + 'receiveFromClient', sendDocumentsDTO);
   }
 
-  public findLastest(processType: string): Observable<any> {
-    return this.httpClient.get(this.url + 'lastest/' + processType, this.headers);
+  public findLastestByUser(processType: string): Observable<any> {
+    return this.httpClient.get(this.url + 'lastestByUser/' + processType, this.headers);
+  }
+
+  public findLastestByClient(processType: string): Observable<any> {
+    return this.httpClient.get(this.url + 'lastestByClient/' + processType, this.headers);
   }
 
 }

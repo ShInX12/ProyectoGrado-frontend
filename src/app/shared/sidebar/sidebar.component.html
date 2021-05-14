@@ -1,26 +1,19 @@
 <div class="sidebar" #sidebar>
     <div class="logo_content">
         <div class="logo">
-            <!-- <i class='bx bxl-angular'></i> -->
             <img [src]="company.logo || noLogo" alt="">
             <div class="logo_name"> {{company.name}} </div>
         </div>
         <i class='bx bx-menu' #btn id="btn" (click)="onClickBtn()"></i>
     </div>
     <ul class="nav_list">
-        <!-- <li>
-            <i class='bx bx-search' #searchBtn (click)="onClickSearch()"></i>
-            <input type="text" placeholder="Buscar...">
-            <span class="tooltip">Buscar</span>
-        </li> -->
         <li *ngFor="let item of menu">
-            <a [routerLink]="item.url" [routerLinkActive]="active">
-                <i [class]='item.icono'></i>
+            <a [routerLink]="item.url">
+                <i [class]='item.icon'></i>
                 <span class="links_name"> {{item.title}} </span>
             </a>
             <span class="tooltip">{{item.title}}</span>
         </li>
-        <!--  -->
     </ul>
 
     <div class="profile_content">
