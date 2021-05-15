@@ -10,3 +10,14 @@
   overflow: auto;
   border-radius: 10px;
 }
+
+.img-picture {
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+}
+
+.width-300 {
+  width: 300px;
+}

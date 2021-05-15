@@ -9,6 +9,7 @@ import { showErrorAlert, showSuccesAlert, showWarningDeleteAlert } from '../../h
 import { UserTypeService } from '../../services/user-type.service';
 import { UserType } from '../../models/userType';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user',
@@ -24,13 +25,16 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public personalIdTypes: PersonalIdType[] = [];
   public userTypes: UserType[] = [];
+  public userTypeName = '';
+  public personalIdName = '';
 
-  public subscriptions: Subscription[] = []; // TODO: Hacer mas bonito el front
+  public subscriptions: Subscription[] = [];
 
   constructor(public router: Router,
               public activedRoute: ActivatedRoute,
               public userService: UserService,
               public userTypeService: UserTypeService,
+              public authService: AuthService,
               public personalIdTypeService: PersonalIdTypeService,
               private fireStorage: AngularFireStorage) { }
 
@@ -54,7 +58,14 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public findPersonalIdTypes(): void {
     const personalIdSub = this.personalIdTypeService.findAll().subscribe(
-      ({personal_id_types}) => this.personalIdTypes = personal_id_types,
+      ({personal_id_types}) => {
+        this.personalIdTypes = personal_id_types;
+        personal_id_types.forEach(id => {
+          if (id.uid === this.user.personal_id_type){
+            this.personalIdName = id.name;
+          }
+        });
+      },
       error => console.warn(error.error.message)
     );
     this.subscriptions.push(personalIdSub);
@@ -62,7 +73,14 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public findUserTypes(): void {
     const userTypeSub = this.userTypeService.findAll().subscribe(
-      ({user_types}) => this.userTypes = user_types,
+      ({user_types}) => {
+        this.userTypes = user_types;
+        user_types.forEach(userType => {
+          if (userType.uid === this.user.user_type_id){
+            this.userTypeName = userType.name;
+          }
+        });
+      },
       error => console.warn(error.error.message)
     );
     this.subscriptions.push(userTypeSub);

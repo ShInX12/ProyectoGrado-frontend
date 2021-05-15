@@ -4,46 +4,36 @@
 
     <h3 class="mb-3">Detalles del cliente</h3>
 
-    <div class="form-group">
-      <h4 class="font-italic font-weight-light">{{ client.name }}</h4>
-<!--      <label for="input-name">Nombre</label>-->
-<!--      <input type="text" class="form-control" id="input-name" autocomplete="off"-->
-<!--             [class.is-invalid]="client?.name?.length === 0" name="client-name" [(ngModel)]="client.name">-->
-<!--      <div *ngIf="client.name.length === 0" id="invalid-input-name" class="invalid-feedback">-->
-<!--        El nombre es necesario-->
-<!--      </div>-->
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="input-personal-id">Tipo</label>
-        <select id="input-personal-id" class="form-control" disabled [(ngModel)]="client.personal_id_type">
-          <option *ngFor="let type of personalIdTypes" [value]="type.uid">{{ type.name }}</option>
-        </select>
+    <div class="form-row align-items-center">
+      <div class="m-1">
+        <img *ngIf="client.photo_url?.length > 0" class="img-picture img-thumbnail" [src]="client.photo_url" alt="profile">
+        <img *ngIf="client.photo_url?.length === 0" class="img-picture img-thumbnail" src="assets/img/no-avatar.jpg" alt="profile">
       </div>
-      <div class="form-group col-md-8">
-        <label for="input-personal-id-type">Número de identificación</label>
-        <input type="text" class="form-control" id="input-personal-id-type" autocomplete="off"
-               name="client-personal-id" readonly [(ngModel)]="client.personal_id">
+      <div>
+        <h4 class="font-italic font-weight-light ml-3 my-3">{{ client.name }}</h4>
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="input-email">Correo electrónico</label>
-      <input type="email" class="form-control" id="input-email" autocomplete="off"
-             name="client-email" readonly [(ngModel)]="client.email">
-    </div>
-
-    <div class="form-group">
-      <label for="input-phone">Teléfono</label>
-      <input type="text" class="form-control" id="input-phone" autocomplete="off"
-             name="client-phone" readonly [(ngModel)]="client.phone">
-    </div>
-
-    <div class="form-group">
-      <label for="input-bio">Sobre mi</label>
-      <textarea class="form-control" id="input-bio" rows="2" readonly name="client-bio" [(ngModel)]="client.bio"></textarea>
-    </div>
+    <table class="table mt-3">
+      <tbody>
+      <tr>
+        <th scope="row">{{ personalIdName }}: </th>
+        <td>{{ client.personal_id.length > 0? client.personal_id: "(Sin datos)"}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Teléfono:</th>
+        <td>{{ client.phone.length > 0? client.phone: "(Sin datos)"}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Correo electrónico:</th>
+        <td>{{ client.email.length > 0? client.email: "(Sin datos)"}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Sobre mi:</th>
+        <td>{{ client.bio.length > 0? client.bio: "(Sin datos)"}}</td>
+      </tr>
+      </tbody>
+    </table>
 
     <div class="row justify-content-between px-3">
       <button class="btn btn-outline-danger align-items-end" (click)="deleteClient()">
