@@ -30,6 +30,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   public imgTemp = null;
   public newImage: File;
   public uploading = false;
+  public loadingButton = false;
 
   public subscriptions: Subscription[] = [];
 
@@ -61,12 +62,18 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     this.trimFields();
     if (this.authService.role === Role.Client) {
       this.clientService.update(this.person as Client).subscribe(
-        value => showSuccesAlert('Cliente actualizado', () => {}),
+        client => {
+          this.person = client as Client;
+          showSuccesAlert('Cliente actualizado', () => {});
+        },
         error => showErrorAlert('Error al actualizar el cliente', error.error.message, () => {}),
       );
     } else {
       this.userService.update(this.person as User).subscribe(
-        value => showSuccesAlert('Usuario actualizado', () => {}),
+        user => {
+          this.person = user as User;
+          showSuccesAlert('Usuario actualizado', () => {});
+        },
         error => showErrorAlert('Error al actualizar el usuario', error.error.message, () => {}),
       );
     }
@@ -160,5 +167,21 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     }
     this.imgTemp = null;
     this.updatePerson();
+  }
+
+  public verifyEmail(): void {
+    this.loadingButton = true;
+    const verifySub = this.authService.sendverifyEmail().subscribe(
+      () => {
+        showSuccesAlert('Enlace enviado al correo electrónico satisfactoriamente');
+        this.loadingButton = false;
+      },
+      error => {
+        showErrorAlert('No se puedo enviar el enlace al correo electrónico', 'Intenta nuevamente', () => {});
+        this.loadingButton = false;
+        console.warn(error.error.message);
+      }
+    );
+    this.subscriptions.push(verifySub);
   }
 }

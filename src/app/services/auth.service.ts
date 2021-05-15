@@ -99,6 +99,10 @@ export class AuthService {
     });
   }
 
+  public sendverifyEmail(): Observable<any> {
+    return this.httpClient.get(this.url + 'sendVerifyEmail/', this.headers);
+  }
+
   public verifyEmail(token: string): Observable<any> {
     return this.httpClient.get(this.url + 'activate/' + token);
   }

@@ -24,14 +24,14 @@
         </div>
 
         <div class="input-group-prepend">
-          <span class="input-group-text" style="width: 45px" id="inputGroupFileAddon01">
+          <span class="input-group-text" style="width: 45px">
             <span *ngIf="uploading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           </span>
         </div>
 
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="inputGroupFile01" accept="image/*" (change)="changeImage($event.target.files[0])">
-          <label class="custom-file-label" for="inputGroupFile01">Subir imagen</label>
+          <input type="file" class="custom-file-input" id="inputFile" accept="image/*" lang="es" (change)="changeImage($event.target.files[0])">
+          <label class="custom-file-label" for="inputFile" data-browse="Cambiar">Mi foto</label>
         </div>
       </div>
     </div>
@@ -47,10 +47,24 @@
     </div>
 
     <div class="form-group">
-      <label for="input-email">Correo electrónico</label>
-      <input type="text" class="form-control" [class.is-invalid]="person.email?.length === 0" id="input-email"
-             name="person-email" autocomplete="off" [(ngModel)]="person.email">
-      <div id="input-email-validation" class="invalid-feedback">El correo electrónico es obligatorio</div>
+      <label for="input-email">Correo electrónico
+        <svg *ngIf="person.verified_email" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check2-circle" viewBox="0 0 16 16">
+          <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+          <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+        </svg><small *ngIf="person.verified_email" class="text-success"> Verificado</small>
+      </label>
+
+      <div [class.input-group]="!person.verified_email">
+        <input type="text" class="form-control" [class.is-invalid]="person.email?.length === 0" id="input-email"
+               name="person-email" autocomplete="off" [(ngModel)]="person.email">
+        <div *ngIf="!person.verified_email" class="input-group-append">
+          <button class="btn btn-outline-success" type="button" [disabled]="loadingButton" (click)="verifyEmail()">
+            <span *ngIf="loadingButton" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span *ngIf="loadingButton" class="sr-only"></span> Verificar
+          </button>
+        </div>
+        <div id="input-email-validation" class="invalid-feedback">El correo electrónico es obligatorio</div>
+      </div>
     </div>
 
     <div class="form-row">
@@ -79,10 +93,10 @@
     </div>
 
     <div class="row justify-content-between px-3">
-      <button class="btn btn-primary align-items-end" [disabled]="person.name?.length === 0 || person.email?.length === 0"
+      <button class="btn btn-primary align-items-end mb-2" [disabled]="person.name?.length === 0 || person.email?.length === 0"
               (click)="updatePerson()">Actualizar datos
       </button>
-      <button class="btn btn-outline-primary" (click)="openModal(passwordModal)">Cambiar contraseña</button>
+      <button class="btn btn-outline-primary mb-2" (click)="openModal(passwordModal)">Cambiar contraseña</button>
     </div>
   </div>
 

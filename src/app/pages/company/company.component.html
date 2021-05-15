@@ -25,14 +25,14 @@
         </div>
 
         <div class="input-group-prepend">
-          <span class="input-group-text" style="width: 45px" id="inputGroupFileAddon01">
+          <span class="input-group-text" style="width: 45px">
             <span *ngIf="uploading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           </span>
         </div>
 
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="inputGroupFile01" accept="image/*" (change)="changeImage($event.target.files[0])">
-          <label class="custom-file-label" for="inputGroupFile01">Subir logo</label>
+          <input type="file" class="custom-file-input" id="input-file" accept="image/*" (change)="changeImage($event.target.files[0])">
+          <label class="custom-file-label" for="input-file" data-browse="Buscar">Subir logo</label>
         </div>
       </div>
     </div>
