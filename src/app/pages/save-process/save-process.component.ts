@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Process } from '../../models/process';
 import { UserProcess } from '../../models/userProcess';
@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
   templateUrl: './save-process.component.html',
   styleUrls: ['./save-process.component.css']
 })
-export class SaveProcessComponent implements OnInit, OnDestroy {
+export class SaveProcessComponent implements OnDestroy {
 
   public process: Process = new Process('', '', 0, '', '', '', false);
 
@@ -31,8 +31,6 @@ export class SaveProcessComponent implements OnInit, OnDestroy {
               public userProcessService: UserProcessService,
               public activatedRoute: ActivatedRoute,
               public router: Router) { }
-
-  ngOnInit(): void { }
 
   ngOnDestroy(): void {
     this.saveProcessSub?.unsubscribe();

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { AuthService, Role } from '../../services/auth.service';
 import { NavbarService } from '../../services/navbar.service';
@@ -11,7 +11,7 @@ import { Person } from 'src/app/models/person';
   templateUrl: './sidebar.component.html',
   styles: []
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, AfterViewInit {
 
   public menu = [];
   public company: Company = this.authService.company;
@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit {
 
   @ViewChild('btn') btn: ElementRef;
   @ViewChild('sidebar') sidebar: ElementRef;
-  @ViewChild('searchBtn') searchBtn: ElementRef;
+  @ViewChild('content') content: ElementRef;
 
   constructor(private navbarService: NavbarService,
               public router: Router,
@@ -33,6 +33,10 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.checkBreakpoint();
     this.loadMenu();
+  }
+
+  ngAfterViewInit(): void {
+    this.checkInitialBreakpoint();
   }
 
   public loadMenu(): void {
@@ -63,13 +67,17 @@ export class SidebarComponent implements OnInit {
       .observe([Breakpoints.XSmall])
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
-          this.sidebar.nativeElement.classList.remove('active');
-          this.sidebar.nativeElement.classList.add('d-none');
+          this.sidebar?.nativeElement?.classList.add('d-none');
         } else {
-          this.sidebar?.nativeElement?.classList.add('active');
           this.sidebar?.nativeElement?.classList.remove('d-none');
         }
       });
+  }
+
+  public checkInitialBreakpoint(): void {
+    if (this.content.nativeElement.offsetWidth <= 497){
+      this.sidebar?.nativeElement?.classList.add('d-none');
+    }
   }
 
   public onClickBtn(): void {

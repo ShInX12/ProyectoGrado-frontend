@@ -9,7 +9,7 @@ import { ClientGuard } from '../guards/client.guard';
 import { UserDisabledComponent } from './user-disabled/user-disabled.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'administrador', pathMatch: 'full'}, // TODO: Hacer un componente que redireccione segun el rol
+  { path: '', redirectTo: 'administrador', pathMatch: 'full'},
   {
     path: 'inactividad', component: UserDisabledComponent
   },

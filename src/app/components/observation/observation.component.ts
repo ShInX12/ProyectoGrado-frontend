@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { ObservationService } from '../../services/observation.service';
 import { SnackbarService } from '../../services/snackbar.service';
 import { Subscription } from 'rxjs';
@@ -9,7 +9,7 @@ import { Observation } from '../../models/observation';
   templateUrl: './observation.component.html',
   styleUrls: ['./observation.component.css']
 })
-export class ObservationComponent implements OnInit, OnDestroy {
+export class ObservationComponent implements OnDestroy {
 
   @Input() observation: Observation;
   @Output() deleteObservation: EventEmitter<string> = new EventEmitter();
@@ -18,8 +18,6 @@ export class ObservationComponent implements OnInit, OnDestroy {
 
   constructor(public observationService: ObservationService,
               public snackbarService: SnackbarService) { }
-
-  ngOnInit(): void { }
 
   ngOnDestroy(): void {
     this.deleteObservationSub?.unsubscribe();

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,12 +6,9 @@ import { Router } from '@angular/router';
   templateUrl: './user-disabled.component.html',
   styleUrls: ['./user-disabled.component.css']
 })
-export class UserDisabledComponent implements OnInit {
+export class UserDisabledComponent {
 
   constructor(public router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   public logout(): void {
     localStorage.removeItem('token');

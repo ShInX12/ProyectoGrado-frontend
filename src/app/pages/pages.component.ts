@@ -11,14 +11,11 @@ export class PagesComponent implements OnInit {
   constructor(public router: Router,
               public authService: AuthService) { }
 
-  ngOnInit(): void { // TODO: Quitar comentarios y hacer que funcione bien la redireccion
+  ngOnInit(): void {
     this.redirect();
   }
 
   redirect(): void {
-
-    console.log('Redirect...');
-    console.log('Rol actual: ' + this.authService.role);
 
     if (!this.authService.person.enable){
       this.router.navigateByUrl('inactividad');

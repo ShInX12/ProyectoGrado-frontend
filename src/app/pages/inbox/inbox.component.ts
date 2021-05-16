@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnDestroy, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable, Subscription } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -14,7 +14,7 @@ import { showErrorAlert, showSuccesAlert } from '../../helpers/alerts';
   templateUrl: './inbox.component.html',
   styleUrls: ['./inbox.component.css']
 })
-export class InboxComponent implements OnInit, OnDestroy {
+export class InboxComponent implements OnDestroy {
 
   public sendDocumentsDTO: SendDocumentsDTO = new SendDocumentsDTO([], '', '');
   public documents: Document[] = [];
@@ -36,8 +36,6 @@ export class InboxComponent implements OnInit, OnDestroy {
   constructor(public processService: ProcessService,
               private fireStorage: AngularFireStorage,
               private modalService: BsModalService) { }
-
-  ngOnInit(): void { }
 
   ngOnDestroy(): void {
     this.findByCodeSub?.unsubscribe();
