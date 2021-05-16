@@ -25,6 +25,7 @@ import { ClientProcessesListComponent } from './client-processes-list/client-pro
 import { ClientProcessComponent } from './client-process/client-process.component';
 import { CompanyComponent } from './company/company.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { UserDisabledComponent } from './user-disabled/user-disabled.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     ClientProcessesListComponent,
     ClientProcessComponent,
     CompanyComponent,
+    UserDisabledComponent,
   ],
     imports: [
         CommonModule,

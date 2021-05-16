@@ -6,9 +6,13 @@ import { AdminGuard } from '../guards/admin.guard';
 import { LawyerGuard } from '../guards/lawyer.guard';
 import { AssistantGuard } from '../guards/assistant.guard';
 import { ClientGuard } from '../guards/client.guard';
+import { UserDisabledComponent } from './user-disabled/user-disabled.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'administrador', pathMatch: 'full'}, // TODO: Hacer un componente que redireccione segun el rol
+  {
+    path: 'inactividad', component: UserDisabledComponent
+  },
   {
     path: 'administrador', component: PagesComponent,
     canActivate: [AuthGuard, AdminGuard],

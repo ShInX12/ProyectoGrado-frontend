@@ -48,7 +48,10 @@ export class LoginComponent implements OnDestroy {
 
   redirect(isClient: boolean, person: User): void {
 
-    if (isClient){
+    if (!person.enable){
+      this.router.navigateByUrl('inactividad');
+
+    } else if (isClient){
       this.router.navigateByUrl(Role.Client);
 
     } else {

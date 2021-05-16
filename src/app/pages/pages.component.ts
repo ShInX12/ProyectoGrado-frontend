@@ -20,6 +20,11 @@ export class PagesComponent implements OnInit {
     console.log('Redirect...');
     console.log('Rol actual: ' + this.authService.role);
 
+    if (!this.authService.person.enable){
+      this.router.navigateByUrl('inactividad');
+      return;
+    }
+
     switch (this.authService.role) {
 
       case Role.Administrator:
