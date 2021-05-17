@@ -1,7 +1,7 @@
 <div class="row justify-content-between pr-md-4 pr-md-0">
   <h5 *ngIf="documentsFromLawyer">Documentos ({{ documents.length }})</h5>
   <h5 *ngIf="!documentsFromLawyer">Mis documentos enviados ({{ documents.length }})</h5>
-  <button *ngIf="!disabled" class="btn btn-primary btn-sm" style="height: 1.8rem" (click)="openModal(uploadFileModal)">Subir</button>
+  <button *ngIf="!disabled" class="btn btn-primary btn-sm" title="Subir nuevo documento" style="height: 1.8rem" (click)="openModal(uploadFileModal)">Subir</button>
 </div>
 <div class="row">
   <div class="mr-0 mr-md-4 justify-content-center files-box">
@@ -34,9 +34,12 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="document-url" class="col-sm-3 col-form-label">Subir:</label>
+      <label for="inputFile" class="col-sm-3 col-form-label">Subir:</label>
       <div class="col-sm-9">
-        <input class="form-control" type="file" id="document-url" (change)="selectFile($event.target.files[0])">
+        <div class="custom-file">
+          <input class="custom-file-input" type="file" id="inputFile" lang="es" (change)="selectFile($event.target.files[0])">
+          <label class="custom-file-label" for="inputFile" data-browse="Elegir archivo"></label>
+        </div>
       </div>
     </div>
 

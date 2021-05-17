@@ -7,9 +7,10 @@
   cursor: pointer;
   max-height: 7.5em;
   overflow: hidden;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  /*box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);*/
+  box-shadow: 0 1.5px 1.5px rgba(0, 0, 0, 0.1);
 }
 
 .file-card:hover {
-  background-color: #d0f0ff;
+  background-color: #ecfcff;
 }

@@ -254,7 +254,7 @@ export class ProcessComponent implements OnInit, OnDestroy {
   }
 
   public openModal(modal: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(modal, {class: 'modal-lg'});
+    this.modalRef = this.modalService.show(modal, {class: 'modal-lg modal-dialog-scrollable'});
   }
 
   public deleteMessages(): void {

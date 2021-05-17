@@ -4,3 +4,16 @@
   height: 150px;
   border-radius: 20px;
 }
+
+.custom-table {
+  box-shadow: 0 1.5px 1.5px rgba(0, 0, 0, 0.1);
+  border: #dee2e6 1px solid;
+}
+
+.custom-table thead{
+  background-color: white;
+}
+
+.custom-table tbody{
+  background-color: white;
+}

@@ -14,23 +14,23 @@
       </div>
     </div>
 
-    <table class="table mt-3">
+    <table class="table mt-3 custom-table">
       <tbody>
       <tr>
         <th scope="row">{{ personalIdName }}: </th>
-        <td>{{ client.personal_id.length > 0? client.personal_id: "(Sin datos)"}}</td>
+        <td>{{ client.personal_id?.length > 0? client.personal_id: "(Sin datos)"}}</td>
       </tr>
       <tr>
         <th scope="row">Teléfono:</th>
-        <td>{{ client.phone.length > 0? client.phone: "(Sin datos)"}}</td>
+        <td>{{ client.phone?.length > 0? client.phone: "(Sin datos)"}}</td>
       </tr>
       <tr>
         <th scope="row">Correo electrónico:</th>
-        <td>{{ client.email.length > 0? client.email: "(Sin datos)"}}</td>
+        <td>{{ client.email?.length > 0? client.email: "(Sin datos)"}}</td>
       </tr>
       <tr>
         <th scope="row">Sobre mi:</th>
-        <td>{{ client.bio.length > 0? client.bio: "(Sin datos)"}}</td>
+        <td>{{ client.bio?.length > 0? client.bio: "(Sin datos)"}}</td>
       </tr>
       </tbody>
     </table>

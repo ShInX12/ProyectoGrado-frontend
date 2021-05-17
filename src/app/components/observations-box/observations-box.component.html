@@ -8,10 +8,10 @@
 
 <form class="input-group mb-3" (ngSubmit)="addObservation()">
 
-  <input type="text" class="form-control" placeholder="Nueva observación..." [disabled]="disabled"
+  <input type="text" class="form-control input-shadow" placeholder="Nueva observación..." [disabled]="disabled"
          aria-label="Nueva observación..." aria-describedby="button-save-observation"
          autocomplete="off" name="observation-body" [(ngModel)]="newObservation.body">
-  <div class="input-group-append">
+  <div class="input-group-append input-shadow">
     <button class="btn btn-success" type="submit" id="button-save-observation"
             [disabled]="newObservation.body.length === 0 || disabled">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">

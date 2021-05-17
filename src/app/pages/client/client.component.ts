@@ -100,7 +100,7 @@ export class ClientComponent implements OnInit, OnDestroy, AfterContentInit {
       if (result.isConfirmed) {
         const deleteClientSub = this.clientService.delete(this.client.uid).subscribe(
           () => {
-            if (this.client.photo_url.trim().length > 0) { this.fireStorage.refFromURL(this.client.photo_url).delete(); }
+            if (this.client?.photo_url?.trim().length > 0) { this.fireStorage.refFromURL(this.client.photo_url).delete(); }
             showSuccesAlert(
               'Cliente eliminado',
               () => this.router.navigate(['../../clientes'], { relativeTo: this.activedRoute })

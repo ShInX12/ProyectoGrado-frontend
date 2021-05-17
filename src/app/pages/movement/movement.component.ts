@@ -157,7 +157,7 @@ export class MovementComponent implements OnInit, OnDestroy {
   }
 
   public openModal(modal: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(modal, {class: 'modal-lg'});
+    this.modalRef = this.modalService.show(modal, {class: 'modal-lg modal-dialog-scrollable'});
   }
 
 }
