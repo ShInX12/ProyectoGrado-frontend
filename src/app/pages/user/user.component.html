@@ -31,19 +31,19 @@
       </tr>
       <tr>
         <th scope="row">{{ personalIdName }}: </th>
-        <td>{{ user.personal_id.length > 0? user.personal_id: "(Sin datos)"}}</td>
+        <td>{{ user.personal_id?.length > 0? user?.personal_id: "(Sin datos)"}}</td>
       </tr>
       <tr>
         <th scope="row">Teléfono:</th>
-        <td>{{ user.phone.length > 0? user.phone: "(Sin datos)"}}</td>
+        <td>{{ user.phone?.length > 0? user.phone: "(Sin datos)"}}</td>
       </tr>
       <tr>
         <th scope="row">Correo electrónico:</th>
-        <td>{{ user.email.length > 0? user.email: "(Sin datos)"}}</td>
+        <td>{{ user.email?.length > 0? user.email: "(Sin datos)"}}</td>
       </tr>
       <tr>
         <th scope="row">Sobre mi:</th>
-        <td>{{ user.bio.length > 0? user.bio: "(Sin datos)"}}</td>
+        <td>{{ user.bio?.length > 0? user.bio: "(Sin datos)"}}</td>
       </tr>
       </tbody>
     </table>

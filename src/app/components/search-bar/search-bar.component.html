@@ -1,7 +1,7 @@
 <form (ngSubmit)="search()" class="form-inline my-2 my-lg-0">
   <div #searchInput>
 
-    <div class="input-group my-1">
+    <div class="input-group my-0">
 
     <input class="form-control" type="search" placeholder="Buscar..." autocomplete="off"
            aria-label="Search" (click)="openSuggest()" name="input-search" [(ngModel)]="query">
@@ -18,13 +18,13 @@
 
     <div *ngIf="showSuggest" class="search-container-dropdown">
 
-      <p *ngIf="clients.length > 0"><b>Clientes: ({{ clients.length }})</b></p>
+      <p *ngIf="clients.length > 0" class="my-1 mx-2"><b>Clientes: ({{ clients.length }})</b></p>
 
       <div *ngFor="let client of clients" class="suggest" (click)="navigate('cliente', client.uid)">
         {{client.name}}
       </div>
 
-      <p *ngIf="users.length > 0"><b>Usuarios: ({{ users.length }})</b></p>
+      <p *ngIf="users.length > 0" class="my-1 mx-2"><b>Usuarios: ({{ users.length }})</b></p>
 
       <div *ngFor="let user of users" class="suggest" (click)="navigate('usuario', user.uid)">
         {{user.name}}

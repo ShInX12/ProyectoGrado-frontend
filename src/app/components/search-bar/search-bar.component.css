@@ -1,14 +1,15 @@
 .search-container-dropdown {
   position: absolute;
   z-index: 1;
-  width: 30%;
-  max-height: 300px;
+  width: 230px;
+  max-height: 80vh;
   background: white;
   overflow-y: auto;
   /*border: 1px solid #AEB6BF;*/
   border-radius: 6px;
   /*box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);*/
   box-shadow: 0 1.5px 1.5px rgba(0, 0, 0, 0.1);
+  border: #dee2e6 1px solid;
 }
 
 .suggest {

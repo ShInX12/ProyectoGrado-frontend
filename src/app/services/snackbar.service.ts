@@ -9,11 +9,11 @@ export class SnackbarService {
 
   public showSnackBar(text: string): void {
     const snackbar = document.getElementById('snackbar');
+    snackbar.innerHTML = '';
     snackbar.append(text);
     snackbar.className = 'show';
     setTimeout(() => {
       snackbar.className = snackbar.className.replace('show', '');
-      snackbar.removeChild(snackbar.firstChild);
     }, 3000);
   }
 }

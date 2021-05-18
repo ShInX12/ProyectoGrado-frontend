@@ -13,8 +13,8 @@
 
   <div class="col-12 col-md-8">
     <div class="row justify-content-around toolbar">
-      <p class="text-truncate mx-2 my-0"><b>Código:</b> {{ process.code }}</p>
-      <p class="text-truncate mx-2 my-0"><b>Estado:</b> {{ stateName }}</p>
+      <p class="text-truncate mx-2 my-1"><b>Código:</b> {{ process.code }}</p>
+      <p class="text-truncate mx-2 my-1"><b>Estado:</b> {{ stateName }}</p>
     </div>
   </div>
 </div>
@@ -25,7 +25,7 @@
     <app-files-box [processId]="params.id" [disabled]="stateName === 'Finalizado'" [documentsFromLawyer]="false"></app-files-box>
   </div>
 
-  <div class="col-md-4 mt-md-2 mt-4">
+  <div class="col-md-4 mt-md-2 mt-4 px-0">
     <div><h5 *ngIf="!process.enable_chat || stateName === 'Finalizado'" [class.text-muted]="!process.enable_chat || stateName === 'Finalizado'">(Conversación no disponible)</h5></div>
     <div *ngIf="!process.enable_chat || stateName === 'Finalizado'" class="disabled-chat">
       <img src="/assets/svg/undraw_Add_notes_re_ln36.svg" class="my-3" style="max-width: 170px" alt="empty">

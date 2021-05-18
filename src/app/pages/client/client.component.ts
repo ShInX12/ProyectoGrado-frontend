@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Subscription } from 'rxjs';
@@ -16,7 +16,7 @@ import { showErrorAlert, showSuccesAlert, showWarningDeleteAlert } from '../../h
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.css']
 })
-export class ClientComponent implements OnInit, OnDestroy, AfterContentInit {
+export class ClientComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public params = this.activedRoute.params[`_value`];
   public client: Client = new Client('', '', '', '', '', '', '', '', true, '', '', false);
@@ -44,7 +44,7 @@ export class ClientComponent implements OnInit, OnDestroy, AfterContentInit {
     this.subscriptions.forEach((sb) => sb?.unsubscribe());
   }
 
-  ngAfterContentInit(): void {
+  ngAfterViewInit(): void {
     this.findPersonalIdTypes();
   }
 
