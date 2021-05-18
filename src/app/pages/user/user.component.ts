@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { Subscription } from 'rxjs';
@@ -16,7 +16,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit, OnDestroy, AfterViewInit {
+export class UserComponent implements OnInit, OnDestroy {
 
   public params = this.activedRoute.params[`_value`];
 
@@ -47,13 +47,12 @@ export class UserComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscriptions.forEach((sb) => sb?.unsubscribe());
   }
 
-  ngAfterViewInit(): void {
-    this.findPersonalIdTypes();
-  }
-
   public findUserById(): void {
     const findUserSub = this.userService.findById(this.params.id).subscribe(
-      user => this.user = user,
+      user => {
+        this.user = user;
+        this.findPersonalIdTypes();
+      },
       error => console.warn(error.error.message)
     );
     this.subscriptions.push(findUserSub);
