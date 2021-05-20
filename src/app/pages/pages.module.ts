@@ -26,6 +26,8 @@ import { ClientProcessComponent } from './client-process/client-process.componen
 import { CompanyComponent } from './company/company.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { UserDisabledComponent } from './user-disabled/user-disabled.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 @NgModule({
@@ -50,6 +52,7 @@ import { UserDisabledComponent } from './user-disabled/user-disabled.component';
     ClientProcessComponent,
     CompanyComponent,
     UserDisabledComponent,
+    CalendarComponent,
   ],
     imports: [
         CommonModule,
@@ -58,7 +61,8 @@ import { UserDisabledComponent } from './user-disabled/user-disabled.component';
         ComponentsModule,
         FormsModule,
         ReactiveFormsModule,
-        TooltipModule
+        TooltipModule,
+        FullCalendarModule
     ]
 })
 export class PagesModule { }
