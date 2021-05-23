@@ -20,6 +20,7 @@ export class LoginComponent implements OnDestroy {
 
   public hidePassword = false;
   public showError = false;
+  public loading = false;
   public error = '';
 
   public loginSub: Subscription;
@@ -32,16 +33,19 @@ export class LoginComponent implements OnDestroy {
   }
 
   login(): void {
+    this.loading = true;
     this.loginSub = this.authService
       .login(this.loginForm.get('email').value, this.loginForm.get('password').value)
       .subscribe(
         value => {
           localStorage.setItem('token', value.token);
           this.redirect(value.is_client, value.person as User);
+          this.loading = false;
         },
         error => {
           this.error = error.error.message;
           this.showError = true;
+          this.loading = false;
         }
       );
   }

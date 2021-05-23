@@ -1,4 +1,5 @@
-<div class="message-tile my-2 p-2 animate__animated animate__fadeInUp animate__faster" [class.text-right]="host">
-  <span class="badge badge-primary">{{ message.from }}</span>
+<div [class.message-tile]="!host" [class.message-tile-host]="host" class="sanimate__animated animate__fadeInUp animate__faster">
+  <span class="badge badge-pill" [class.badge-primary]="!message.is_lawyer" [class.badge-success]="message.is_lawyer">{{ message.from }}  {{ message.is_lawyer? " (abogado)":"" }}</span>
   <p>{{ message.body }}</p>
+<!--  <span class="mt-2">{{ message.createdAt | date }}</span>-->
 </div>

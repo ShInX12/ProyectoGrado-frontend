@@ -2,7 +2,7 @@
 
 <div class="px-2 observation-box" [class.rounded]="rounded">
   <div *ngFor="let observation of observations">
-    <app-observation [observation]="observation" (deleteObservation)="deleteObservation($event)"></app-observation>
+    <app-observation [observation]="observation" [disabled]="disabled" (deleteObservation)="deleteObservation($event)"></app-observation>
   </div>
 </div>
 

@@ -40,7 +40,6 @@ export class UserComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.findUserById();
-    this.findUserTypes();
   }
 
   ngOnDestroy(): void {
@@ -52,6 +51,7 @@ export class UserComponent implements OnInit, OnDestroy {
       user => {
         this.user = user;
         this.findPersonalIdTypes();
+        this.findUserTypes();
       },
       error => console.warn(error.error.message)
     );

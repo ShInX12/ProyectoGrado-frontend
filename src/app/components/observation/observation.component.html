@@ -13,7 +13,7 @@
 
     <span class="mt-2" style="color: #4e555b">{{ observation.date | date }}</span>
 
-    <button class="btn btn-outline-danger btn-sm" (click)="delete()">
+    <button class="btn btn-outline-danger btn-sm" (click)="delete()" [disabled]="disabled">
       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill"
            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd"
