@@ -2,9 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProcessService } from '../../services/process.service';
 import { ModalService } from '../../services/modal.service';
 import { environment } from '../../../environments/environment';
-import { Process } from '../../models/process';
 import { Subscription } from 'rxjs';
 import { ProcessDTO } from '../../DTO/processDTO';
+import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-process-list',
@@ -14,6 +15,8 @@ import { ProcessDTO } from '../../DTO/processDTO';
 export class ProcessListComponent implements OnInit, OnDestroy {
 
   public processes: ProcessDTO[] = [];
+  public person: User;
+  public assistantCode: string;
 
   public noData = false;
 
@@ -26,11 +29,13 @@ export class ProcessListComponent implements OnInit, OnDestroy {
   public processSub: Subscription;
 
   constructor(private modalService: ModalService,
-              public processService: ProcessService) {
-  }
+              public authService: AuthService,
+              public processService: ProcessService) { }
 
   ngOnInit(): void {
     this.findProcessByUser();
+    this.person = this.authService.person as User;
+    this.assistantCode = environment.USER_TYPE_ASISTENTE;
   }
 
   ngOnDestroy(): void {

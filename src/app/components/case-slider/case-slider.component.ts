@@ -3,6 +3,9 @@ import { Process } from '../../models/process';
 import { Subscription } from 'rxjs';
 import { ModalService } from '../../services/modal.service';
 import { ProcessService } from '../../services/process.service';
+import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/user';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-case-slider',
@@ -18,11 +21,14 @@ export class CaseSliderComponent implements OnInit, OnDestroy {
   public showButton = true;
 
   public processes: Process[] = [];
+  public person: User;
+  public assistantCode: string;
   public noData = false;
 
   public processesSub: Subscription;
 
   constructor(private modalService: ModalService,
+              public authService: AuthService,
               public processService: ProcessService) { }
 
   ngOnInit(): void {
@@ -31,6 +37,8 @@ export class CaseSliderComponent implements OnInit, OnDestroy {
       this.showButton = false;
     } else {
       this.findProcessByUser();
+      this.person = this.authService.person as User;
+      this.assistantCode = environment.USER_TYPE_ASISTENTE;
     }
   }
 

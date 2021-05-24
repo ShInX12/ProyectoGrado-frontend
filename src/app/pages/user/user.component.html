@@ -17,17 +17,23 @@
     <table class="table mt-3 custom-table">
       <tbody>
       <tr>
-        <th scope="row"><label for="user-state">Estado: </label></th>
-        <td>
-            <select id="user-state" class="form-control" [disabled]="authService.person.uid === user.uid" [(ngModel)]="user.enable">
-              <option [value]="true">Activo</option>
-              <option [value]="false">Inactivo</option>
-            </select>
+        <th scope="row"><label style="margin: 0" for="user-state">Estado: </label></th>
+        <td *ngIf="person.user_type_id !== administratorCode">{{ user.enable === false? 'Inactivo': 'Activo'}}</td>
+        <td *ngIf="person.user_type_id === administratorCode">
+          <select id="user-state" class="form-control" [disabled]="authService.person.uid === user.uid" [(ngModel)]="user.enable">
+            <option [value]="true">Activo</option>
+            <option [value]="false">Inactivo</option>
+          </select>
         </td>
       </tr>
       <tr>
-        <th scope="row">Tipo de usuario: </th>
-        <td>{{ userTypeName.length > 0? userTypeName: "(Sin datos)"}}</td>
+        <th scope="row"><label style="margin: 0" for="user-type">Tipo de usuario: </label></th>
+        <td *ngIf="person.user_type_id !== administratorCode">{{ userTypeName.length > 0? userTypeName: "(Sin datos)"}}</td>
+        <td *ngIf="person.user_type_id === administratorCode">
+          <select id="user-type" class="form-control" [(ngModel)]="user.user_type_id">
+            <option *ngFor="let type of userTypes" [value]="type.uid">{{ type.name }}</option>
+          </select>
+        </td>
       </tr>
       <tr>
         <th scope="row">{{ personalIdName }}: </th>

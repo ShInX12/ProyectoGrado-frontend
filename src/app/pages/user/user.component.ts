@@ -10,6 +10,7 @@ import { UserTypeService } from '../../services/user-type.service';
 import { UserType } from '../../models/userType';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AuthService } from '../../services/auth.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-user',
@@ -22,6 +23,9 @@ export class UserComponent implements OnInit, OnDestroy {
 
   public user: User
     = new User('', '', '', '', '', '', '', '', true, '', '', false,  '', false);
+
+  public person: User;
+  public administratorCode: string;
 
   public personalIdTypes: PersonalIdType[] = [];
   public userTypes: UserType[] = [];
@@ -40,6 +44,8 @@ export class UserComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.findUserById();
+    this.person = this.authService.person as User;
+    this.administratorCode = environment.USER_TYPE_ADMINISTRADOR;
   }
 
   ngOnDestroy(): void {

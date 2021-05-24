@@ -4,6 +4,8 @@ import { ModalService } from '../../services/modal.service';
 import { Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Process } from '../../models/process';
+import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-movement-list',
@@ -13,6 +15,8 @@ import { Process } from '../../models/process';
 export class MovementListComponent implements OnInit, OnDestroy {
 
   public processes: Process[] = [];
+  public person: User;
+  public assistantCode: string;
 
   public loading = true;
   public noData = false;
@@ -26,10 +30,13 @@ export class MovementListComponent implements OnInit, OnDestroy {
   public processesSub: Subscription;
 
   constructor(private modalService: ModalService,
+              public authService: AuthService,
               public processService: ProcessService) { }
 
   ngOnInit(): void {
     this.findProcessByUser();
+    this.person = this.authService.person as User;
+    this.assistantCode = environment.USER_TYPE_ASISTENTE;
   }
 
   ngOnDestroy(): void {

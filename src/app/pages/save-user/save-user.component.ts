@@ -27,10 +27,12 @@ export class SaveUserComponent implements OnInit, OnDestroy {
 
   public personalIdTypes: PersonalIdType[] = [];
   public userTypes: UserType[] = [];
+  public person: User;
+  public administratorCode: string;
 
   public saveUserForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    user_type_id: new FormControl(environment.USER_TYPE_ABOGADO, [Validators.required]),
+    user_type_id: new FormControl(environment.USER_TYPE_ASISTENTE, [Validators.required]),
     enable: new FormControl(true),
     personal_id_type: new FormControl(environment.DEAFULT_PERSONAL_ID_TYPE),
     personal_id: new FormControl(''),
@@ -66,6 +68,8 @@ export class SaveUserComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.findPersonalIdTypes();
     this.findUserTypes();
+    this.person = this.authService.person as User;
+    this.administratorCode = environment.USER_TYPE_ADMINISTRADOR;
   }
 
   ngOnDestroy(): void {
@@ -103,7 +107,13 @@ export class SaveUserComponent implements OnInit, OnDestroy {
 
   public findUserTypes(): void {
     const userTypeSub = this.userTypeService.findAll().subscribe(
-      ({user_types}) => this.userTypes = user_types,
+      ({user_types}) => {
+        if (this.person?.user_type_id !== this.administratorCode){
+          this.userTypes = user_types.filter(type => type.uid === environment.USER_TYPE_ASISTENTE);
+        } else {
+          this.userTypes = user_types;
+        }
+      },
       error => console.warn(error.error.message)
     );
     this.subscriptions.push(userTypeSub);
@@ -112,7 +122,7 @@ export class SaveUserComponent implements OnInit, OnDestroy {
   public closeModal(): void {
     this.saveUserForm.reset({
       personal_id_type: environment.DEAFULT_PERSONAL_ID_TYPE,
-      user_type_id: environment.USER_TYPE_ABOGADO,
+      user_type_id: environment.USER_TYPE_ASISTENTE,
       enable: true
     });
     this.modalService.close();
