@@ -22,3 +22,7 @@
   border-radius: 6px;
   box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.3);
 }
+
+.logo-company {
+  width: 210px;
+}
