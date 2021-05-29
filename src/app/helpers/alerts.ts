@@ -7,6 +7,8 @@ export const showSuccesAlert = (title: string, next: (finish: any) => void = () 
       showCloseButton: true,
       showConfirmButton: true,
       confirmButtonText: 'Aceptar',
+      showClass: { popup: 'animate__animated animate__fadeInDown animate__faster' },
+      hideClass: { popup: 'animate__animated animate__fadeOutUp animate__faster' }
     }).then(next);
 };
 
@@ -20,7 +22,9 @@ export const showWarningDeleteAlert = (title: string, text: string, next: (finis
     confirmButtonText: 'Eliminar',
     confirmButtonColor: '#cf0000',
     showCancelButton: true,
-    cancelButtonText: 'Cancelar'
+    cancelButtonText: 'Cancelar',
+    showClass: { popup: 'animate__animated animate__fadeInDown animate__faster' },
+    hideClass: { popup: 'animate__animated animate__fadeOutUp animate__faster' }
   }).then(next);
 };
 
@@ -32,5 +36,7 @@ export const showErrorAlert = (title: string, text: string, next: (finish: any) 
     showCloseButton: true,
     showConfirmButton: true,
     confirmButtonText: 'Aceptar',
+    showClass: { popup: 'animate__animated animate__fadeInDown animate__faster' },
+    hideClass: { popup: 'animate__animated animate__fadeOutUp animate__faster' }
   }).then(next);
 };

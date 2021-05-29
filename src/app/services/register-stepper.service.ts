@@ -10,23 +10,23 @@ export class RegisterStepperService {
   constructor() { }
 
   registerUserForm = new FormGroup({
-    email: new FormControl('test@user.com', [Validators.required, Validators.email]),
-    password1: new FormControl('123456', [Validators.required, Validators.minLength(6)]),
-    password2: new FormControl('123456', [Validators.required, Validators.minLength(6)])
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password1: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    password2: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
   registerUserDetailsForm = new FormGroup({
-    name: new FormControl('Sergio Naranjo', [Validators.required]),
-    phone: new FormControl('3108278538'),
+    name: new FormControl('', [Validators.required]),
+    phone: new FormControl(''),
     personal_id: new FormControl(''),
     personal_id_type: new FormControl(environment.DEAFULT_PERSONAL_ID_TYPE),
   });
 
   registerCompanyForm = new FormGroup({
-    nit: new FormControl('122112212'),
-    name: new FormControl('Abogados SN', [Validators.required]),
-    phone: new FormControl('4433112'),
-    address: new FormControl('Calle 31')
+    nit: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
+    phone: new FormControl(''),
+    address: new FormControl('')
   });
 
 }
