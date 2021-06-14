@@ -65,9 +65,13 @@ export class ClientProcessComponent implements OnInit, OnDestroy {
   public findClientsByProcess(): void {
     const clientsByProcessSub = this.clientService.findByProcess(this.params.id).subscribe(clients => {
       this.currentClients = clients;
-      this.clientsLabel = '';
-      clients.forEach(client => this.clientsLabel += client.name + ', ');
-      this.clientsLabel = this.clientsLabel.slice(0, -2);
+      if (clients.length === 0){
+        this.clientsLabel = '(Sin clientes)';
+      } else {
+        this.clientsLabel = '';
+        clients.forEach(client => this.clientsLabel += client.name + ', ');
+        this.clientsLabel = this.clientsLabel.slice(0, -2);
+      }
     });
     this.subscriptions.push(clientsByProcessSub);
   }
