@@ -1,0 +1,17 @@
+.chat-box {
+  background-color: var(--color-grey-dark);
+  width: 100%;
+  height: 48.5vh;
+  overflow: auto;
+  border: var(--box-border);
+  box-shadow: var(--shadow);
+}
+
+.input-shadow {
+  box-shadow: var(--shadow);
+}
+
+.rounded {
+  height: 50.5vh !important;
+  border-radius: 10px 10px 0 0;
+}

@@ -1,38 +1,75 @@
-<div class="file-card" [ngStyle]="{'cursor':showAll? 'pointer': 'default'}" (click)="open(fileModal)">
-  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-text"
-       fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
-    <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z"/>
+<!--<div class="file-card" [ngStyle]="{'cursor':showAll? 'pointer': 'default'}" (click)="open(fileModal)">-->
+<!--  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-text"-->
+<!--       fill="currentColor" xmlns="http://www.w3.org/2000/svg">-->
+<!--    <path-->
+<!--      d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>-->
+<!--    <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z"/>-->
 
-    <path fill-rule="evenodd"
-          d="M5 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-  </svg>
-  {{ document.title }}
+<!--    <path fill-rule="evenodd"-->
+<!--          d="M5 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>-->
+<!--  </svg>-->
+<!--  {{ document.title }}-->
+<!--</div>-->
+
+<!--<ng-template #fileModal>-->
+
+<!--  <div class="modal-header">-->
+<!--    <input *ngIf="!disabled" type="text" class="form-control" style="font-size: 1.2em; color: #000000"-->
+<!--           autocomplete="off" [(ngModel)]="document.title">-->
+<!--    <h4 *ngIf="disabled">{{ document.title }}</h4>-->
+<!--    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">-->
+<!--      <span aria-hidden="true">&times;</span>-->
+<!--    </button>-->
+<!--  </div>-->
+
+<!--  <div class="modal-body" style="height: 66vh">-->
+<!--    <object [data]="safeUrl" width="100%" height="100%"></object>-->
+<!--  </div>-->
+
+<!--  <div class="modal-footer">-->
+<!--    <span style="width: auto">-->
+<!--      <input type="text" class="form-control" placeholder="Descripción..."-->
+<!--             [disabled]="disabled" autocomplete="off" [(ngModel)]="document.description">-->
+<!--    </span>-->
+<!--    <button *ngIf="!disabled" class="btn btn-outline-danger" (click)="delete()">Eliminar</button>-->
+<!--    <button *ngIf="!disabled" class="btn btn-outline-primary" (click)="update()">Guardar cambios</button>-->
+<!--  </div>-->
+
+<!--</ng-template>-->
+
+<div class="file-card" [ngStyle]="{'cursor':showAll? 'pointer': 'default'}" (click)="open(fileModal)" [title]="document.description">
+  <svg class="bi" width="1em" height="1em" fill="currentColor">
+    <use xlink:href="assets/svg/icons.svg#file-earmark-text"/>
+  </svg> {{ document.title }}
 </div>
 
 <ng-template #fileModal>
 
   <div class="modal-header">
-    <input *ngIf="!disabled" type="text" class="form-control" style="font-size: 1.2em; color: #000000"
+    <input type="text" class="form-control" style="font-size: 1.2em; color: #000000"
            autocomplete="off" [(ngModel)]="document.title">
-    <h4 *ngIf="disabled">{{ document.title }}</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modalRef.hide()"></button>
   </div>
 
   <div class="modal-body" style="height: 66vh">
     <object [data]="safeUrl" width="100%" height="100%"></object>
   </div>
 
-  <div class="modal-footer">
-    <span style="width: auto">
-      <input type="text" class="form-control" placeholder="Descripción..."
-             [disabled]="disabled" autocomplete="off" [(ngModel)]="document.description">
-    </span>
-    <button *ngIf="!disabled" class="btn btn-outline-danger" (click)="delete()">Eliminar</button>
-    <button *ngIf="!disabled" class="btn btn-outline-primary" (click)="update()">Guardar cambios</button>
+  <div class="modal-footer d-flex" style="justify-content: space-between">
+<!--    <div class="form-check" *ngIf="authService.user.user_type === 1">-->
+<!--      <input class="form-check-input" type="checkbox" [(ngModel)]="document.from_lawyer" id="checkShareDocumento">-->
+<!--      <label class="form-check-label" for="checkShareDocumento">-->
+<!--        Documento privado-->
+<!--      </label>-->
+<!--    </div>-->
+    <span class="ms-3" style="flex-grow: 1">
+        <input type="text" class="form-control" placeholder="Descripción..."
+               autocomplete="off" [(ngModel)]="document.description">
+      </span>
+    <div style="display: flex">
+      <button class="ms-3 btn btn-outline-danger" (click)="delete()">Eliminar</button>
+      <button class="ms-3 btn btn-outline-primary" (click)="update()">Guardar cambios</button>
+    </div>
   </div>
 
 </ng-template>

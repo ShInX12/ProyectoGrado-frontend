@@ -11,7 +11,7 @@ import { showErrorAlert, showSuccesAlert, showWarningDeleteAlert } from '../../h
 @Component({
   selector: 'app-file-card',
   templateUrl: './file-card.component.html',
-  styleUrls: ['./file-card.component.css']
+  styleUrls: ['./file-card.component.scss']
 })
 export class FileCardComponent implements OnInit, OnDestroy {
 

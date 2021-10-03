@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-save-process',
   templateUrl: './save-process.component.html',
-  styleUrls: ['./save-process.component.css']
+  styleUrls: ['./save-process.component.scss']
 })
 export class SaveProcessComponent implements OnDestroy {
 

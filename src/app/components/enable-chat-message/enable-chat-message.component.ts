@@ -4,7 +4,7 @@ import { ChatService } from '../../services/chat.service';
 @Component({
   selector: 'app-enable-chat-message',
   templateUrl: './enable-chat-message.component.html',
-  styleUrls: ['./enable-chat-message.component.css']
+  styleUrls: ['./enable-chat-message.component.scss']
 })
 export class EnableChatMessageComponent {
 

@@ -1,0 +1,21 @@
+.search-container-dropdown {
+  position: absolute;
+  z-index: 1;
+  width: 230px;
+  max-height: 80vh;
+  background: var(--color-white);
+  overflow-y: auto;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  border: var(--box-border);
+}
+
+.suggest {
+  padding: 10px;
+  color: black;
+  cursor: pointer;
+}
+
+.suggest:hover {
+  background: var(--hover-color);
+}

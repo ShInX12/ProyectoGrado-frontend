@@ -11,28 +11,28 @@
       <img *ngIf="company.logo?.length === 0 && logoTemp" class="img-picture img-thumbnail" [src]="logoTemp" alt="profile">
     </div>
 
-    <div class="row justify-content-center my-2"><h4>Logo</h4></div>
+    <div class="d-flex justify-content-center my-2"><h4>Logo</h4></div>
 
-    <div class="row justify-content-center mt-4">
-      <div class="input-group mb-3 width-300">
-        <div class="input-group-prepend">
-          <button class="btn btn-outline-danger btn-sm" title="Quitar imagen" style="width: 45px" (click)="deleteLogo()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-              <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+    <div class="mt-4" style="width: 300px; margin: 0 auto">
+
+      <div class="d-flex mb-3">
+        <div>
+          <button class="btn btn-outline-danger" title="Quitar imagen" style="width: 45px; margin-right: 1rem" (click)="deleteLogo()">
+            <svg class="bi" width="1em" height="1em" fill="currentColor">
+              <use xlink:href="assets/svg/icons.svg#trash-fill"/>
             </svg>
           </button>
         </div>
 
-        <div class="input-group-prepend">
-          <span class="input-group-text" style="width: 45px">
+        <div>
+          <span style="width: 45px">
             <span *ngIf="uploading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           </span>
         </div>
 
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="input-file" accept="image/*" (change)="changeImage($event.target.files[0])">
-          <label class="custom-file-label" for="input-file" data-browse="Buscar">Subir logo</label>
+        <div>
+          <input type="file" class="form-control" id="inputFile" accept="image/*" lang="es" (change)="changeImage($event.target.files[0])">
+<!--                    <label class="form-label" for="inputFile" data-browse="Buscar">Subir logo</label>-->
         </div>
       </div>
     </div>
@@ -40,34 +40,34 @@
 
   <div class="col-md-6 col-xl-5 mb-4">
 
-    <div class="form-group">
-      <label for="input-name">Nombre de la compañia</label>
+    <div class="mb-3">
+      <label class="form-label" for="input-name">Nombre de la compañia</label>
       <input type="text" class="form-control" [class.is-invalid]="company.name?.length === 0" id="input-name"
              name="company-name" autocomplete="off" [(ngModel)]="company.name">
       <div id="input-name-validation" class="invalid-feedback">El nombre es obligatorio</div>
     </div>
 
-    <div class="form-group">
-      <label for="input-phone">Teléfono</label>
+    <div class="mb-3">
+      <label class="form-label" for="input-phone">Teléfono</label>
       <input type="text" class="form-control" id="input-phone" autocomplete="off"
              name="company-phone" [(ngModel)]="company.phone">
     </div>
 
-    <div class="form-group">
-      <label for="input-address">Dirección</label>
+    <div class="mb-3">
+      <label class="form-label" for="input-address">Dirección</label>
       <input type="text" class="form-control" id="input-address"
              name="company-address" autocomplete="off" [(ngModel)]="company.address">
     </div>
 
-    <div class="form-group">
-      <label for="input-nit">NIT</label>
+    <div class="mb-3">
+      <label class="form-label" for="input-nit">NIT</label>
       <input type="text" class="form-control" id="input-nit"
              name="company-address" autocomplete="off" [(ngModel)]="company.nit">
     </div>
 
-    <div class="row justify-content-between px-3 mt-4">
+    <div class="d-flex justify-content-end mt-4">
       <button class="btn btn-primary align-items-end" [disabled]="company.name?.length === 0"
-              (click)="updateCompany()">Actualizar datos
+              (click)="updateCompany()">Guardar
       </button>
     </div>
   </div>

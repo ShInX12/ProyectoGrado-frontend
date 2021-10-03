@@ -10,9 +10,9 @@ export class RegisterStepperService {
   constructor() { }
 
   registerUserForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password1: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    password2: new FormControl('', [Validators.required, Validators.minLength(6)])
+    email: new FormControl('sergio6006@hotmail.com', [Validators.required, Validators.email]),
+    password1: new FormControl('123456', [Validators.required, Validators.minLength(6)]),
+    password2: new FormControl('123456', [Validators.required, Validators.minLength(6)])
   });
 
   registerUserDetailsForm = new FormGroup({

@@ -1,35 +1,31 @@
-<form (ngSubmit)="search()" class="form-inline my-2 my-lg-0">
-  <div #searchInput>
+<form (ngSubmit)="search()" class="my-2 my-lg-0" #searchInput>
 
-    <div class="input-group my-0">
+  <div class="input-group">
 
     <input class="form-control" type="search" placeholder="Buscar..." autocomplete="off"
            aria-label="Search" (click)="openSuggest()" name="input-search" [(ngModel)]="query">
 
-      <div class="input-group-append">
-        <button class="btn btn-outline-success" type="submit">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-          </svg>
-        </button>
-      </div>
-
-    </div>
-
-    <div *ngIf="showSuggest" class="search-container-dropdown">
-
-      <p *ngIf="clients.length > 0" class="my-1 mx-2"><b>Clientes: ({{ clients.length }})</b></p>
-
-      <div *ngFor="let client of clients" class="suggest" (click)="navigate('cliente', client.uid)">
-        {{client.name}}
-      </div>
-
-      <p *ngIf="users.length > 0" class="my-1 mx-2"><b>Usuarios: ({{ users.length }})</b></p>
-
-      <div *ngFor="let user of users" class="suggest" (click)="navigate('usuario', user.uid)">
-        {{user.name}}
-      </div>
-    </div>
+    <button class="btn btn-outline-success" type="submit">
+      <svg class="bi" width="1em" height="1em" fill="currentColor">
+        <use xlink:href="assets/svg/icons.svg#search"/>
+      </svg>
+    </button>
 
   </div>
+
+  <div *ngIf="showSuggest" class="search-container-dropdown">
+
+    <p *ngIf="clients.length > 0" class="my-1 mx-2"><b>Clientes: ({{ clients.length }})</b></p>
+
+    <div *ngFor="let client of clients" class="suggest" (click)="navigate('cliente', client.uid)">
+      {{client.name}}
+    </div>
+
+    <p *ngIf="users.length > 0" class="my-1 mx-2"><b>Usuarios: ({{ users.length }})</b></p>
+
+    <div *ngFor="let user of users" class="suggest" (click)="navigate('usuario', user.uid)">
+      {{user.name}}
+    </div>
+  </div>
+
 </form>

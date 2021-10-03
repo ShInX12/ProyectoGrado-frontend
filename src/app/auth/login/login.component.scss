@@ -1,0 +1,33 @@
+.background {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background-image: url("/assets/img/background-1.jpg");
+  height: 100vh;
+  width: 100vw;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /*object-fit: cover;*/
+}
+
+.login-container {
+  background-color: var(--color-white);
+  max-width: 430px !important;
+  border: var(--box-border);
+  margin: auto;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.logo-company {
+  width: 210px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

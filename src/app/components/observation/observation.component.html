@@ -1,23 +1,28 @@
-<div class="col-12 my-2 py-2 observation-card animate__animated animate__fadeInUp animate__faster">
+<div class="observation-card animate__animated animate__fadeInUp animate__faster" [title]="observation.body">
 
-  <div class="observation-body">{{ observation.body }}</div>
+  <div class="observation-body">
 
-  <div class="row px-3 justify-content-between">
+    <div class="observation-text">
+      {{ observation.body }}
+    </div>
 
-    <span class="badge badge-success mt-3"
-          [class.badge-success]="!observation.from_lawyer"
-          [class.badge-primary]="observation.from_lawyer"
-          style="height: 1.6em">
-          {{ observation.from_lawyer ? 'Recordatorio' : 'Recibido' }}
-    </span>
+    <div class="observation-badges">
+          <span class="badge observation-badge"
+                [class.bg-success]="!observation.from_lawyer"
+                [class.bg-primary]="observation.from_lawyer"
+                style="">
+                {{ observation.from_lawyer ? 'Recordatorio' : 'Recibido' }}
+          </span>
+      <span class="observation-date">{{ observation.date | date }}</span>
+    </div>
 
-    <span class="mt-2" style="color: #4e555b">{{ observation.date | date }}</span>
+  </div>
 
-    <button class="btn btn-outline-danger btn-sm" (click)="delete()" [disabled]="disabled">
-      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill"
-           fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd"
-              d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+  <div class="observation-button">
+
+    <button class="btn btn-outline-danger btn-sm" (click)="delete()">
+      <svg class="bi" width="1em" height="1em" fill="currentColor">
+        <use xlink:href="assets/svg/icons.svg#trash-fill"/>
       </svg>
     </button>
 

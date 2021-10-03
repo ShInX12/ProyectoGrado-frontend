@@ -1,20 +1,14 @@
 <div class="row mt-4">
-  <div class="col-12 col-md-4">
-    <div class="row">
+  <div class="col-12 col-md-8">
       <h4 class="text-truncate">{{ process.name }}</h4>
-    </div>
-    <div class="row">
       <p class="text-truncate">{{ process.description }}</p>
-    </div>
-    <div class="row">
       <p class="text-truncate"><b>Cliente(s):</b> {{ clientsLabel }}</p>
-    </div>
   </div>
 
-  <div class="col-12 col-md-8">
-    <div class="row justify-content-around toolbar">
-      <p class="text-truncate mx-2 my-1"><b>Código:</b> {{ process.code }}</p>
-      <p class="text-truncate mx-2 my-1"><b>Estado:</b> {{ stateName }}</p>
+  <div class="col-12 col-md-4">
+    <div class="toolbar">
+      <p class="text-truncate mb-0"><b>Código:</b> {{ process.code }}</p>
+      <p class="text-truncate mb-0"><b>Estado:</b> {{ stateName }}</p>
     </div>
   </div>
 </div>

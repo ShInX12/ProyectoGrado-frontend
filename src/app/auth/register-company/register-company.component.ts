@@ -5,7 +5,7 @@ import { RegisterStepperService } from '../../services/register-stepper.service'
 @Component({
   selector: 'app-register-company',
   templateUrl: './register-company.component.html',
-  styleUrls: ['./register-company.component.css']
+  styleUrls: ['./register-company.component.scss']
 })
 export class RegisterCompanyComponent {
 

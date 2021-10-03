@@ -11,7 +11,7 @@ import { RegisterStepperService } from '../../services/register-stepper.service'
 @Component({
   selector: 'app-register-stepper',
   templateUrl: './register-stepper.component.html',
-  styleUrls: ['./register-stepper.component.css']
+  styleUrls: ['./register-stepper.component.scss']
 })
 export class RegisterStepperComponent implements OnInit, OnDestroy {
 

@@ -7,7 +7,7 @@ import { Observation } from '../../models/observation';
 @Component({
   selector: 'app-observation',
   templateUrl: './observation.component.html',
-  styleUrls: ['./observation.component.css']
+  styleUrls: ['./observation.component.scss']
 })
 export class ObservationComponent implements OnDestroy {
 

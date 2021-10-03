@@ -1,0 +1,11 @@
+.title-home-client {
+  overflow: auto;
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-client-list {
+  height: 25rem;
+  overflow: auto;
+}

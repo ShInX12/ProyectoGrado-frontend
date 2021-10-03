@@ -1,9 +1,8 @@
-<div class="row mt-4 mb-3 px-3 justify-content-between">
+<div class="d-flex justify-content-between mt-4 mb-3">
   <h3>Lista de movimientos</h3>
   <button *ngIf="person.user_type_id !== assistantCode" class="btn btn-primary" (click)="newProcess()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase-fill" viewBox="0 0 16 16">
-      <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/>
-      <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z"/>
+    <svg class="bi" width="1em" height="1em" fill="currentColor">
+      <use xlink:href="assets/svg/icons.svg#briefcase-fill"/>
     </svg> Nuevo
   </button>
 </div>
@@ -38,22 +37,22 @@
   </table>
 </div>
 
-<div *ngIf="processes?.length > 0" class="row justify-content-between px-3">
+<div *ngIf="processes?.length > 0" class="d-flex justify-content-between">
 
   <nav aria-label="Client page navigation">
     <ul class="pagination">
       <li class="page-item">
-        <a class="pointer" (click)="changePage(this.page - 1)" aria-label="Anterior">
+        <a class="page-link" (click)="changePage(this.page - 1)" aria-label="Anterior">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
       <li class="page-item"
           *ngFor="let item of [].constructor(totalPages); let i = index"
           [class.active]="this.page === i + 1">
-        <a class="pointer" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+        <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
       </li>
       <li class="page-item">
-        <a class="pointer" (click)="changePage(this.page + 1)" aria-label="Siguiente">
+        <a class="page-link" (click)="changePage(this.page + 1)" aria-label="Siguiente">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

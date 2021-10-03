@@ -1,15 +1,14 @@
-<div class="row mx-1 my-2 client-card" [title]="client.name" [routerLink]="[ url, client.uid ]">
+<div class="d-flex mx-1 my-2 client-card" [title]="client.name" [routerLink]="[ url, client.uid ]">
 
-  <div class="mx-auto avatar">
+  <div class="avatar">
     <img *ngIf="client.photo_url?.length > 0" class="img-avatar" [src]="client.photo_url" alt="profile">
-    <svg *ngIf="client.photo_url?.length === 0" xmlns="http://www.w3.org/2000/svg" width="45" height="45"
-         fill="white" class="bi bi-person-fill" viewBox="0 0 16 16">
-      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+    <svg *ngIf="client.photo_url?.length === 0" class="bi" width="45" height="45" fill="currentColor">
+      <use xlink:href="assets/svg/icons.svg#person-fill"/>
     </svg>
   </div>
 
-  <div class="col" style="overflow: hidden">
-    <div class="text-truncate font-weight-bold">{{ client.name }}</div>
+  <div style="overflow: hidden; display: flex; flex-direction: column; justify-content: space-evenly; flex-grow: 1; padding-left: 1rem">
+    <div class="text-truncate"><b>{{ client.name }}</b></div>
     <div class="text-truncate">{{ client.phone }}</div>
   </div>
 

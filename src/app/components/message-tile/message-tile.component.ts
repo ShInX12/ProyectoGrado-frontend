@@ -5,7 +5,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-message-tile',
   templateUrl: './message-tile.component.html',
-  styleUrls: ['./message-tile.component.css']
+  styleUrls: ['./message-tile.component.scss']
 })
 export class MessageTileComponent implements OnInit {
 

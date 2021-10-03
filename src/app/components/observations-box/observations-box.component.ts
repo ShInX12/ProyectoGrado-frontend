@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-observations-box',
   templateUrl: './observations-box.component.html',
-  styleUrls: ['./observations-box.component.css']
+  styleUrls: ['./observations-box.component.scss']
 })
 export class ObservationsBoxComponent implements OnInit, OnDestroy {
 

@@ -1,20 +1,20 @@
 <div class="col case-card" [title]="process.description" [routerLink]="[ url, process.uid ]" >
 
   <div class="row px-2 pt-2">
-    <p class="text-truncate font-weight-bold">{{ process.name }}</p>
+    <p class="text-truncate"><b>{{ process.name }}</b></p>
   </div>
 
   <div class="row px-2">
     <p class="text-truncate"> {{ clientsLabel }} </p>
   </div>
 
-  <div *ngIf="documents.length === 0" class="row p-2" style="overflow: hidden; height: 2rem">
-    <span class="badge badge-secondary text-truncate" style="margin: 2px;">(Sin documentos)</span>
+  <div *ngIf="documents.length === 0" class="mx-2" style="overflow: hidden; height: 1.5rem;">
+    <span class="badge bg-secondary text-truncate" style="margin: 2px;">(Sin documentos)</span>
   </div>
 
-  <div *ngIf="documents.length > 0" class="row p-2" style="overflow: hidden; height: 2rem">
+  <div *ngIf="documents.length > 0" class="mx-2" style="overflow: hidden; height: 2rem;">
     <span *ngFor="let document of documents" class="badge text-truncate"
-          [class.badge-primary]="document.from_lawyer" [class.badge-success]="!document.from_lawyer"
+          [class.bg-primary]="document.from_lawyer" [class.bg-success]="!document.from_lawyer"
           style="margin: 2px;">{{ document.title }}</span>
   </div>
 

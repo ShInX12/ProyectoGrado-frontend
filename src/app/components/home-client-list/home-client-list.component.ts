@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-home-client-list',
   templateUrl: './home-client-list.component.html',
-  styleUrls: ['./home-client-list.component.css']
+  styleUrls: ['./home-client-list.component.scss']
 })
 export class HomeClientListComponent implements OnInit, OnDestroy {
 

@@ -1,5 +1,5 @@
 <div class="col mt-4">
-  <div class="row mb-4 justify-content-between">
+  <div class="d-flex mb-4 justify-content-between">
     <h3>{{ title }}</h3>
     <button *ngIf="(showButton && client) || (person?.user_type_id !== assistantCode && !client)" type="button" title="Crear nuevo proceso" class="btn btn-success" (click)="openModal()">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase-fill" viewBox="0 0 16 16">

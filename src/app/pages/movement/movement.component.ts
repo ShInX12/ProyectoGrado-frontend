@@ -22,7 +22,7 @@ import { showErrorAlert, showSuccesAlert, showWarningDeleteAlert } from '../../h
 @Component({
   selector: 'app-movement',
   templateUrl: './movement.component.html',
-  styleUrls: ['./movement.component.css']
+  styleUrls: ['./movement.component.scss']
 })
 export class MovementComponent implements OnInit, OnDestroy {
 

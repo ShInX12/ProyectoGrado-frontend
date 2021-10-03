@@ -9,16 +9,39 @@
 
           <div class="modal-header">
             <h4 class="modal-title">Nuevo cliente</h4>
-            <button type="button" class="close" data-dismiss="modal"
-                    aria-hidden="true" (click)="closeModal()">×
-            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="closeModal()"></button>
           </div>
 
           <div class="modal-body">
 
-            <div class="form-row">
-              <div class="form-group col-md-9">
-                <label for="input-name">Nombre*</label>
+            <div class="row mb-3">
+              <label class="col-lg-3 col-form-label" for="input-email">Correo electrónico*</label>
+              <div class="col-lg-9">
+                <input type="email" class="form-control" id="input-email"
+                       [class.is-invalid]="email.invalid && email.touched" autocomplete="off" formControlName="email">
+                <div *ngIf="email.invalid && email.touched" class="invalid-feedback">
+                  <div *ngIf="email.errors.required">El correo electrónico es necesario</div>
+                  <div *ngIf="email.errors.email">El correo electrónico no es válido</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-lg-3 col-form-label" for="input-password">Contraseña*</label>
+              <div class="col-lg-9">
+                <input type="password" class="form-control" id="input-password" formControlName="password"
+                       [class.is-invalid]="password.invalid && password.touched">
+                <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+                  <div *ngIf="password.errors.required">La contraseña es necesaria</div>
+                  <div *ngIf="password.errors.minlength">La contraseña debe tener mínimo 6 caracteres</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-lg-3 col-form-label" for="input-name">Nombre*</label>
+              <div class="col-lg-9">
                 <input type="text" class="form-control" id="input-name" autocomplete="off"
                        [class.is-invalid]="name.invalid && name.touched" formControlName="name">
                 <div *ngIf="name.invalid && name.touched" class="invalid-feedback">
@@ -26,54 +49,37 @@
                   <div *ngIf="name.errors.minlength">El nombre no puede ser una letra</div>
                 </div>
               </div>
+            </div>
 
-              <div class="form-group col-md-3">
-                <label for="enable">Estado</label>
-                <select id="enable" class="form-control" formControlName="enable">
+            <div class="row mb-3">
+              <label class="col-lg-3 col-form-label" for="enable">Estado</label>
+              <div class="col-lg-9">
+                <select id="enable" class="form-select" formControlName="enable">
                   <option [value]="true">Activo</option>
                   <option [value]="false">Inactivo</option>
                 </select>
               </div>
             </div>
 
-            <div class="form-row">
-              <div class="form-group col-md-5">
-                <label for="input-personal-id">Tipo de id</label>
-                <select id="input-personal-id" class="form-control" formControlName="personal_id_type">
+            <div class="row mb-3">
+              <label class="col-lg-3 col-form-label" for="input-personal-id">Identificación</label>
+              <div class="col-form-label col-lg-4">
+                <select id="input-personal-id" class="form-select" formControlName="personal_id_type">
                   <option *ngFor="let type of personalIdTypes" [value]="type.uid">{{ type.name }}</option>
                 </select>
               </div>
-              <div class="form-group col-md-7">
-                <label for="input-personal-id-type">Número de identificación</label>
+              <div class="col-form-label col-lg-5">
                 <input type="text" class="form-control" id="input-personal-id-type"
-                       autocomplete="off" formControlName="personal_id">
+                       autocomplete="off" formControlName="personal_id" placeholder="Número">
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="input-email">Correo electrónico*</label>
-              <input type="email" class="form-control" id="input-email"
-                     [class.is-invalid]="email.invalid && email.touched" autocomplete="off" formControlName="email">
-              <div *ngIf="email.invalid && email.touched" class="invalid-feedback">
-                <div *ngIf="email.errors.required">El correo electrónico es necesario</div>
-                <div *ngIf="email.errors.email">El correo electrónico no es válido</div>
+            <div class="row">
+              <label class="col-lg-3 col-form-label" for="input-phone">Teléfono</label>
+              <div class="col-lg-9">
+                <input type="text" class="form-control" id="input-phone"
+                       autocomplete="off" formControlName="phone">
               </div>
-            </div>
-
-            <div class="form-group">
-              <label for="input-password">Contraseña*</label>
-              <input type="password" class="form-control" id="input-password" formControlName="password"
-                     [class.is-invalid]="password.invalid && password.touched">
-              <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
-                <div *ngIf="password.errors.required">La contraseña es necesaria</div>
-                <div *ngIf="password.errors.minlength">La contraseña debe tener mínimo 6 caracteres</div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="input-phone">Teléfono</label>
-              <input type="text" class="form-control" id="input-phone"
-                     autocomplete="off" formControlName="phone">
             </div>
 
           </div>

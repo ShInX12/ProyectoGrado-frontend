@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-movement-list',
   templateUrl: './movement-list.component.html',
-  styleUrls: ['./movement-list.component.css']
+  styleUrls: ['./movement-list.component.scss']
 })
 export class MovementListComponent implements OnInit, OnDestroy {
 

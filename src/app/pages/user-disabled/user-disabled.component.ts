@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-disabled',
   templateUrl: './user-disabled.component.html',
-  styleUrls: ['./user-disabled.component.css']
+  styleUrls: ['./user-disabled.component.scss']
 })
 export class UserDisabledComponent {
 

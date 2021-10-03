@@ -7,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-client-processes-list',
   templateUrl: './client-processes-list.component.html',
-  styleUrls: ['./client-processes-list.component.css']
+  styleUrls: ['./client-processes-list.component.scss']
 })
 export class ClientProcessesListComponent implements OnInit, OnDestroy {
 

@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-register-user-details',
   templateUrl: './register-user-details.component.html',
-  styleUrls: ['./register-user-details.component.css']
+  styleUrls: ['./register-user-details.component.scss']
 })
 export class RegisterUserDetailsComponent implements OnInit {
 

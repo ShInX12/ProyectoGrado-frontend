@@ -15,7 +15,7 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit, OnDestroy {
 

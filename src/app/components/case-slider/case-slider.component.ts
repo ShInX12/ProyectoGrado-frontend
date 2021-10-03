@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-case-slider',
   templateUrl: './case-slider.component.html',
-  styleUrls: ['./case-slider.component.css']
+  styleUrls: ['./case-slider.component.scss']
 })
 export class CaseSliderComponent implements OnInit, OnDestroy {
 

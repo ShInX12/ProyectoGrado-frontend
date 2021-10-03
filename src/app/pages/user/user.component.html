@@ -4,33 +4,33 @@
 
     <h3 class="mb-3">Detalles del usuario</h3>
 
-    <div class="form-row align-items-center">
+    <div class="d-flex align-items-center">
       <div class="m-1">
         <img *ngIf="user.photo_url?.length > 0" class="img-picture img-thumbnail" [src]="user.photo_url" alt="profile">
         <img *ngIf="user.photo_url?.length === 0" class="img-picture img-thumbnail" src="assets/img/no-avatar.jpg" alt="profile">
       </div>
       <div>
-        <h4 class="font-italic font-weight-light ml-3 my-3">{{ user.name }}</h4>
+        <h4 class="fst-italic fw-light ms-3 my-3">{{ user.name }}</h4>
       </div>
     </div>
 
     <table class="table mt-3 custom-table">
       <tbody>
       <tr>
-        <th scope="row"><label style="margin: 0" for="user-state">Estado: </label></th>
+        <th scope="row"><label class="form-label" for="user-state">Estado: </label></th>
         <td *ngIf="person.user_type_id !== administratorCode">{{ user.enable === false? 'Inactivo': 'Activo'}}</td>
         <td *ngIf="person.user_type_id === administratorCode">
-          <select id="user-state" class="form-control" [disabled]="authService.person.uid === user.uid" [(ngModel)]="user.enable">
+          <select id="user-state" class="form-select" [disabled]="authService.person.uid === user.uid" [(ngModel)]="user.enable">
             <option [value]="true">Activo</option>
             <option [value]="false">Inactivo</option>
           </select>
         </td>
       </tr>
       <tr>
-        <th scope="row"><label style="margin: 0" for="user-type">Tipo de usuario: </label></th>
+        <th scope="row"><label class="form-label" for="user-type">Tipo de usuario: </label></th>
         <td *ngIf="person.user_type_id !== administratorCode">{{ userTypeName.length > 0? userTypeName: "(Sin datos)"}}</td>
         <td *ngIf="person.user_type_id === administratorCode">
-          <select id="user-type" class="form-control" [(ngModel)]="user.user_type_id">
+          <select id="user-type" class="form-select" [(ngModel)]="user.user_type_id">
             <option *ngFor="let type of userTypes" [value]="type.uid">{{ type.name }}</option>
           </select>
         </td>
@@ -54,10 +54,10 @@
       </tbody>
     </table>
 
-    <div class="row justify-content-between px-3">
+    <div class="d-flex justify-content-between">
       <button class="btn btn-outline-danger align-items-end" (click)="deleteUser()" [disabled]="user.admin">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+        <svg class="bi" width="1em" height="1em" fill="currentColor">
+          <use xlink:href="assets/svg/icons.svg#trash-fill"/>
         </svg> Eliminar
       </button>
       <button class="btn btn-primary align-items-end" [disabled]="user?.name?.length === 0" (click)="updateUser()">

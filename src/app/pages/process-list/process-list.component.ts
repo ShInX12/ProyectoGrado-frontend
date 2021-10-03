@@ -10,7 +10,7 @@ import { User } from '../../models/user';
 @Component({
   selector: 'app-process-list',
   templateUrl: './process-list.component.html',
-  styleUrls: ['./process-list.component.css']
+  styleUrls: ['./process-list.component.scss']
 })
 export class ProcessListComponent implements OnInit, OnDestroy {
 

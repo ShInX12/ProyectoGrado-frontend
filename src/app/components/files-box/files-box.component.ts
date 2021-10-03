@@ -13,7 +13,7 @@ import { showErrorAlert, showSuccesAlert } from '../../helpers/alerts';
 @Component({
   selector: 'app-files-box',
   templateUrl: './files-box.component.html',
-  styleUrls: ['./files-box.component.css']
+  styleUrls: ['./files-box.component.scss']
 })
 export class FilesBoxComponent implements OnInit {
 

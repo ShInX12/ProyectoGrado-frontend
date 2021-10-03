@@ -14,7 +14,7 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-save-client',
   templateUrl: './save-client.component.html',
-  styleUrls: ['./save-client.component.css']
+  styleUrls: ['./save-client.component.scss']
 })
 export class SaveClientComponent implements OnInit, OnDestroy {
 

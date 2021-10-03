@@ -1,36 +1,27 @@
 <div class="row mt-4">
   <div class="col-12 col-md-4">
-    <div class="row">
-      <h4 class="text-truncate">{{ process.name }}</h4>
-    </div>
-    <div class="row">
-      <p class="text-truncate">{{ process.description }}</p>
-    </div>
-    <div class="row">
-      <p class="text-truncate"><b>Cliente(s):</b> {{ clientsLabel }}</p>
-    </div>
+    <h4 class="text-truncate">{{ process.name }}</h4>
+    <p class="text-truncate">{{ process.description }}</p>
+    <p class="text-truncate"><b>Cliente(s):</b> {{ clientsLabel }}</p>
   </div>
 
   <div class="col-12 col-md-8">
-    <div class="row justify-content-around toolbar">
-      <p class="text-truncate mx-2 my-1"><b>Código:</b> {{ process.code }}</p>
-      <p class="text-truncate mx-2 my-1"><b>Estado:</b> {{ stateName }}</p>
-      <a class="text-truncate mx-2 my-1" style="cursor: pointer" (click)="openModal(usersModal)">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-          <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-          <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+    <div class="toolbar">
+      <p class="text-truncate mb-0"><b>Código:</b> {{ process.code }}</p>
+      <p class="text-truncate mb-0"><b>Estado:</b> {{ stateName }}</p>
+      <a class="text-truncate custom-link" (click)="openModal(usersModal)">
+        <svg class="bi" width="1em" height="1em" fill="currentColor">
+          <use xlink:href="assets/svg/icons.svg#person-plus-fill"/>
         </svg> Colaboradores
       </a>
-      <a class="text-truncate mx-2 my-1" style="cursor: pointer" (click)="openModal(clientsModal)">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-          <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-          <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
-          <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+      <a class="text-truncate mb-0 custom-link" (click)="openModal(clientsModal)">
+        <svg class="bi" width="1em" height="1em" fill="currentColor">
+          <use xlink:href="assets/svg/icons.svg#people-fill"/>
         </svg> Clientes
       </a>
-      <a class="text-truncate mx-2 my-1" style="cursor: pointer" (click)="openModal(optionsModal)">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
-          <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+      <a class="text-truncate mb-0 custom-link" (click)="openModal(optionsModal)">
+        <svg class="bi" width="1em" height="1em" fill="currentColor">
+          <use xlink:href="assets/svg/icons.svg#gear-fill"/>
         </svg> Opciones
       </a>
     </div>
@@ -44,9 +35,9 @@
   </div>
 
   <div class="col-md-4 mt-md-2 mt-4">
-    <div class="row"><h5>Documentos recibidos ({{ documentsReceived.length }})</h5></div>
-    <div class="row">
-      <div class="mr-0 mr-md-4 p-2 border justify-content-center files-box">
+    <div><h5>Documentos recibidos ({{ documentsReceived.length }})</h5></div>
+    <div>
+      <div class="mr-0 mr-md-4 border justify-content-center files-box">
         <div *ngFor="let document of documentsReceived">
           <app-file-card [document]="document" [disabled]="stateName === 'Finalizado'" (deletedFile)="deleteDocument($event)"></app-file-card>
         </div>
@@ -54,24 +45,21 @@
     </div>
   </div>
 
-  <div class="col-md-4 mt-md-2 mt-4 px-0">
+  <div class="col-md-4 mt-md-2 mt-4">
+
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
-          <h6>Observaciones</h6>
-        </a>
+        <button class="nav-link active" id="observations-tab" data-bs-toggle="tab" data-bs-target="#observations" type="button" role="tab" aria-controls="observations" aria-selected="true">Observaciones</button>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
-          <h6>Conversación</h6>
-        </a>
+        <button class="nav-link" id="conversations-tab" data-bs-toggle="tab" data-bs-target="#conversations" type="button" role="tab" aria-controls="conversations" aria-selected="false">Conversación</button>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="tab-pane fade show active" id="observations" role="tabpanel" aria-labelledby="home-tab">
         <app-observations-box [processId]="params.id" [disabled]="stateName === 'Finalizado'"></app-observations-box>
       </div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="tab-pane fade" id="conversations" role="tabpanel" aria-labelledby="conversations-tab">
         <app-chat-box *ngIf="process.enable_chat" [processId]="params.id" [reload]="reloadChatBox"></app-chat-box>
         <app-enable-chat-message *ngIf="!process.enable_chat" [processId]="params.id" [disabled]="!owner || stateName === 'Finalizado'" (enabled)="enableChat()"></app-enable-chat-message>
       </div>
@@ -84,13 +72,11 @@
 <ng-template #optionsModal>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Opciones</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modalRef.hide()"></button>
   </div>
 
   <div class="modal-body" style="height: 25rem">
-    <div class="form-group row">
+    <div class="row mb-3">
       <label for="process-name" class="col-sm-3 col-form-label">Nombre:</label>
       <div class="col-sm-9">
         <input class="form-control" type="text" id="process-name" [class.is-invalid]="process?.name?.length === 0"
@@ -98,50 +84,53 @@
         <div id="invalid-process-name" class="invalid-feedback">El nombre es necesario</div>
       </div>
     </div>
-    <div class="form-group row">
+    <div class="row mb-3">
       <label for="process-description" class="col-sm-3 col-form-label">Descripción:</label>
       <div class="col-sm-9">
         <input class="form-control" type="text" id="process-description"
                [disabled]="!owner || stateName === 'Finalizado'" autocomplete="off" [(ngModel)]="process.description">
       </div>
     </div>
-    <div class="form-group row">
+    <div class="row mb-3">
       <label for="process-code" class="col-sm-3 col-form-label">Código</label>
       <div class="col-sm-9">
         <input class="form-control" type="text" id="process-code"
                [disabled]="!owner || stateName === 'Finalizado'" autocomplete="off" [(ngModel)]="process.code">
       </div>
     </div>
-    <div class="form-group row">
+    <div class="row mb-3">
       <label for="select-state" class="col-sm-3 col-form-label">Estado del caso: </label>
       <div class="col-sm-9">
-        <select [disabled]="!owner" class="custom-select" id="select-state" required [(ngModel)]="process.state">
+        <select [disabled]="!owner" class="form-select" id="select-state" required [(ngModel)]="process.state">
           <option *ngFor="let state of states" [value]="state.uid">
             {{ state.name }}
           </option>
         </select>
       </div>
     </div>
-    <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1" [disabled]="!owner || stateName === 'Finalizado'" [(ngModel)]="process.enable_chat">
-      <label class="form-check-label" for="exampleCheck1">Habilitar pestaña de conversación</label>
-    </div>
-    <div class="form-group row">
-      <div class="col">
-        <button type="button" class="btn btn-outline-danger" [disabled]="!owner || stateName === 'Finalizado'" (click)="deleteMessages()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-dots" viewBox="0 0 16 16">
-            <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
-            <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-          </svg> Vaciar conversación</button>
+
+    <fieldset>
+      <legend>Conversación</legend>
+      <div class="form-group form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" [disabled]="!owner || stateName === 'Finalizado'" [(ngModel)]="process.enable_chat">
+        <label class="form-check-label" for="exampleCheck1">Habilitar pestaña de conversación</label>
       </div>
-    </div>
+      <div class="form-group row">
+        <div class="col">
+          <button type="button" class="btn btn-outline-danger" [disabled]="!owner || stateName === 'Finalizado'" (click)="deleteMessages()">
+            <svg class="bi" width="1em" height="1em" fill="currentColor">
+              <use xlink:href="assets/svg/icons.svg#chat-right-dots"/>
+            </svg> Vaciar conversación</button>
+        </div>
+      </div>
+    </fieldset>
 
   </div>
 
   <div class="modal-footer justify-content-between">
     <button class="btn btn-outline-danger" (click)="deleteProcess()" [disabled]="!owner">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+      <svg class="bi" width="1em" height="1em" fill="currentColor">
+        <use xlink:href="assets/svg/icons.svg#trash-fill"/>
       </svg> Eliminar caso
     </button>
     <button class="btn btn-primary" [disabled]="process?.name?.length === 0 || !owner" (click)="updateProcess()">
@@ -153,16 +142,14 @@
 <ng-template #clientsModal>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Clientes asociados</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modalRef.hide()"></button>
   </div>
   <div class="modal-body" style="height: 25rem">
 
-    <div class="form-group row">
+    <div class="row mb-3">
       <label for="select-client" class="col-sm-3 col-form-label">Agregar cliente: </label>
       <div class="col-sm-6 col-lg-7">
-        <select [disabled]="!canEdit || stateName === 'Finalizado'" class="custom-select" id="select-client" required [(ngModel)]="selectedClient">
+        <select [disabled]="!canEdit || stateName === 'Finalizado'" class="form-select" id="select-client" required [(ngModel)]="selectedClient">
           <option *ngFor="let client of totalClients" [value]="client.uid">
             {{ client.personal_id }} - {{ client.name }}
           </option>
@@ -207,16 +194,14 @@
 <ng-template #usersModal>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Colaboradores</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modalRef.hide()"></button>
   </div>
   <div class="modal-body" style="height: 25rem">
 
-    <div class="form-group row">
+    <div class="row mb-3">
       <label for="select-user" class="col-sm-3 col-form-label">Agregar colaborador: </label>
       <div class="col-sm-6 col-lg-7">
-        <select [disabled]="!owner || stateName === 'Finalizado'" class="custom-select" id="select-user" required [(ngModel)]="selectedUser">
+        <select [disabled]="!owner || stateName === 'Finalizado'" class="form-select" id="select-user" required [(ngModel)]="selectedUser">
           <option *ngFor="let user of totalUsers" [value]="user.uid">
             {{ user.personal_id }} - {{ user.name }}
           </option>
@@ -241,7 +226,7 @@
         <tbody>
           <tr *ngFor="let up of currentUsers">
             <td>
-              <span *ngIf="authService.person.uid === up.user._id" class="badge badge-primary">Yo</span> {{ up.user.name }}
+              <span *ngIf="authService.person.uid === up.user._id" class="badge bg-primary">Yo</span> {{ up.user.name }}
             </td>
             <td class="text-center">
               <input [disabled]="!owner || authService.person.uid === up.user._id" class="form-check-input pointer"

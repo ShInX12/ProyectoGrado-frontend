@@ -1,9 +1,8 @@
-<div class="row mt-4 mb-3 px-3 justify-content-between">
+<div class="d-flex justify-content-between mt-4 mb-3">
   <h3>Lista de usuarios</h3>
   <button class="btn btn-primary" (click)="newUser()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-      <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-      <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+    <svg class="bi" width="1em" height="1em" fill="currentColor">
+      <use xlink:href="assets/svg/icons.svg#person-plus-fill"/>
     </svg> Agregar
   </button>
 </div>
@@ -45,22 +44,22 @@
   </table>
 </div>
 
-<div *ngIf="users?.length > 0" class="row justify-content-between px-3">
+<div *ngIf="users?.length > 0" class="d-flex justify-content-between">
 
   <nav aria-label="Client page navigation">
     <ul class="pagination">
       <li class="page-item">
-        <a class="pointer" (click)="changePage(this.page - 1)" aria-label="Anterior">
+        <a class="page-link" (click)="changePage(this.page - 1)" aria-label="Anterior">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
       <li class="page-item"
           *ngFor="let item of [].constructor(totalPages); let i = index"
           [class.active]="this.page === i + 1">
-        <a class="pointer" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+        <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
       </li>
       <li class="page-item">
-        <a class="pointer" (click)="changePage(this.page + 1)" aria-label="Siguiente">
+        <a class="page-link" (click)="changePage(this.page + 1)" aria-label="Siguiente">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

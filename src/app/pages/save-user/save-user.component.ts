@@ -16,7 +16,7 @@ import { UserDTO } from '../../DTO/userDTO';
 @Component({
   selector: 'app-save-user',
   templateUrl: './save-user.component.html',
-  styleUrls: ['./save-user.component.css']
+  styleUrls: ['./save-user.component.scss']
 })
 export class SaveUserComponent implements OnInit, OnDestroy {
 

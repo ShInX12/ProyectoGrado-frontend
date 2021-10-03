@@ -15,7 +15,7 @@ import { Client } from '../../models/client';
 @Component({
   selector: 'app-client-process',
   templateUrl: './client-process.component.html',
-  styleUrls: ['./client-process.component.css']
+  styleUrls: ['./client-process.component.scss']
 })
 export class ClientProcessComponent implements OnInit, OnDestroy {
 

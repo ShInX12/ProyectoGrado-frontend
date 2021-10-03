@@ -1,0 +1,19 @@
+.observation-box {
+  background-color: var(--color-grey-dark);
+  width: 100%;
+  height: 51vh;
+  overflow: auto;
+  border-radius: 10px 10px 0 0;
+  border: var(--box-border);
+  padding: 0 0.5rem 0.5rem 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.input-shadow {
+  box-shadow: var(--shadow);
+}
+
+.rounded {
+  height: 50.5vh !important;
+  border-radius: 10px 10px 0 0;
+}
